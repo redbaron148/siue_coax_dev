@@ -1,11 +1,18 @@
 <launch>
-	<include file="$(find gumstix_cam_node)/launch/gumstix_camera.launch"/>
-	<node pkg="cmvision" type="cmvision" name="cmvision">
-		<param name="color_file" value="$(find coax_client)/include/mrl_day_new_colors.txt"/>
-		<param name="mean_shift_on" value="false" />
-		<param name="debug_on" value="false" />
-		<param name="spatial_radius_pix" value="0" />
-		<param name="color_radius_pix" value="0" />
-		<remap from="image" to="image_0" />
-	</node>
+    <!--arg name="color_file" default="ethernet_21_4_2011-03-17-13.txt"/-->
+    <!--arg name="color_file" default="mrl_cloudy_2_sequence_bag_new_colors.txt"/-->
+    <!--arg name="color_file" default="ethernet_long_line_2011-03-21.txt"/-->
+    <arg name="color_file" default="2029_colors.txt"/>
+    
+    <group ns="cmvision">
+        <param name="color_file" value="$(find coax_client)/include/$(arg color_file)"/>
+        <param name="mean_shift_on" value="false" />
+        <param name="debug_on" value="false" />
+        <param name="spatial_radius_pix" value="0" />
+        <param name="color_radius_pix" value="0" />
+    </group>
+
+    <node pkg="cmvision" type="cmvision" name="cmvision">
+        <remap from="image" to="image_0"/>
+    </node>
 </launch>
