@@ -11,7 +11,7 @@
 	</group>
 
 	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen"/>
-	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyS0"/>
+	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyS0" output="screen"/>
 	<node pkg="coax_client" type="coax_filter_node" name="coax_filter" output="screen"/>
 	
 	<group ns="cmvision">
