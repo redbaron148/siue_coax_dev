@@ -2,5 +2,10 @@
   <include file="$(find coax_client)/launch/gumstix_blob_tracking.launch"/>
   <include file="$(find coax_client)/launch/gumstix_coax_server.launch"/>
   <include file="$(find gumstix_cam_node)/launch/gumstix_camera.launch"/>
-  <node pkg="coax_client" type="coax_controller_node" name="controller" output="screen"/>
+  <node pkg="coax_client" type="coax_controller_node" name="controller" output="screen">
+	<param name="max_pitch" value=".6"/>
+	<param name="max_roll" value=".5"/>
+	<param name="pitch_p_value" value=".6"/>
+	<param name="roll_p_value" value=".6"/>
+  </node>
 </launch>
