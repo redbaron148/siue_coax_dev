@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
                              coax_client::FindBlobPosition::Response &res )
 {
-    float altitude = req.state.zfiltered;
+    float altitude = 30;
     float x = (req.blobs.blobs[req.blob_num].right+req.blobs.blobs[req.blob_num].left)/2.0;
     float y = (req.blobs.blobs[req.blob_num].top+req.blobs.blobs[req.blob_num].bottom)/2.0;
     unsigned short int width = req.blobs.image_width;
@@ -54,7 +54,12 @@ bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
     float degrees_per_pixel_horiz   = FIELD_OF_VIEW_HORIZ/width;
     float degrees_per_pixel_vert    = FIELD_OF_VIEW_VERT/height;
     
-    ROS_INFO("\n\ndegree horiz: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
+    float angle_horiz = degrees_per_pixel_horiz*x_from_center;
+    float angle_vert  = degrees_per_pixel_vert*y_from_center;
+    
+    //ROS_INFO("\n\ny: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
+    
+    ROS_INFO("x: %f\n",altitude*tan(angle_horiz*3.14159/180.));
     
     return true;
 }
