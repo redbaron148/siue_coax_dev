@@ -1,5 +1,5 @@
 <launch>
   <include file="$(find coax_client)/launch/gumstix_blob_tracking.launch"/>
-  <include file="$(find coax_client)/launch/gumstix_coax_server.launch"/>
+  <!--include file="$(find coax_client)/launch/gumstix_coax_server.launch"/-->
   <include file="$(find gumstix_cam_node)/launch/gumstix_camera.launch"/>
 </launch>
