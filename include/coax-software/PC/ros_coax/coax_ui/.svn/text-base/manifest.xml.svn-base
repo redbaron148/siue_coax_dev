@@ -1,0 +1,23 @@
+<package>
+  <description brief="coax_ui">
+
+     coax_ui
+
+  </description>
+  <author>Cedric Pradalier</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/coax_ui</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="sensor_msgs"/>
+  <depend package="image_transport"/>
+
+  <depend package="coax_msgs"/>
+</package>
+
+

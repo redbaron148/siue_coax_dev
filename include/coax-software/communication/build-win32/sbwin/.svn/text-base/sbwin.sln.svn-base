@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sbwin", "sbwin.vcproj", "{C62E9310-AFE8-4D55-8B8F-412CC746EDB2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "servo-simple", "..\servo-simple\servo-simple.vcproj", "{B583F072-8229-446E-81E8-F150E470B64B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2} = {C62E9310-AFE8-4D55-8B8F-412CC746EDB2}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "monitor", "..\monitor\monitor.vcproj", "{3A2A8C4B-82AB-450D-8321-65EEA4E2D5CE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2} = {C62E9310-AFE8-4D55-8B8F-412CC746EDB2}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helishell", "..\helishell\helishell.vcproj", "{A523A9AD-C26E-484F-ABD7-DE3267117332}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2} = {C62E9310-AFE8-4D55-8B8F-412CC746EDB2}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commloop", "..\commloop\commloop.vcproj", "{B330DBA9-F681-4BAC-A859-8FD1EE7DDB42}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2} = {C62E9310-AFE8-4D55-8B8F-412CC746EDB2}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2}.Debug|Win32.Build.0 = Debug|Win32
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2}.Release|Win32.ActiveCfg = Release|Win32
+		{C62E9310-AFE8-4D55-8B8F-412CC746EDB2}.Release|Win32.Build.0 = Release|Win32
+		{B583F072-8229-446E-81E8-F150E470B64B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B583F072-8229-446E-81E8-F150E470B64B}.Debug|Win32.Build.0 = Debug|Win32
+		{B583F072-8229-446E-81E8-F150E470B64B}.Release|Win32.ActiveCfg = Release|Win32
+		{B583F072-8229-446E-81E8-F150E470B64B}.Release|Win32.Build.0 = Release|Win32
+		{3A2A8C4B-82AB-450D-8321-65EEA4E2D5CE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3A2A8C4B-82AB-450D-8321-65EEA4E2D5CE}.Debug|Win32.Build.0 = Debug|Win32
+		{3A2A8C4B-82AB-450D-8321-65EEA4E2D5CE}.Release|Win32.ActiveCfg = Release|Win32
+		{3A2A8C4B-82AB-450D-8321-65EEA4E2D5CE}.Release|Win32.Build.0 = Release|Win32
+		{A523A9AD-C26E-484F-ABD7-DE3267117332}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A523A9AD-C26E-484F-ABD7-DE3267117332}.Debug|Win32.Build.0 = Debug|Win32
+		{A523A9AD-C26E-484F-ABD7-DE3267117332}.Release|Win32.ActiveCfg = Release|Win32
+		{A523A9AD-C26E-484F-ABD7-DE3267117332}.Release|Win32.Build.0 = Release|Win32
+		{B330DBA9-F681-4BAC-A859-8FD1EE7DDB42}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B330DBA9-F681-4BAC-A859-8FD1EE7DDB42}.Debug|Win32.Build.0 = Debug|Win32
+		{B330DBA9-F681-4BAC-A859-8FD1EE7DDB42}.Release|Win32.ActiveCfg = Release|Win32
+		{B330DBA9-F681-4BAC-A859-8FD1EE7DDB42}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

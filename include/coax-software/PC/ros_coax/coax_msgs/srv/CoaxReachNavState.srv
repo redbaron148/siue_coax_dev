@@ -1,0 +1,4 @@
+uint8 desiredState
+float32 timeout
+---
+int8 result

@@ -29,7 +29,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-set(COAXHOME $ENV{HOME}/coax-software/deploy)
+set(COAXHOME $ENV{HOME}/ros_pkgs/siue_coax_dev/include/coax-software/deploy)
 set(COAXTARGET linux)
 link_directories(${COAXHOME}/${COAXTARGET}/lib)
 include_directories(${COAXHOME}/${COAXTARGET}/include)
@@ -38,5 +38,8 @@ include_directories(${COAXHOME}/${COAXTARGET}/include)
 add_definitions(-DSBC_HAS_IO -DDEFENSIVE -DSBC_HAS_COMM -DSBC_HAS_PTHREAD -DLINUX)
 rosbuild_add_executable(coax_server src/coax_server.cpp)
 target_link_libraries(coax_server sbcom pthread rt)
+
+rosbuild_add_executable(coax_server_sim src/coax_server_sim.cpp)
+target_link_libraries(coax_server_sim sbcom pthread rt)
 
 

@@ -1,0 +1,94 @@
+	static unsigned int flagcount = 0;
+	static const unsigned int imuEveryTime = 
+		IMU_UPDATE_ALT_GYROZ_EULERZ | 
+		IMU_UPDATE_EULER_FILT | IMU_UPDATE_ACCEL;
+	static const unsigned int imuflags[] = {
+		//IMU_UPDATE_EULER,
+		//IMU_UPDATE_ACCEL,
+		IMU_UPDATE_GYRO,
+		IMU_UPDATE_MAG,
+		IMU_UPDATE_PRES,
+		// IMU_UPDATE_ALT,  // Is now part of the control package
+		// IMU_UPDATE_DIST // not on coax 0005
+		// IMU_UPDATE_EULER_FILT, // not on coax 0009
+		0 // END OF LIST
+	};
+
+
+-- Zone A
+
+	// Update the state ----------------------------------------------------
+
+	if (INT_IMU==1)		// Wait for the IMU to (re)boot
+	{
+		// update one piece of data at a time, to avoid slowing down the
+		// control
+#ifdef USE_IMU_FFP
+		updateIMUData_ffp(imuEveryTime | imuflags[flagcount]);
+#else
+		updateIMUData(imuEveryTime | imuflags[flagcount]);
+#endif
+		flagcount ++;
+		if (!imuflags[flagcount]) flagcount = 0; 
+	} else {
+		control.errors.IMU_REBOOTED = 1;
+		LED_RED = 1;
+	}
+
+-- End Zone A: 1.6 ms
+-- Zone B
+
+	// Update the flags & do control ---------------------------------------
+
+	updateEnableFlags(); // this check the battery level, and may change the control
+
+-- End Zone B': 0.007 ms
+
+	switch (control.flags.CONTROL_MODE & 0x0F) {
+		case CONTROL_FLY:
+			auto_control();
+			break;
+		case CONTROL_RAW:
+			if ((control.flags.CONTROL_MODE & 0xF0) != CONTROL_AUTO) {
+				auto_control();
+			} else {
+				// The API is setting up the control parameter by itself
+				// So we trust it :)
+			}
+			break;
+		case CONTROL_IDLE:
+			if (RC_YAW_TRIM > 0.8) {
+				MOTOR_SetSpeed(0.,0.);
+			} else {
+				// when motor_off is 1, we're coming from stop
+				// otherwise, we should not stop the motor
+				if (motor_off && (control.flags.time_in_idle < control.params.min_time_in_idle/2)) {
+					// Start one motor at a time...
+					MOTOR_SetSpeed(control.params.Kidle,0.0);		// IDLE speed
+				} else {
+					MOTOR_SetSpeed(control.params.Kidle,control.params.Kidle);		// IDLE speed
+					motor_off = 0;
+				}
+
+			}
+			MOTOR_SetServoAngle(0.,0.);
+			break;
+		case CONTROL_STOP:
+		default:
+			motor_off = 1;
+			MOTOR_SetSpeed(0.,0.);
+			MOTOR_SetServoAngle(0.,0.);
+			break;
+	}
+-- End Zone B: peak at 0.220 ms, avg at 0.050 ms
+-- Zone C
+
+	if (control.user_function) {
+		control.user_function(control.user_context);
+	}
+
+	IFS1bits.T4IF	= 0;	// Timer4 Interrupt Flag Status off	
+
+-- End Zone C: min 0.560ms - often 0.720ms - peak at 1.120ms
+
+Total: min: 2.2ms max 2.9ms

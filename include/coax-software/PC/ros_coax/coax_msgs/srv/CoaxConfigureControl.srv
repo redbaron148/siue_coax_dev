@@ -1,0 +1,7 @@
+uint16 rollMode
+uint16 pitchMode
+uint16 yawMode
+uint16 altitudeMode
+---
+int8 result
+

@@ -1,0 +1,335 @@
+<html>
+	<head>
+		<title>COAX Bootloader status</title>
+		<script type="text/javascript">
+<!--
+
+var connected = 0;
+var repeating = 0;
+var video_transmitting = 0;
+
+function updateGetRequest(url, divid, func) {
+	var http_get_request = false;
+	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+		http_get_request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // IE
+		try {
+			http_get_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_get_request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+	if (!http_get_request) {
+		alert('Cannot create XMLHTTP instance');
+		return false;
+	}
+	http_get_request.onreadystatechange=function() {
+		if (http_get_request.readyState==4) {
+			//alert("Response for divid " + divid + " = " +
+			//		http_get_request.responseText)
+			if (func == null) {
+				if (http_get_request.status == 200) {
+					document.getElementById(divid).innerHTML=
+						http_get_request.responseText
+				}
+			} else {
+				func(http_get_request.status,
+						http_get_request.responseText)
+			}
+		}
+	}
+	http_get_request.open('GET', url, true);
+	http_get_request.send(null);
+}
+
+function update_status() 
+{
+	if (connected) {
+		updateGetRequest("../command/status.html","status",null);
+	}
+	window.setTimeout(update_status,1000);
+}
+
+function enable_all_buttons()
+{
+	lb = document.getElementById("connectButton");
+	lb.disabled = false;
+	lb = document.getElementById("repeaterButton");
+	lb.disabled = false;
+}
+
+function disable_all_buttons()
+{
+	lb = document.getElementById("connectButton");
+	lb.disabled = true;
+	lb = document.getElementById("repeaterButton");
+	lb.disabled = true;
+}
+
+function enable_button(id)
+{
+	lb = document.getElementById(id);
+	lb.disabled = false;
+}
+
+function disable_button(id)
+{
+	lb = document.getElementById(id);
+	lb.disabled = true;
+}
+
+
+function validate_startvideo(code, s)
+{
+	if ((s == "SUCCESS") && (code == 200)) {
+		video_transmitting = 1;
+		lb = document.getElementById("videoButton");
+		lb.value = "Stop Video";
+		lb.onclick = kill_video;
+		lb.disabled = false;
+		enable_button("videoButton");
+		document.getElementById("connstate").innerHTML = "Video running";
+	} else {
+		alert(s);
+		enable_button("videoButton");
+	}
+}
+
+function start_video() 
+{
+	if (video_transmitting) {
+		return;
+	} 
+	disable_button("videoButton");
+	updateGetRequest("../command/startvideo",null,validate_startvideo);
+}
+
+function validate_killvideo(code, s)
+{
+	if ((s == "SUCCESS") && (code == 200)) {
+		video_transmitting = 0;
+		lb = document.getElementById("videoButton");
+		lb.value = "Start Video";
+		lb.onclick = start_video;
+		enable_button("videoButton");
+		document.getElementById("connstate").innerHTML = "Video stopped";
+	} else {
+		alert(s);
+		enable_button("videoButton");
+	}
+}
+
+function kill_video() 
+{
+	if (!video_transmitting) {
+		return;
+	} 
+	disable_button("videoButton");
+	updateGetRequest("../command/stopvideo",null,validate_killvideo);
+}
+
+function validate_startrep(code, s)
+{
+	if ((s == "SUCCESS") && (code == 200)) {
+		repeating = 1;
+		lb = document.getElementById("repeaterButton");
+		lb.value = "Stop Repeater";
+		lb.onclick = kill_repeater;
+		lb.disabled = false;
+		enable_button("repeaterButton");
+		document.getElementById("connstate").innerHTML = "Repeater running";
+	} else {
+		alert(s);
+		enable_all_buttons();
+	}
+}
+
+function start_repeater() 
+{
+	if (repeating) {
+		return;
+	} 
+	disable_all_buttons();
+	updateGetRequest("../command/startrepeater",null,validate_startrep);
+}
+
+function validate_killrep(code, s)
+{
+	if ((s == "SUCCESS") && (code == 200)) {
+		repeating = 0;
+		lb = document.getElementById("repeaterButton");
+		lb.value = "Start Repeater";
+		lb.onclick = start_repeater;
+		enable_all_buttons();
+		document.getElementById("connstate").innerHTML = "Repeater stopped";
+	} else {
+		alert(s);
+		enable_button("repeaterButton");
+	}
+}
+
+function kill_repeater() 
+{
+	if (!repeating) {
+		return;
+	} 
+	disable_all_buttons();
+	updateGetRequest("../command/stoprepeater",null,validate_killrep);
+}
+
+function validate_termconn(code, s)
+{
+	if ((s == "SUCCESS") && (code == 200)) {
+		connected = 0;
+		lb = document.getElementById("connectButton");
+		lb.value = "Connect to CoaX";
+		lb.onclick = initiate_connection;
+		enable_all_buttons();
+		document.getElementById("connstate").innerHTML = "Disconnected";
+	} else {
+		alert(s);
+		enable_button("connectButton");
+	}
+}
+
+function terminate_connection() 
+{
+	if (!connected) {
+		return;
+	} 
+	disable_all_buttons();
+	updateGetRequest("../command/disconnect",null,validate_termconn);
+}
+
+function validate_initconn(code,s)
+{
+	if ((s == "SUCCESS") && (code == 200)) {
+		connected = 1;
+		lb = document.getElementById("connectButton");
+		lb.value = "Disconnect from CoaX";
+		lb.onclick = terminate_connection;
+		enable_button("connectButton");
+		document.getElementById("connstate").innerHTML = "Connected";
+	} else {
+		alert(s);
+	}
+}
+
+function initiate_connection() 
+{
+	if (connected) {
+		return;
+	} 
+	disable_all_buttons();
+	updateGetRequest("../command/connect",null,validate_initconn);
+}
+
+function validate_verbose(code,s)
+{
+	if ((s != "SUCCESS") || (code != 200)) {
+		alert(s);
+	}
+	lb = document.getElementById("verbosityButton");
+	lb.disabled = false;
+}
+
+
+function set_verbosity()
+{
+	if (!connected) {
+		alert("Set verbosity: must be connected");
+		return;
+	} 
+
+	var verbose = 0
+	for (var i=0; i < document.verbosityform.verbosity.length; i++) {
+		if (document.verbosityform.verbosity[i].checked) {
+			verbose = document.verbosityform.verbosity[i].value;
+		}
+	}
+
+	lb = document.getElementById("verbosityButton");
+	lb.disabled = true;
+	updateGetRequest("../command/setverbose?"+verbose,null,validate_verbose);
+}
+
+function validate_timeout(code,s)
+{
+	if ((s != "SUCCESS") || (code != 200)) {
+		alert(s);
+	}
+	lb = document.getElementById("timeoutButton");
+	lb.disabled = false;
+}
+
+function set_timeout()
+{
+	if (!connected) {
+		alert("Set timeout: must be connected");
+		return;
+	} 
+
+	lb = document.getElementById("wdTimeoutEntry");
+	wdto = lb.value
+	lb = document.getElementById("ctrlTimeoutEntry");
+	ctrlto = lb.value
+	lb = document.getElementById("timeoutButton");
+	lb.disabled = true;
+	updateGetRequest("../command/settimeout?"+wdto+"&"+ctrlto,null,validate_timeout);
+}
+
+function loading_script()
+{
+	connected = 0;
+	initiate_connection();
+	update_status();
+}
+
+//-->
+		</script>
+	</head>
+
+	<body onload="loading_script()">
+		<h1> COAX Web Monitor </h1>
+		<form action="#">
+			<INPUT TYPE="button" id="connectButton" VALUE="Connect to CoaX"
+				onClick="initiate_connection()" DISABLED=true style='width:200px;'>
+			<INPUT TYPE="button" id="repeaterButton" VALUE="Start Repeater"
+				onClick="start_repeater()" DISABLED="true" style='width:100px;'>
+			<INPUT TYPE="button" id="videoButton" VALUE="Start Video"
+				onClick="start_video()" DISABLED="true" style='width:100px;'>
+		</form>
+		<p><div id="connstate"> Not connected </div> </p>
+
+		<hr>
+		<h2> Status </h2>
+		<p> 
+		<div id="status"> No status yet </div>
+		</p>
+		<hr>
+		<h2> Configure </h2>
+		<p> 
+		<form action="#" name=verbosityform>
+			Verbosity: 
+			<INPUT TYPE=RADIO NAME="verbosity" ID="verbosityRadio0" VALUE="0" CHECKED>0
+			<INPUT TYPE=RADIO NAME="verbosity" ID="verbosityRadio1" VALUE="1">1
+			<INPUT TYPE=RADIO NAME="verbosity" ID="verbosityRadio2" VALUE="2">2
+			<INPUT TYPE="button" id="verbosityButton" VALUE="Set!"
+				onClick="set_verbosity()">
+		</form>
+		<form action="#" name=timeoutform>
+			Watchdog timeout: 
+			<INPUT TYPE="entry" ID="wdTimeoutEntry" VALUE="5000" style='width:70px;'>
+			Control timeout:
+			<INPUT TYPE="entry" ID="ctrlTimeoutEntry" VALUE="1000" style='width:70px;'>
+			<INPUT TYPE="button" id="timeoutButton" VALUE="Set!"
+				onClick="set_timeout()">
+		</form>
+		</p>
+		
+	</body>
+</html>
+
+

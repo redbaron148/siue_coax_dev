@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# set -x
+
+if test "$1" = ""
+then
+	port=/dev/ttyUSB0
+else
+	port=$1
+fi
+
+if test "$2" == ""
+then
+	uudecode -o - $port| bunzip2 - -c	
+else
+	uudecode -o - $port| bunzip2 - -c > "$2"
+fi
+

@@ -1,0 +1,46 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+AR	Makefile	/^AR = pic30-ar.exe$/;"	m
+AS	Makefile	/^AS = pic30-as.exe$/;"	m
+CC	Makefile	/^CC = pic30-gcc.exe$/;"	m
+FNOSC_PRI	main.c	/^_FOSCSEL(FNOSC_PRI);								\/\/ Primary (XT, HS, EC) Oscillator$/;"	v
+FPWRT_PWR128	main.c	/^_FPOR(FPWRT_PWR128);								\/\/ POR (Power On Reset)$/;"	v
+HX	Makefile	/^HX = pic30-bin2hex.exe$/;"	m
+LD	Makefile	/^LD = pic30-ld.exe$/;"	m
+POSCMD_HS	main.c	/^_FOSC(FCKSM_CSECMD & OSCIOFNC_OFF  & POSCMD_HS);  $/;"	v
+RECEIVE_TIMEOUT	main.c	95;"	d	file:
+RM	Makefile	/^RM = rm$/;"	m
+SEND_TIMEOUT	main.c	94;"	d	file:
+START_CONTROL	main.c	/^char START_CONTROL;		\/\/ Start control flag, START_CONTROL=1 --> start control$/;"	v
+TIMEOUT_CMD	main.c	/^unsigned short TIMEOUT_CMD=0xFFFF;$/;"	v
+TIMEOUT_CTRL	main.c	/^unsigned short TIMEOUT_CTRL=0xFFFF;$/;"	v
+T_ctrl	main.c	/^float T_ctrl;$/;"	v
+_T1Interrupt	main.c	/^void __attribute__((__interrupt__, no_auto_psv)) _T1Interrupt(void)$/;"	f
+_T4Interrupt	main.c	/^void __attribute__((__interrupt__)) _T4Interrupt(void)$/;"	f
+accel	main.c	/^float accel[3] = {0,0,0};		\/\/ order in the array: X, Y, Z$/;"	v
+alt	main.c	/^CONTROL_VAR_STRUCT  yaw, alt, pitch, roll;$/;"	v
+alt_OK	main.c	/^int alt_OK;$/;"	v
+altitude	main.c	/^float altitude, altitude_old, altitude_CTRL, altitude_old_CTRL; \/\/ in [m] for the altitude$/;"	v
+altitudeCM	main.c	/^unsigned char altitudeCM=0;	\/\/ altitude in [cm]$/;"	v
+altitude_CTRL	main.c	/^float altitude, altitude_old, altitude_CTRL, altitude_old_CTRL; \/\/ in [m] for the altitude$/;"	v
+altitude_old	main.c	/^float altitude, altitude_old, altitude_CTRL, altitude_old_CTRL; \/\/ in [m] for the altitude$/;"	v
+altitude_old_CTRL	main.c	/^float altitude, altitude_old, altitude_CTRL, altitude_old_CTRL; \/\/ in [m] for the altitude$/;"	v
+cmd_watchdog	main.c	/^unsigned short cmd_watchdog = 0;$/;"	v
+ctrl_watchdog	main.c	/^unsigned short ctrl_watchdog = 0;$/;"	v
+euler	main.c	/^float euler[3] = {0,0,0};		\/\/ IMU data after conversion to float$/;"	v
+gyro	main.c	/^float gyro[3]  = {0,0,0};$/;"	v
+gyro_old	main.c	/^float gyro_old[3] = {0,0,0};$/;"	v
+mag	main.c	/^float mag[3]   = {0,0,0};$/;"	v
+main	main.c	/^int main(void) {$/;"	f
+motor	main.c	/^MOTOR_SET_STRUCT  motor;$/;"	v
+old_altitudeCM	main.c	/^unsigned char old_altitudeCM=0;$/;"	v
+pitch	main.c	/^CONTROL_VAR_STRUCT  yaw, alt, pitch, roll;$/;"	v
+roll	main.c	/^CONTROL_VAR_STRUCT  yaw, alt, pitch, roll;$/;"	v
+test_buf	main.c	/^unsigned char test_buf[200]; \/\/ !!!!!$/;"	v
+timecount	main.c	/^unsigned long timecount = 0;$/;"	v
+waitcount	main.c	/^unsigned short waitcount = 0;$/;"	v
+yaw	main.c	/^CONTROL_VAR_STRUCT  yaw, alt, pitch, roll;$/;"	v

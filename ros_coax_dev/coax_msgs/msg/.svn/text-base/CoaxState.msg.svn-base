@@ -50,6 +50,8 @@ float32 battery
 # Output of the remote control channel, normalised to [-1,1] */
 float32[8] rcChannel
 
+CoaxSpeed coaxspeed
+
 # symbols below may be suppressed in future version of the library */
 
 # Output of attitude control (semantic unclear) */

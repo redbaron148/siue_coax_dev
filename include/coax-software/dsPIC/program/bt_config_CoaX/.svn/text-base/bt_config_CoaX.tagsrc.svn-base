@@ -1,0 +1,21 @@
+S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c
+S:\coax\coax-software\dsPIC\library\led\coax_led.c
+S:\coax\coax-software\dsPIC\library\configs\coax_config.c
+S:\coax\coax-software\dsPIC\library\uart\uart.c
+S:\coax\coax-software\dsPIC\library\utils\utils.c
+S:\coax\coax-software\dsPIC\library\configs\init_port.c
+S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s
+S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s
+S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s
+S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s
+S:\coax\coax-software\dsPIC\library\analog\analog.c
+S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c
+S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c
+S:\coax\coax-software\dsPIC\library\configs\coax_config.h
+S:\coax\coax-software\dsPIC\library\configs\coax_ports.h
+S:\coax\coax-software\dsPIC\library\configs\init_port.h
+S:\coax\coax-software\dsPIC\library\led\coax_led.h
+C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h
+S:\coax\coax-software\dsPIC\library\utils\utils.h
+S:\coax\coax-software\dsPIC\library\uart\coax_uart.h
+S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h

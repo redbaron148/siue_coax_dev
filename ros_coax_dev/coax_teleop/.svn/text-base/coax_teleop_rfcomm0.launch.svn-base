@@ -1,0 +1,15 @@
+<launch>
+	
+	<node name="joy" pkg="joy" type="joy_node" >
+		<param name="dev" value="/dev/input/js0" />
+		<param name="autorepeat_rate" value="10.0" />
+	</node>
+
+	<node name="coax" pkg="coax_server" type="coax_server" args="/dev/rfcomm0" />
+
+	<node name="teleop" pkg="coax_teleop" type="coax_teleop">
+		<param name="coax_server" value="coax_server" />
+		<param name="joy_topic" value="/joy" />
+    </node>
+
+</launch>

@@ -1,0 +1,5 @@
+uint16 control_timeout_ms
+uint16 watchdog_timeout_ms
+---
+int8 result
+

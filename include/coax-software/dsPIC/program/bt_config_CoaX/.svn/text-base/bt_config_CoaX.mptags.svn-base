@@ -1,0 +1,630 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+BATTERY_VOLTAGE_CRITICAL	S:\coax\coax-software\dsPIC\library\utils\utils.h	55;"	e	line:55
+BATTERY_VOLTAGE_LOW	S:\coax\coax-software\dsPIC\library\utils\utils.h	54;"	e	line:54
+BATTERY_VOLTAGE_OK	S:\coax\coax-software\dsPIC\library\utils\utils.h	53;"	e	line:53
+BT_CTS_PIN::LATBbits.LATB14	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	68;"	d	line:68
+BT_CTS_PIN_dir::TRISBbits.TRISB14	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	69;"	d	line:69
+BT_RTS_PIN::LATBbits.LATB8	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	66;"	d	line:66
+BT_RTS_PIN_dir::TRISBbits.TRISB8	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	67;"	d	line:67
+BT_RX_PIN::LATFbits.LATF5	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	64;"	d	line:64
+BT_RX_PIN_dir::TRISFbits.TRISF5	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	65;"	d	line:65
+BT_TX_PIN::LATFbits.LATF4	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	62;"	d	line:62
+BT_TX_PIN_dir::TRISFbits.TRISF4	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	63;"	d	line:63
+BUZZER::LATBbits.LATB9	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	91;"	d	line:91
+BUZZER_PIN_dir::TRISBbits.TRISB9	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	92;"	d	line:92
+BatteryVoltageEnum	S:\coax\coax-software\dsPIC\library\utils\utils.h	56;"	t	line:56
+BtDevice	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	51;"	s	line:51
+BtEPuck	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	61;"	s	line:61
+BusyUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	175;"	p	line:175	signature:(void)
+BusyUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	312;"	p	line:312	signature:(void)
+BusyUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	105;"	p	line:105	signature:(void)
+BusyUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	272;"	f	line:272	signature:(void)
+BusyUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	206;"	p	line:206	signature:(void)
+BusyUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	343;"	p	line:343	signature:(void)
+BusyUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	114;"	p	line:114	signature:(void)
+BusyUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	285;"	f	line:285	signature:(void)
+BuzzerBip	S:\coax\coax-software\dsPIC\library\utils\utils.c	86;"	f	line:86	signature:(unsigned char bip,int blocking)
+BuzzerBip	S:\coax\coax-software\dsPIC\library\utils\utils.h	42;"	p	line:42	signature:(unsigned char bip,int blocking)
+Buzzer_OFF	S:\coax\coax-software\dsPIC\library\utils\utils.c	141;"	f	line:141	signature:(void)
+Buzzer_OFF	S:\coax\coax-software\dsPIC\library\utils\utils.h	46;"	p	line:46	signature:(void)
+Buzzer_ON	S:\coax\coax-software\dsPIC\library\utils\utils.c	116;"	f	line:116	signature:(unsigned int frequency)
+Buzzer_ON	S:\coax\coax-software\dsPIC\library\utils\utils.h	45;"	p	line:45	signature:(unsigned int frequency)
+CloseUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	162;"	p	line:162	signature:(void)
+CloseUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	299;"	p	line:299	signature:(void)
+CloseUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	123;"	p	line:123	signature:(void)
+CloseUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	183;"	p	line:183	file:	signature:(void)
+CloseUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	298;"	f	line:298	signature:(void)
+CloseUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	193;"	p	line:193	signature:(void)
+CloseUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	330;"	p	line:330	signature:(void)
+CloseUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	132;"	p	line:132	signature:(void)
+CloseUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	184;"	p	line:184	file:	signature:(void)
+CloseUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	317;"	f	line:317	signature:(void)
+ClrWdt::{__asm__volatile("clrwdt");}	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	113;"	d	line:113
+ConfigIntUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	164;"	p	line:164	signature:(unsigned int config)
+ConfigIntUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	301;"	p	line:301	signature:(unsigned int config)
+ConfigIntUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	141;"	p	line:141	signature:(unsigned int config)
+ConfigIntUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	336;"	f	line:336	signature:(unsigned int config)
+ConfigIntUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	195;"	p	line:195	signature:(unsigned int config)
+ConfigIntUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	332;"	p	line:332	signature:(unsigned int config)
+ConfigIntUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	150;"	p	line:150	signature:(unsigned int config)
+ConfigIntUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	359;"	f	line:359	signature:(unsigned int config)
+DS_CS_2::LATGbits.LATG9	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	80;"	d	line:80
+DS_CS_2_dir::TRISGbits.TRISG9	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	81;"	d	line:81
+DS_MISO_2::LATGbits.LATG7	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	76;"	d	line:76
+DS_MISO_2_dir::TRISGbits.TRISG7	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	77;"	d	line:77
+DS_MOSI_2::LATGbits.LATG8	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	78;"	d	line:78
+DS_MOSI_2_dir::TRISGbits.TRISG8	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	79;"	d	line:79
+DS_SCK_2::LATGbits.LATG6	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	74;"	d	line:74
+DS_SCK_2_dir::TRISGbits.TRISG6	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	75;"	d	line:75
+DataRdyUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	166;"	p	line:166	signature:(void)
+DataRdyUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	303;"	p	line:303	signature:(void)
+DataRdyUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	160;"	p	line:160	signature:(void)
+DataRdyUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	383;"	f	line:383	signature:(void)
+DataRdyUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	197;"	p	line:197	signature:(void)
+DataRdyUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	334;"	p	line:334	signature:(void)
+DataRdyUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	170;"	p	line:170	signature:(void)
+DataRdyUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	397;"	f	line:397	signature:(void)
+DisableIntU1RX::_U1RXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	152;"	d	line:152
+DisableIntU1RX::_U1RXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	288;"	d	line:288
+DisableIntU1TX::_U1TXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	153;"	d	line:153
+DisableIntU1TX::_U1TXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	289;"	d	line:289
+DisableIntU2RX::_U2RXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	183;"	d	line:183
+DisableIntU2RX::_U2RXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	320;"	d	line:320
+DisableIntU2TX::_U2TXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	184;"	d	line:184
+DisableIntU2TX::_U2TXIE=0	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	321;"	d	line:321
+EXIT_OK::1	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	43;"	d	line:43	file:
+EnableIntU1RX::_U1RXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	149;"	d	line:149
+EnableIntU1RX::_U1RXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	285;"	d	line:285
+EnableIntU1TX::_U1TXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	150;"	d	line:150
+EnableIntU1TX::_U1TXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	286;"	d	line:286
+EnableIntU2RX::_U2RXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	180;"	d	line:180
+EnableIntU2RX::_U2RXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	317;"	d	line:317
+EnableIntU2TX::_U2TXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	181;"	d	line:181
+EnableIntU2TX::_U2TXIE=1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	318;"	d	line:318
+FALSE::0	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	70;"	d	line:70
+FCY::40	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	38;"	d	line:38
+FNOSC_PRI	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	37;"	v	line:37
+FWDTEN_OFF	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	42;"	v	line:42
+FlashORNG	S:\coax\coax-software\dsPIC\library\led\coax_led.c	39;"	f	line:39	signature:(void)
+FlashORNG	S:\coax\coax-software\dsPIC\library\led\coax_led.h	41;"	p	line:41	signature:(void)
+FlashRED	S:\coax\coax-software\dsPIC\library\led\coax_led.c	48;"	f	line:48	signature:(void)
+FlashRED	S:\coax\coax-software\dsPIC\library\led\coax_led.h	42;"	p	line:42	signature:(void)
+INPUT_PIN::1	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	38;"	d	line:38
+INT_IMU::PORTDbits.RD11	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	96;"	d	line:96
+INT_IMU_dir::TRISDbits.TRISD11	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	97;"	d	line:97
+Idle::{__asm__volatile("pwrsav#1");}	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	115;"	d	line:115
+InitLoopTimer	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	111;"	f	line:111	signature:(float ms)
+InitLoopTimer	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	96;"	p	line:96	signature:(float)
+InitOscillator	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	37;"	f	line:37	signature:(void)
+InitOscillator	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	87;"	p	line:87	signature:(void)
+InitTimer1	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	62;"	f	line:62	signature:(void)
+InitTimer1	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	88;"	p	line:88	signature:(void)
+InitTimer3	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	86;"	f	line:86	signature:(void)
+InitTimer3	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	93;"	p	line:93	signature:(void)
+InterruptOFF::{__asm__volatile("disi#10000")	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	116;"	d	line:116
+InterruptON::{__asm__volatile("disi#2");}	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	117;"	d	line:117
+InterruptPointer	S:\coax\coax-software\dsPIC\library\uart\uart.c	48;"	t	line:48	file:
+LED_ORNG::LATBbits.LATB1	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	42;"	d	line:42
+LED_ORNG_dir::TRISBbits.TRISB1	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	43;"	d	line:43
+LED_RED::LATBbits.LATB5	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	45;"	d	line:45
+LED_RED_dir::TRISBbits.TRISB5	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	46;"	d	line:46
+LOOPTIMER_SCALE::156.25	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	35;"	d	line:35	file:
+MICROSEC::40uL	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	41;"	d	line:41
+MILLISEC::(1000*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	42;"	d	line:42
+Nop::{__asm__volatile("nop");}	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	112;"	d	line:112
+OUTPUT_PIN::0	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	37;"	d	line:37
+OpenUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	171;"	p	line:171	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	308;"	p	line:308	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	210;"	p	line:210	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	491;"	f	line:491	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	202;"	p	line:202	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	339;"	p	line:339	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	221;"	p	line:221	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+OpenUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	508;"	f	line:508	signature:(unsigned int config1,unsigned int config2, unsigned int ubrg)
+POSCMD_HS	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	38;"	v	line:38
+RC_reset::LATDbits.LATD8	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	86;"	d	line:86
+RC_reset_dir::TRISDbits.TRISD8	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	87;"	d	line:87
+ReadUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	173;"	p	line:173	signature:(void)
+ReadUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	310;"	p	line:310	signature:(void)
+ReadUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	269;"	p	line:269	signature:(void)
+ReadUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	591;"	f	line:591	signature:(void)
+ReadUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	204;"	p	line:204	signature:(void)
+ReadUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	341;"	p	line:341	signature:(void)
+ReadUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	277;"	p	line:277	signature:(void)
+ReadUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	604;"	f	line:604	signature:(void)
+Reset::{__asm__volatile("reset");}	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	111;"	d	line:111
+SIO_C::LATGbits.LATG2	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	52;"	d	line:52
+SIO_C_dir::TRISGbits.TRISG2	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	53;"	d	line:53
+SIO_D::LATGbits.LATG3	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	50;"	d	line:50
+SIO_D_dir::TRISGbits.TRISG3	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	51;"	d	line:51
+SetPriorityIntU1RX::(priority)_U1RXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	155;"	d	line:155
+SetPriorityIntU1RX::(priority)_U1RXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	291;"	d	line:291
+SetPriorityIntU1TX::(priority)_U1TXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	156;"	d	line:156
+SetPriorityIntU1TX::(priority)_U1TXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	292;"	d	line:292
+SetPriorityIntU2RX::(priority)_U2RXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	186;"	d	line:186
+SetPriorityIntU2RX::(priority)_U2RXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	323;"	d	line:323
+SetPriorityIntU2TX::(priority)_U2TXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	187;"	d	line:187
+SetPriorityIntU2TX::(priority)_U2TXIP=priority	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	324;"	d	line:324
+Sleep::{__asm__volatile("pwrsav#0");}	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	114;"	d	line:114
+StartTimer1	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	71;"	f	line:71	signature:(void)
+StartTimer1	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	89;"	p	line:89	signature:(void)
+StartTimer3	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	95;"	f	line:95	signature:(void)
+StartTimer3	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	94;"	p	line:94	signature:(void)
+StopTimer1	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	78;"	f	line:78	signature:(void)
+StopTimer1	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	90;"	p	line:90	signature:(void)
+StopTimer3	S:\coax\coax-software\dsPIC\library\configs\coax_config.c	102;"	f	line:102	signature:(void)
+StopTimer3	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	95;"	p	line:95	signature:(void)
+TRUE::1	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	69;"	d	line:69
+U1MODEvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	193;"	l	line:193
+U1MODEvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	68;"	l	line:68
+U1STAvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	194;"	l	line:194
+U1STAvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	69;"	l	line:69
+U1TXLength	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	30;"	l	line:30
+U1TXOk	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	31;"	l	line:31
+U1TXPtr	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	29;"	l	line:29
+U2MODEvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	136;"	l	line:136
+U2MODEvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	195;"	l	line:195
+U2STAvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	137;"	l	line:137
+U2STAvalue	S:\coax\coax-software\dsPIC\library\uart\uart.c	196;"	l	line:196
+U2TXLength	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	30;"	l	line:30
+U2TXOk	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	31;"	l	line:31
+U2TXPtr	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	29;"	l	line:29
+UART_1STOPBIT::0xFFFE	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	237;"	d	line:237
+UART_1STOPBIT::0xFFFE	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	94;"	d	line:94
+UART_2STOPBITS::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	236;"	d	line:236
+UART_2STOPBITS::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	93;"	d	line:93
+UART_ADR_DETECT_DIS::0xFFDF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	119;"	d	line:119
+UART_ADR_DETECT_DIS::0xFFDF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	255;"	d	line:255
+UART_ADR_DETECT_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	118;"	d	line:118
+UART_ADR_DETECT_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	254;"	d	line:254
+UART_ALTRX_ALTTX::0xFFE7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	61;"	d	line:61
+UART_BRGH_FOUR::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	85;"	d	line:85
+UART_BRGH_SIXTEEN::0xFFF7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	86;"	d	line:86
+UART_DIS::0x7FE7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	216;"	d	line:216
+UART_DIS::0x7FFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	51;"	d	line:51
+UART_DIS_ABAUD::0xFFDF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	229;"	d	line:229
+UART_DIS_ABAUD::0xFFDF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	80;"	d	line:80
+UART_DIS_LOOPBACK::0xFFBF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	226;"	d	line:226
+UART_DIS_LOOPBACK::0xFFBF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	77;"	d	line:77
+UART_DIS_WAKE::0xFF7F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	223;"	d	line:223
+UART_DIS_WAKE::0xFF7F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	74;"	d	line:74
+UART_EN::0xFFE7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	215;"	d	line:215
+UART_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	50;"	d	line:50
+UART_EN_ABAUD::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	228;"	d	line:228
+UART_EN_ABAUD::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	79;"	d	line:79
+UART_EN_LOOPBACK::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	225;"	d	line:225
+UART_EN_LOOPBACK::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	76;"	d	line:76
+UART_EN_WAKE::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	222;"	d	line:222
+UART_EN_WAKE::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	73;"	d	line:73
+UART_EVEN_PAR_8BIT::0xFFFB	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	233;"	d	line:233
+UART_EVEN_PAR_8BIT::0xFFFB	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	90;"	d	line:90
+UART_IDLE_CON::0xDFE7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	218;"	d	line:218
+UART_IDLE_CON::0xDFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	53;"	d	line:53
+UART_IDLE_STOP::0xFFE7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	219;"	d	line:219
+UART_IDLE_STOP::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	54;"	d	line:54
+UART_INT_RX_3_4_FUL::0xFFBF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	115;"	d	line:115
+UART_INT_RX_3_4_FUL::0xFFBF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	251;"	d	line:251
+UART_INT_RX_BUF_FUL::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	114;"	d	line:114
+UART_INT_RX_BUF_FUL::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	250;"	d	line:250
+UART_INT_RX_CHAR::0xFF7F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	116;"	d	line:116
+UART_INT_RX_CHAR::0xFF7F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	252;"	d	line:252
+UART_INT_TX::0x5FFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	100;"	d	line:100
+UART_INT_TX::0x7FFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	242;"	d	line:242
+UART_INT_TX_BUF_EMPTY::0xDFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	98;"	d	line:98
+UART_INT_TX_BUF_EMPTY::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	241;"	d	line:241
+UART_INT_TX_LAST_CH::0x7FFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	99;"	d	line:99
+UART_IrDA_DISABLE::0xEFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	57;"	d	line:57
+UART_IrDA_ENABLE::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	56;"	d	line:56
+UART_IrDA_POL_INV_ONE::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	102;"	d	line:102
+UART_IrDA_POL_INV_ZERO::0xBFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	103;"	d	line:103
+UART_MODE_FLOW::0xF7FF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	66;"	d	line:66
+UART_MODE_SIMPLEX::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	65;"	d	line:65
+UART_NO_PAR_8BIT::0xFFF9	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	234;"	d	line:234
+UART_NO_PAR_8BIT::0xFFF9	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	91;"	d	line:91
+UART_NO_PAR_9BIT::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	231;"	d	line:231
+UART_NO_PAR_9BIT::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	88;"	d	line:88
+UART_ODD_PAR_8BIT::0xFFFD	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	232;"	d	line:232
+UART_ODD_PAR_8BIT::0xFFFD	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	89;"	d	line:89
+UART_RX_INT_DIS::0xFFF7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	125;"	d	line:125
+UART_RX_INT_DIS::0xFFF7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	261;"	d	line:261
+UART_RX_INT_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	124;"	d	line:124
+UART_RX_INT_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	260;"	d	line:260
+UART_RX_INT_PR0::0xFFF8	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	127;"	d	line:127
+UART_RX_INT_PR0::0xFFF8	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	263;"	d	line:263
+UART_RX_INT_PR1::0xFFF9	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	128;"	d	line:128
+UART_RX_INT_PR1::0xFFF9	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	264;"	d	line:264
+UART_RX_INT_PR2::0xFFFA	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	129;"	d	line:129
+UART_RX_INT_PR2::0xFFFA	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	265;"	d	line:265
+UART_RX_INT_PR3::0xFFFB	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	130;"	d	line:130
+UART_RX_INT_PR3::0xFFFB	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	266;"	d	line:266
+UART_RX_INT_PR4::0xFFFC	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	131;"	d	line:131
+UART_RX_INT_PR4::0xFFFC	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	267;"	d	line:267
+UART_RX_INT_PR5::0xFFFD	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	132;"	d	line:132
+UART_RX_INT_PR5::0xFFFD	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	268;"	d	line:268
+UART_RX_INT_PR6::0xFFFE	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	133;"	d	line:133
+UART_RX_INT_PR6::0xFFFE	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	269;"	d	line:269
+UART_RX_INT_PR7::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	134;"	d	line:134
+UART_RX_INT_PR7::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	270;"	d	line:270
+UART_RX_OVERRUN_CLEAR::0xFFFD	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	121;"	d	line:121
+UART_RX_OVERRUN_CLEAR::0xFFFD	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	257;"	d	line:257
+UART_RX_TX::0xFBE7	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	62;"	d	line:62
+UART_SYNC_BREAK_DISABLED::0xF7FF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	106;"	d	line:106
+UART_SYNC_BREAK_ENABLED::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	105;"	d	line:105
+UART_TX_BUF_FUL::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	111;"	d	line:111
+UART_TX_BUF_NOT_FUL::0xFDFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	112;"	d	line:112
+UART_TX_DISABLE::0xFBFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	109;"	d	line:109
+UART_TX_DISABLE::0xFBFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	248;"	d	line:248
+UART_TX_ENABLE::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	108;"	d	line:108
+UART_TX_ENABLE::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	247;"	d	line:247
+UART_TX_INT_DIS::0xFF7F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	137;"	d	line:137
+UART_TX_INT_DIS::0xFF7F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	273;"	d	line:273
+UART_TX_INT_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	136;"	d	line:136
+UART_TX_INT_EN::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	272;"	d	line:272
+UART_TX_INT_PR0::0xFF8F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	139;"	d	line:139
+UART_TX_INT_PR0::0xFF8F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	275;"	d	line:275
+UART_TX_INT_PR1::0xFF9F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	140;"	d	line:140
+UART_TX_INT_PR1::0xFF9F	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	276;"	d	line:276
+UART_TX_INT_PR2::0xFFAF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	141;"	d	line:141
+UART_TX_INT_PR2::0xFFAF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	277;"	d	line:277
+UART_TX_INT_PR3::0xFFBF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	142;"	d	line:142
+UART_TX_INT_PR3::0xFFBF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	278;"	d	line:278
+UART_TX_INT_PR4::0xFFCF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	143;"	d	line:143
+UART_TX_INT_PR4::0xFFCF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	279;"	d	line:279
+UART_TX_INT_PR5::0xFFDF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	144;"	d	line:144
+UART_TX_INT_PR5::0xFFDF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	280;"	d	line:280
+UART_TX_INT_PR6::0xFFEF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	145;"	d	line:145
+UART_TX_INT_PR6::0xFFEF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	281;"	d	line:281
+UART_TX_INT_PR7::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	146;"	d	line:146
+UART_TX_INT_PR7::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	282;"	d	line:282
+UART_TX_PIN_LOW::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	245;"	d	line:245
+UART_TX_PIN_NORMAL::0xF7FF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	244;"	d	line:244
+UART_UEN_00::0xFCFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	71;"	d	line:71
+UART_UEN_01::0xFDFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	70;"	d	line:70
+UART_UEN_10::0xFEFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	69;"	d	line:69
+UART_UEN_11::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	68;"	d	line:68
+UART_UXRX_IDLE_ONE::0xFFEF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	83;"	d	line:83
+UART_UXRX_IDLE_ZERO::0xFFFF	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	82;"	d	line:82
+UxBRG_VALUE::0x0000	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	23;"	d	line:23
+UxMODE_VALUE::0x0000	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	19;"	d	line:19
+UxRXREG_VALUE::0x0000	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	22;"	d	line:22
+UxSTA_VALUE::0x0110	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	20;"	d	line:20
+UxTXREG_VALUE::0x0000	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	21;"	d	line:21
+V_BATT_PIN::LATBbits.LATB0	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	57;"	d	line:57
+V_BATT_PIN_dir::TRISBbits.TRISB0	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	58;"	d	line:58
+WaitMicroSec	S:\coax\coax-software\dsPIC\library\utils\utils.c	156;"	f	line:156	signature:(unsigned int mics)
+WaitMicroSec	S:\coax\coax-software\dsPIC\library\utils\utils.h	40;"	p	line:40	signature:(unsigned int mics)
+WaitMiliSec	S:\coax\coax-software\dsPIC\library\utils\utils.c	151;"	f	line:151	signature:(unsigned int mils)
+WaitMiliSec	S:\coax\coax-software\dsPIC\library\utils\utils.h	39;"	p	line:39	signature:(unsigned int mils)
+Wait_MICROSEC::5	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	64;"	d	line:64
+Wait_MILLISEC::5000	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	63;"	d	line:63
+WriteUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	160;"	p	line:160	signature:(unsigned int data)
+WriteUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	297;"	p	line:297	signature:(unsigned int data)
+WriteUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	285;"	p	line:285	signature:(unsigned int data)
+WriteUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	617;"	f	line:617	signature:(unsigned int data)
+WriteUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	191;"	p	line:191	signature:(unsigned int data)
+WriteUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	328;"	p	line:328	signature:(unsigned int data)
+WriteUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	293;"	p	line:293	signature:(unsigned int data)
+WriteUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	631;"	f	line:631	signature:(unsigned int data)
+_100MICROSEC::(100*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	49;"	d	line:49
+_100MILLISEC::(100*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	58;"	d	line:58
+_10MICROSEC::(10*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	46;"	d	line:46
+_10MILLISEC::(10*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	54;"	d	line:54
+_1MICROSEC::MICROSEC	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	44;"	d	line:44
+_1MILLISEC::MILLISEC	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	53;"	d	line:53
+_200MICROSEC::(200*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	50;"	d	line:50
+_200MILLISEC::(200*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	59;"	d	line:59
+_20MICROSEC::(20*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	47;"	d	line:47
+_20MILLISEC::(20*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	55;"	d	line:55
+_25MILLISEC::(25*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	56;"	d	line:56
+_300MICROSEC::(300*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	51;"	d	line:51
+_30MICROSEC::(30*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	48;"	d	line:48
+_3MICROSEC::(3*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	45;"	d	line:45
+_500MICROSEC::(500*MICROSEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	52;"	d	line:52
+_500MILLISEC::(500*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	60;"	d	line:60
+_50MILLISEC::(50*MILLISEC)	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	57;"	d	line:57
+_BLUETOOTH	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	46;"	d	line:46
+_COAX_CONFIG	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	2;"	d	line:2
+_COAX_LED	S:\coax\coax-software\dsPIC\library\led\coax_led.h	32;"	d	line:32
+_COAX_PORTS	S:\coax\coax-software\dsPIC\library\configs\coax_ports.h	2;"	d	line:2
+_COAX_UART	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	33;"	d	line:33
+_INIT_PORT	S:\coax\coax-software\dsPIC\library\configs\init_port.h	2;"	d	line:2
+_ISR_AUTOPSV::__attribute__((interrupt))	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	104;"	d	line:104
+_ISR_AUTOPSV::__attribute__((interrupt,auto_	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	100;"	d	line:100
+_ISR_NOAUTOPSV::__attribute__((interrupt))	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	105;"	d	line:105
+_ISR_NOAUTOPSV::__attribute__((interrupt,no_au	S:\coax\coax-software\dsPIC\library\configs\coax_config.h	102;"	d	line:102
+_T6Interrupt	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	260;"	f	line:260	signature:(void)
+_U1RXBuf	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	28;"	l	line:28
+_U1RXCount	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	31;"	l	line:31
+_U1RXInterrupt	S:\coax\coax-software\dsPIC\library\uart\uart.c	43;"	p	line:43	file:	signature:(void)
+_U1RXRcvCnt	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	29;"	l	line:29
+_U1RXReadCnt	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	30;"	l	line:30
+_U1TXCount	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	28;"	l	line:28
+_U1TXInterrupt	S:\coax\coax-software\dsPIC\library\uart\uart.c	44;"	p	line:44	file:	signature:(void)
+_U2RXBuf	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	27;"	l	line:27
+_U2RXCount	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	30;"	l	line:30
+_U2RXInterrupt	S:\coax\coax-software\dsPIC\library\uart\uart.c	45;"	p	line:45	file:	signature:(void)
+_U2RXRcvCnt	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	28;"	l	line:28
+_U2RXReadCnt	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	29;"	l	line:29
+_U2TXCount	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	28;"	l	line:28
+_U2TXInterrupt	S:\coax\coax-software\dsPIC\library\uart\uart.c	46;"	p	line:46	file:	signature:(void)
+_UART_V1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	42;"	d	line:42
+_UART_V2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	38;"	d	line:38
+__U1RXInterrupt	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	45;"	l	line:45
+__U1TXInterrupt	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	36;"	l	line:36
+__U2RXInterrupt	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	44;"	l	line:44
+__U2TXInterrupt	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	36;"	l	line:36
+__UART_H	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	14;"	d	line:14
+__UTILS_H_	S:\coax\coax-software\dsPIC\library\utils\utils.h	34;"	d	line:34
+_e_getchar_uart1	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	81;"	l	line:81
+_e_getchar_uart2	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	80;"	l	line:80
+_e_ischar_uart1	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	73;"	l	line:73
+_e_ischar_uart2	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	72;"	l	line:72
+_e_send_uart1_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	98;"	l	line:98
+_e_send_uart2_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	97;"	l	line:97
+_e_uart1_int_clr_addr	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	38;"	l	line:38
+_e_uart1_int_clr_mask	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	37;"	l	line:37
+_e_uart1_sending	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	117;"	l	line:117
+_e_uart2_int_clr_addr	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	37;"	l	line:37
+_e_uart2_int_clr_mask	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	36;"	l	line:36
+_e_uart2_sending	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	117;"	l	line:117
+absolute	S:\coax\coax-software\dsPIC\library\utils\utils.c	324;"	f	line:324	signature:(float var)
+absolute	S:\coax\coax-software\dsPIC\library\utils\utils.h	44;"	p	line:44	signature:(float var)
+address	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	53;"	m	line:53	struct:BtDevice
+address	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	63;"	m	line:63	struct:BtEPuck
+agenda_list	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	46;"	v	line:46	file:
+analog_initAnalog	S:\coax\coax-software\dsPIC\library\analog\analog.c	38;"	f	line:38	signature:(void)
+analog_readChannel	S:\coax\coax-software\dsPIC\library\analog\analog.c	74;"	f	line:74	signature:(int ichannel)
+baudvalue1	S:\coax\coax-software\dsPIC\library\uart\uart.c	190;"	l	line:190
+baudvalue1	S:\coax\coax-software\dsPIC\library\uart\uart.c	66;"	l	line:66
+baudvalue2	S:\coax\coax-software\dsPIC\library\uart\uart.c	133;"	l	line:133
+baudvalue2	S:\coax\coax-software\dsPIC\library\uart\uart.c	191;"	l	line:191
+beeping	S:\coax\coax-software\dsPIC\library\utils\utils.c	50;"	v	line:50	file:
+bip_agenda	S:\coax\coax-software\dsPIC\library\utils\utils.c	59;"	f	line:59	file:
+biptogo	S:\coax\coax-software\dsPIC\library\utils\utils.c	51;"	v	line:51	file:
+buzzer_agenda	S:\coax\coax-software\dsPIC\library\utils\utils.c	53;"	f	line:53	file:
+buzzer_agenda_initialised	S:\coax\coax-software\dsPIC\library\utils\utils.c	49;"	v	line:49	file:
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	119;"	l	line:119
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	161;"	l	line:161
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	195;"	l	line:195
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	245;"	l	line:245
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	285;"	l	line:285
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	325;"	l	line:325
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	367;"	l	line:367
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	413;"	l	line:413
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	463;"	l	line:463
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	510;"	l	line:510
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	556;"	l	line:556
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	612;"	l	line:612
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	655;"	l	line:655
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	697;"	l	line:697
+c	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	62;"	l	line:62
+command	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	61;"	l	line:61
+convert2float	S:\coax\coax-software\dsPIC\library\utils\utils.c	190;"	f	line:190	signature:(unsigned char msb2, unsigned char msb1, unsigned char lsb2, unsigned char lsb1)
+convert2float	S:\coax\coax-software\dsPIC\library\utils\utils.h	69;"	p	line:69	signature:(unsigned char msb2, unsigned char msb1, unsigned char lsb2, unsigned char lsb1)
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	122;"	l	line:122
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	156;"	l	line:156
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	184;"	l	line:184
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	208;"	l	line:208
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	234;"	l	line:234
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	276;"	l	line:276
+current	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	90;"	l	line:90
+deg2rad	S:\coax\coax-software\dsPIC\library\utils\utils.c	209;"	f	line:209	signature:(float angle)
+deg2rad	S:\coax\coax-software\dsPIC\library\utils\utils.h	72;"	p	line:72	signature:(float)
+device_find	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	59;"	l	line:59
+devicefound	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	411;"	l	line:411
+devicefound	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	653;"	l	line:653
+e_activate_agenda	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	88;"	f	line:88	signature:(void (*func)(void), int cycle)
+e_bt_connect_epuck	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	90;"	f	line:90	signature:(void)
+e_bt_connect_epuck	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	77;"	p	line:77	signature:(void)
+e_bt_etablish_SPP_link	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	504;"	f	line:504	signature:(char *address)
+e_bt_etablish_SPP_link	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	88;"	p	line:88	signature:(char *address)
+e_bt_exit_tranparent_mode	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	224;"	f	line:224	signature:(void)
+e_bt_exit_tranparent_mode	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	92;"	p	line:92	signature:(void)
+e_bt_factory_reset	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	156;"	f	line:156	signature:(void)
+e_bt_factory_reset	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	102;"	p	line:102	signature:(void)
+e_bt_find_epuck	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	57;"	f	line:57	signature:(void)
+e_bt_find_epuck	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	76;"	p	line:76	signature:(void)
+e_bt_get_friendly_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	457;"	f	line:457	signature:(struct BtDevice *device)
+e_bt_get_friendly_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	98;"	p	line:98	signature:(struct BtDevice *device)
+e_bt_inquiry	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	407;"	f	line:407	signature:(struct BtDevice *device)
+e_bt_inquiry	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	97;"	p	line:97	signature:(struct BtDevice *device)
+e_bt_list_local_paired_device	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	649;"	f	line:649	signature:(void)
+e_bt_list_local_paired_device	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	94;"	p	line:94	signature:(void)
+e_bt_local_paired_device	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	41;"	v	line:41
+e_bt_present_device	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	42;"	v	line:42
+e_bt_present_epuck	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	43;"	v	line:43
+e_bt_read_local_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	280;"	f	line:280	signature:(char *name)
+e_bt_read_local_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	83;"	p	line:83	signature:(char *name)
+e_bt_read_local_pin_number	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	240;"	f	line:240	signature:(char *PIN)
+e_bt_read_local_pin_number	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	82;"	p	line:82	signature:(char *PIN)
+e_bt_release_SPP_link	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	551;"	f	line:551	signature:(void)
+e_bt_release_SPP_link	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	89;"	p	line:89	signature:(void)
+e_bt_remove_local_paired_device	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	692;"	f	line:692	signature:(int j)
+e_bt_remove_local_paired_device	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	95;"	p	line:95	signature:(int)
+e_bt_reset	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	114;"	f	line:114	signature:(void)
+e_bt_reset	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	101;"	p	line:101	signature:(void)
+e_bt_send_SPP_data	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	607;"	f	line:607	signature:(char *data, char datalength)
+e_bt_send_SPP_data	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	90;"	p	line:90	signature:(char *data,char datalenght)
+e_bt_tranparent_mode	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	190;"	f	line:190	signature:(void)
+e_bt_tranparent_mode	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	91;"	p	line:91	signature:(void)
+e_bt_write_local_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	362;"	f	line:362	signature:(char *name)
+e_bt_write_local_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	86;"	p	line:86	signature:(char *name)
+e_bt_write_local_pin_number	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	320;"	f	line:320	signature:(char *PIN)
+e_bt_write_local_pin_number	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	85;"	p	line:85	signature:(char *PIN)
+e_destroy_agenda	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	119;"	f	line:119	signature:(void (*func)(void))
+e_end_agendas_processing	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	72;"	f	line:72	signature:(void)
+e_getchar_uart1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	52;"	p	line:52	signature:(char *car)
+e_getchar_uart2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	73;"	p	line:73	signature:(char *car)
+e_init_uart1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	41;"	p	line:41	signature:(void)
+e_init_uart1	S:\coax\coax-software\dsPIC\library\uart\uart.c	109;"	f	line:109	signature:(void)
+e_init_uart2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	42;"	p	line:42	signature:(void)
+e_init_uart2	S:\coax\coax-software\dsPIC\library\uart\uart.c	114;"	f	line:114	signature:(void)
+e_ischar_uart1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	46;"	p	line:46	signature:()
+e_ischar_uart2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	67;"	p	line:67	signature:()
+e_pause_agenda	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	206;"	f	line:206	signature:(void (*func)(void))
+e_puck_find	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	59;"	l	line:59
+e_puck_find	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	92;"	l	line:92
+e_reset_agenda	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	182;"	f	line:182	signature:(void (*func)(void))
+e_restart_agenda	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	232;"	f	line:232	signature:(void (*func)(void))
+e_send_uart1_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	58;"	p	line:58	signature:(const char * buff, int length)
+e_send_uart2_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	79;"	p	line:79	signature:(const char * buff, int length)
+e_set_agenda_cycle	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	154;"	f	line:154	signature:(void (*func)(void), int cycle)
+e_start_agendas_processing	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	53;"	f	line:53	signature:(void)
+e_uart1_sending	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	63;"	p	line:63	signature:(void)
+e_uart2_sending	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	84;"	p	line:84	signature:(void)
+end_transmission	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	80;"	l	line:80
+end_transmission	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	79;"	l	line:79
+error	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	93;"	l	line:93
+evalBatteryVoltageLEDAlert	S:\coax\coax-software\dsPIC\library\utils\utils.c	173;"	f	line:173
+evalBatteryVoltageLEDAlert	S:\coax\coax-software\dsPIC\library\utils\utils.h	59;"	p	line:59	signature:(void)
+exit1_U1TXInt	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	78;"	l	line:78
+exit1_U2TXInt	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	77;"	l	line:77
+exit2_U1TXInt	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	85;"	l	line:85
+exit2_U2TXInt	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	84;"	l	line:84
+friendly_name	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	55;"	m	line:55	struct:BtDevice
+function	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	289;"	p	line:289	file:
+getcUART1::ReadUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	25;"	d	line:25
+getcUART2::ReadUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	30;"	d	line:30
+getsUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	168;"	p	line:168	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	305;"	p	line:305	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	183;"	p	line:183	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	414;"	f	line:414	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	199;"	p	line:199	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	336;"	p	line:336	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	197;"	p	line:197	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+getsUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	453;"	f	line:453	signature:(unsigned int length,unsigned int *buffer, unsigned int uart_data_wait)
+i	S:\coax\coax-software\dsPIC\library\utils\utils.c	89;"	l	line:89
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	118;"	l	line:118
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	160;"	l	line:160
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	194;"	l	line:194
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	226;"	l	line:226
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	244;"	l	line:244
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	284;"	l	line:284
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	324;"	l	line:324
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	366;"	l	line:366
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	412;"	l	line:412
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	462;"	l	line:462
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	509;"	l	line:509
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	555;"	l	line:555
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	60;"	l	line:60
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	611;"	l	line:611
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	654;"	l	line:654
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	696;"	l	line:696
+i	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	63;"	l	line:63
+init_UART	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	94;"	p	line:94	signature:(void)
+init_UART	S:\coax\coax-software\dsPIC\library\uart\uart.c	181;"	f	line:181	signature:(void)
+init_UART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	95;"	p	line:95	signature:(void)
+init_UART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	59;"	f	line:59	signature:(void)
+init_UART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	96;"	p	line:96	signature:(void)
+init_UART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	126;"	f	line:126	signature:(void)
+init_port	S:\coax\coax-software\dsPIC\library\configs\init_port.c	34;"	f	line:34	signature:(void)
+init_port	S:\coax\coax-software\dsPIC\library\configs\init_port.h	36;"	p	line:36	signature:(void)
+initialise_buzzer_agenda	S:\coax\coax-software\dsPIC\library\utils\utils.c	75;"	f	line:75	file:
+j	S:\coax\coax-software\dsPIC\library\utils\utils.c	90;"	l	line:90
+j	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	412;"	l	line:412
+j	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	60;"	l	line:60
+kf	S:\coax\coax-software\dsPIC\library\utils\utils.c	167;"	l	line:167
+lac	S:\coax\coax-software\dsPIC\library\utils\utils.c	192;"	l	line:192
+lac_ptr_char	S:\coax\coax-software\dsPIC\library\utils\utils.c	193;"	l	line:193
+load_next_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	57;"	l	line:57
+load_next_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	56;"	l	line:56
+loaded_all_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	74;"	l	line:74
+loaded_all_char	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	73;"	l	line:73
+local_bt_PIN	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	45;"	v	line:45
+main	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	56;"	f	line:56	signature:(void)
+median3	S:\coax\coax-software\dsPIC\library\utils\utils.c	237;"	f	line:237	signature:(unsigned int x1,unsigned int x2,unsigned int x3)
+median3	S:\coax\coax-software\dsPIC\library\utils\utils.h	62;"	p	line:62	signature:(unsigned int x1,unsigned int x2,unsigned int x3)
+median3_float	S:\coax\coax-software\dsPIC\library\utils\utils.c	214;"	f	line:214	signature:(float x1,float x2,float x3)
+median3_float	S:\coax\coax-software\dsPIC\library\utils\utils.h	63;"	p	line:63	signature:(float x1,float x2,float x3)
+median5	S:\coax\coax-software\dsPIC\library\utils\utils.c	263;"	f	line:263	signature:(unsigned int x1,unsigned int x2,unsigned int x3,unsigned int x4,unsigned int x5)
+median5	S:\coax\coax-software\dsPIC\library\utils\utils.h	61;"	p	line:61	signature:(unsigned int x1,unsigned int x2,unsigned int x3,unsigned int x4,unsigned int x5)
+median_value	S:\coax\coax-software\dsPIC\library\utils\utils.c	216;"	l	line:216
+median_value	S:\coax\coax-software\dsPIC\library\utils\utils.c	239;"	l	line:239
+median_value	S:\coax\coax-software\dsPIC\library\utils\utils.c	265;"	l	line:265
+message	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	59;"	l	line:59
+namelenght	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	368;"	l	line:368
+no_char_to_ret	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_rx_char.s	100;"	l	line:100
+no_char_to_ret	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_rx_char.s	99;"	l	line:99
+number	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.h	64;"	m	line:64	struct:BtEPuck
+numberlenght	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	326;"	l	line:326
+preceding	S:\coax\coax-software\dsPIC\library\agenda\e_agenda.c	121;"	l	line:121
+putcUART1::WriteUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	26;"	d	line:26
+putcUART2::WriteUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	31;"	d	line:31
+putsUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	158;"	p	line:158	signature:(unsigned int *buffer)
+putsUART1	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	295;"	p	line:295	signature:(unsigned int *buffer)
+putsUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	251;"	p	line:251	signature:(unsigned int *buffer)
+putsUART1	S:\coax\coax-software\dsPIC\library\uart\uart.c	524;"	f	line:524	signature:(unsigned int *buffer)
+putsUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	189;"	p	line:189	signature:(unsigned int *buffer)
+putsUART2	C:\Program Files\Microchip\MPLAB C30\src\peripheral_30F_24H_33F\include\uart.h	326;"	p	line:326	signature:(unsigned int *buffer)
+putsUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	261;"	p	line:261	signature:(unsigned int *buffer)
+putsUART2	S:\coax\coax-software\dsPIC\library\uart\uart.c	557;"	f	line:557	signature:(unsigned int *buffer)
+rad2deg	S:\coax\coax-software\dsPIC\library\utils\utils.c	204;"	f	line:204	signature:(float angle)
+rad2deg	S:\coax\coax-software\dsPIC\library\utils\utils.h	71;"	p	line:71	signature:(float)
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	117;"	l	line:117
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	159;"	l	line:159
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	193;"	l	line:193
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	243;"	l	line:243
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	283;"	l	line:283
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	323;"	l	line:323
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	365;"	l	line:365
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	410;"	l	line:410
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	460;"	l	line:460
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	507;"	l	line:507
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	554;"	l	line:554
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	610;"	l	line:610
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	652;"	l	line:652
+read	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	695;"	l	line:695
+response	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	61;"	l	line:61
+rx1IRQ	S:\coax\coax-software\dsPIC\library\uart\uart.c	49;"	v	line:49	file:
+rx2IRQ	S:\coax\coax-software\dsPIC\library\uart\uart.c	50;"	v	line:50	file:
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	116;"	l	line:116
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	158;"	l	line:158
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	192;"	l	line:192
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	242;"	l	line:242
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	282;"	l	line:282
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	322;"	l	line:322
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	364;"	l	line:364
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	409;"	l	line:409
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	459;"	l	line:459
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	506;"	l	line:506
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	553;"	l	line:553
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	609;"	l	line:609
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	651;"	l	line:651
+send	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	694;"	l	line:694
+temp	S:\coax\coax-software\dsPIC\library\utils\utils.c	339;"	l	line:339
+temp	S:\coax\coax-software\dsPIC\library\utils\utils.c	349;"	l	line:349
+temp_ptr	S:\coax\coax-software\dsPIC\library\uart\uart.c	418;"	l	line:418
+temp_ptr	S:\coax\coax-software\dsPIC\library\uart\uart.c	458;"	l	line:458
+temp_ptr	S:\coax\coax-software\dsPIC\library\uart\uart.c	526;"	l	line:526
+temp_ptr	S:\coax\coax-software\dsPIC\library\uart\uart.c	559;"	l	line:559
+temp_ptr_char	S:\coax\coax-software\dsPIC\library\utils\utils.c	341;"	l	line:341
+temp_ptr_char	S:\coax\coax-software\dsPIC\library\utils\utils.c	351;"	l	line:351
+tx1IRQ	S:\coax\coax-software\dsPIC\library\uart\uart.c	49;"	v	line:49	file:
+tx2IRQ	S:\coax\coax-software\dsPIC\library\uart\uart.c	50;"	v	line:50	file:
+uart1_send_static_text::(msg){e_send_uart1_char(msg,si	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	31;"	d	line:31	file:
+uint_lsb	S:\coax\coax-software\dsPIC\library\utils\utils.c	337;"	f	line:337	signature:(unsigned short value)
+uint_lsb	S:\coax\coax-software\dsPIC\library\utils\utils.h	67;"	p	line:67	signature:(unsigned short)
+uint_msb	S:\coax\coax-software\dsPIC\library\utils\utils.c	347;"	f	line:347	signature:(unsigned short value)
+uint_msb	S:\coax\coax-software\dsPIC\library\utils\utils.h	68;"	p	line:68	signature:(unsigned short)
+updateBatteryVoltage	S:\coax\coax-software\dsPIC\library\utils\utils.c	166;"	f	line:166	signature:(void)
+updateBatteryVoltage	S:\coax\coax-software\dsPIC\library\utils\utils.h	58;"	p	line:58	signature:(void)
+value	S:\coax\coax-software\dsPIC\library\analog\analog.c	76;"	l	line:76
+var_temp	S:\coax\coax-software\dsPIC\library\utils\utils.c	326;"	l	line:326
+version	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\e_bluetooth.c	120;"	l	line:120
+version	S:\coax\coax-software\dsPIC\program\bt_config_CoaX\main.c	63;"	l	line:63
+voltage_level	S:\coax\coax-software\dsPIC\library\utils\utils.c	42;"	v	line:42
+voltage_level_filt	S:\coax\coax-software\dsPIC\library\utils\utils.c	43;"	v	line:43
+voltage_level_int	S:\coax\coax-software\dsPIC\library\utils\utils.c	41;"	v	line:41
+wait	S:\coax\coax-software\dsPIC\library\uart\uart.c	417;"	l	line:417
+wait	S:\coax\coax-software\dsPIC\library\uart\uart.c	457;"	l	line:457
+wait_l	S:\coax\coax-software\dsPIC\library\uart\coax_uart1_tx_char.s	99;"	l	line:99
+wait_l	S:\coax\coax-software\dsPIC\library\uart\coax_uart2_tx_char.s	100;"	l	line:100
+writeUART1	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	231;"	p	line:231	signature:(unsigned char *buffer, unsigned int size)
+writeUART2	S:\coax\coax-software\dsPIC\library\uart\coax_uart.h	241;"	p	line:241	signature:(unsigned char *buffer, unsigned int size)

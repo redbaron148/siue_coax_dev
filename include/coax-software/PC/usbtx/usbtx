@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if test "$2" = ""
+then
+	port=/dev/ttyUSB0
+else
+	port=$2
+fi
+
+bzip2 -9 -c $1 | uuencode -m - > $port

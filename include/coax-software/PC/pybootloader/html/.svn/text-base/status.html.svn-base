@@ -1,0 +1,159 @@
+<html>
+	<head>
+		<title>COAX Bootloader status</title>
+		<script type="text/javascript">
+<!--
+function updateGetRequest(url, divid, func) {
+	var http_get_request = false;
+	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+		http_get_request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // IE
+		try {
+			http_get_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_get_request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+	if (!http_get_request) {
+		alert('Cannot create XMLHTTP instance');
+		return false;
+	}
+	http_get_request.onreadystatechange=function() {
+		if (http_get_request.readyState==4) {
+			//alert("Response for divid " + divid + " = " +
+			//		http_get_request.responseText)
+			if (func == null) {
+				document.getElementById(divid).innerHTML=
+					http_get_request.responseText
+			} else {
+				func(http_get_request.responseText)
+			}
+		}
+	}
+	http_get_request.open('GET', url, true);
+	http_get_request.send(null);
+}
+
+function addPreTag(s) {
+	var ts = new Date();
+	document.getElementById("loghead").innerHTML = 
+		"<h2> Current log </h2> <font size=-1>Last updated at " + ts.toLocaleTimeString() + "</font><br>";
+	document.getElementById("log").innerHTML = "<pre>\n"+s+"\n</pre>";
+}
+
+function updateBootfileList(s) {
+	var lb = document.getElementById("bootfilesList");
+	var l = s.split("\n");
+	if (l.length > 0) {
+		l.length -= 1;
+	}
+	if (lb.selectedIndex >= l.length) {
+		lb.selectedIndex = -1;
+	}
+	lb.options.length = l.length;
+	for (i=0;i<l.length;i++) {
+		lb.options[i].text = l[i];
+		lb.options[i].value = l[i].split(".")[0];
+	}
+}
+
+function select_bootfile()
+{
+	var lb = document.getElementById("bootfilesList");
+	// alert("Load bootfile: " + lb.selectedIndex);
+	var bootfile = "";
+	if (lb.selectedIndex < 0) {
+		return
+	} else {
+		bootfile = lb.options[lb.selectedIndex].value + ".hex";
+	}
+	updateGetRequest("../command/selectfile?"+bootfile,"status",null);
+}
+
+function loading_script()
+{
+	updateGetRequest("../command/blstatus.html","status",null);
+	// updateGetRequest("../command/bootfiles.html","bootfiles",null);
+	updateGetRequest("../command/bootfiles","bootfiles",updateBootfileList);
+	updateGetRequest("../command/log","log",addPreTag);
+	window.setTimeout(loading_script,1000);
+}
+
+function submit_file(form,file)
+{
+	error_msg = "Please only upload .hex files.";
+	if (!file) {alert(error_msg);return;}
+	if (file == "") {alert(error_msg);return;}
+	l = file.split(".");
+	if (l.length == 0){alert(error_msg);return;} 
+	if (l[l.length-1] != "hex"){alert(error_msg);return;}
+	// alert("Submitting form")
+	form.submit();
+}
+
+function update_nameas(text,file)
+{
+	if (!file) return;
+	if (file == "") return;
+	l = file.split(".");
+	if (l.length == 0) return;
+	if (l[l.length-1] != "hex") return;
+	text.value = l[l.length-2] + ".hex";
+}
+
+function send_bootfile() {
+	var lb = document.getElementById("bootfilesList");
+	var bootfile = "";
+	if (lb.selectedIndex < 0) {
+		return
+	} else {
+		bootfile = lb.options[lb.selectedIndex].value + ".hex";
+	}
+	updateGetRequest("../command/sendfile?"+bootfile,"status",null);
+}
+
+//-->
+		</script>
+	</head>
+
+	<body onload="loading_script()">
+		<h1> COAX Bootloader </h1>
+		<h2> Status </h2>
+		<div id="status"> No status yet </div>
+
+		<form action="#">
+			<INPUT TYPE="button" NAME="sendfile" VALUE="Send this file"
+				onClick="send_bootfile()">
+		</form>
+		<hr>
+		<h2> Boot files </h2>
+		<!-- <div id="bootfiles"> No bootfiles yet </div> -->
+		<form action="#">
+			<INPUT TYPE="button" NAME="selectfile" VALUE="Select file"
+				onClick="select_bootfile()">
+			<br>
+			<select id="bootfilesList" name="bootfile" size=5 width=500>
+			</select>
+			<br>
+		</form>
+
+		<br>
+		Use the following form to upload a new file:<br>
+		<form method="post" target="background-uploader" 
+			enctype="multipart/form-data" id="background-upload-form">
+			File: <INPUT TYPE="file" NAME="uploadfile" ID="uploadfile"
+			onchange="update_nameas(this.form.rename,this.form.uploadfile.value)"> <br>
+			Rename as:<INPUT TYPE="entry" NAME="rename" ID="renamefile"> 
+			<INPUT TYPE="submit" NAME="upload" VALUE="Upload" 
+				onclick="submit_file(this.form, this.form.uploadfile.value)">
+		</form>
+		<iframe width="100%" height="1" border="0" name="background-uploader" src="about:blank"></iframe>
+		<hr>
+		<div id="loghead"> <h2> Current log </h2> </div>
+		<div id="log"> No log yet </div>
+	</body>
+</html>
+
+

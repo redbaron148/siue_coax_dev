@@ -1,0 +1,241 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\main.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File001]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\coax_led.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File002]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\coax_config.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File003]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\uart.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File004]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\e_I2C_protocol.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File005]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\utils.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File006]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\init_port.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File007]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\coax_uart2_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g
+TraceCmdString=
+DebugOptions=
+[File008]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\coax_uart1_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g
+TraceCmdString=
+DebugOptions=
+[File009]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\coax_uart1_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g
+TraceCmdString=
+DebugOptions=
+[File010]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\coax_uart2_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g
+TraceCmdString=
+DebugOptions=
+[File011]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\imu.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File012]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\e_I2C_master_module.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File013]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\analog.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File014]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\imu_ffp.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File015]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\obj\spi.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=
+[File016]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\code_base_dspic.elf
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=--heap=512 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[File017]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\imu_test_main_dspic\code_base_dspic.hex
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\i2c\e_I2C_protocol.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\imu\imu.c|..\..\library\i2c\e_I2C_master_module.c|..\..\library\analog\analog.c|..\..\library\imu\imu_ffp.c|..\..\library\spi\spi.c||<obj>||<lib>||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\dsPIC33F\gld\p33FJ256GP506.gld||
+SuiteArgsString=-omf=elf
+ToolArgsString=--heap=512 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[TOOL_LOC_STAMPS]
+tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+tool_loc{433C3D55-811D-409D-A6BF-159CF9355B42}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
