@@ -22,18 +22,46 @@ using namespace std;
 
 void fBlobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
-void filterBlobClusters(std::vector<std::vector<unsigned int> > &clusters)
+void filterSequences(coax_client::BlobSequences &msg,const cmvision::Blobs& blobs)
 {
+    int b1,b2;
+    bool bad_sequence;
+    for(int i = 0;i<(int)msg.sequences.size();i++)
+    {
+        bad_sequence = false;
+        for(int j = 0;j<SEQUENCE_SIZE-1 && !bad_sequence;j++)
+        {
+            b1 = msg.sequences[i].sequence[j];
+            b2 = msg.sequences[i].sequence[j+1];
+            if(blobsAreSameColor(b1,b2,blobs))
+            {
+                bad_sequence = true;
+                //ROS_INFO("found bad sequence!");
+            }
+        }
+        if(bad_sequence)
+        {
+            //ROS_INFO("erasing bad sequence");
+            msg.sequences.erase(msg.sequences.begin()+i);
+            i--;
+        }
+    }
+}
+void filterBlobClusters(const cmvision::Blobs& blobs, std::vector<std::vector<unsigned int> > &clusters)
+{
+    bool bad_cluster;
    // cout << "number of clusters is " << clusters.size() << endl;
     for(unsigned int i = 0;i<clusters.size();i++)
     {
+        bad_cluster = false;
         //cout << "    checking " << i << " " << endl;
         if(clusters[i].size()!=SEQUENCE_SIZE)
         {
-            /*for(int j = 0;j<clusters[i].size();j++)
-                cout << "            members: " << clusters[i][j] << " ";*/
+            bad_cluster = true;
+        }
+        if(bad_cluster)
+        {
             clusters.erase(clusters.begin()+i);
-            //cout << "\n        removed cluster because of size: " << i << endl;
             i--;
         }
         //else cout << "        no problem found" << endl;
@@ -73,13 +101,14 @@ void fBlobsCallback(cmvision::Blobs msg)
         sequences.header = msg.header;
         std::vector<std::vector<unsigned int> > blob_clusters;
         findAllBlobClusters(msg,blob_clusters);
-        filterBlobClusters(blob_clusters);
+        filterBlobClusters(msg,blob_clusters);
         for(unsigned int i = 0;i<blob_clusters.size();i++)
         {
             coax_client::BlobSequence sequence;
             blobSequenceFromCluster(sequence,blob_clusters[i],msg);
             sequences.sequences.push_back(sequence);
         }
+        filterSequences(sequences,msg);
         if(sequences.sequences.size())
             seq_pub.publish(sequences);
         //cout << "image_height: " << sequences.image_height << endl;

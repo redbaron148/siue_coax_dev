@@ -104,8 +104,9 @@ void deleteBlob(const unsigned int &b1, cmvision::Blobs &blobs)
 {
     if(b1 < blobs.blobs.size())
     {
-        std::cout << "deleting blob " << b1 << std::endl;
+        //std::cout << "deleting blob " << b1 << std::endl;
         blobs.blobs.erase(blobs.blobs.begin()+b1);
+        blobs.blob_count--;
     }
 }
 

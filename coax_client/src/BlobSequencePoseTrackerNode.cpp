@@ -66,6 +66,7 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
     coax_client::BlobSequencePoses seq_poses;
     state = findClosestStampedState(msg.header);
     seq_poses.header = msg.header;
+    seq_poses.altitude = state->zrange;
     
     float angle_horiz;
     float angle_vert;
