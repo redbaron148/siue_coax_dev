@@ -6,6 +6,8 @@
 		<param name="fps" value="$(arg fps)" />
 		<param name="width" value="$(arg width)"/>
 		<param name="height" value="$(arg height)"/>
-		<param name="V4L_ID" value="0"/>
+		<param name="v4l_id" value="0"/>
+		<param name="auto_white_balance" value="1"/>
+		<param name="exposure_auto" value="3"/>
 	</node>
 </launch>
