@@ -64,6 +64,8 @@
 #define DEFAULT_MAX_AUTO_PITCH      0.065
 #define DEFAULT_PITCH_P_VALUE       0.06
 #define DEFAULT_ROLL_P_VALUE        0.06
+#define DEFAULT_PITCH_D_VALUE       0.1
+#define DEFAULT_ROLL_D_VALUE        0.1
 
 static int end = 0;
 
@@ -93,7 +95,7 @@ class SBController
 
         bool firstctrl,gotjoy,automode,gotpose;
         float delta_x,delta_y;
-        double roll_p, pitch_p, max_pitch, max_roll;
+        double roll_p, pitch_p, max_pitch, max_roll, roll_d, pitch_d;
         double auto_pose_timeout, nav_state_timeout;
     public:
         SBController() {
@@ -102,8 +104,8 @@ class SBController
             automode = false;
             gotpose = false;
             current_goal = boost::shared_ptr<geometry_msgs::Pose2D>(new geometry_msgs::Pose2D());
-            current_goal->x = .5;
-            current_goal->y = .5;
+            current_goal->x = 0;
+            current_goal->y = 0;
         }
         ~SBController() {
         }
@@ -183,6 +185,13 @@ class SBController
             double desYaw = 0;
             double desRoll = 0;
             double desPitch = 0;
+            
+            double previous_x_error = 0;
+            double previous_y_error = 0;
+            double derivitive_x = 0;
+            double derivitive_y = 0;
+            double dt = 1;
+            
             unsigned int pose_count = 0;
 
             while (ros::ok()) {
@@ -205,11 +214,15 @@ class SBController
                 if(automode){
                     if(current_goal != NULL && current_pose != NULL &&
                     (ros::Time::now()-current_pose->header.stamp).toSec()<=auto_pose_timeout){
-                        if(gotpose){
+                        if(gotpose && previous_pose != NULL){
+                            //Calculate variables needed for PD control
+                            dt = (previous_pose.header.stamp-current_pose.header.stamp).toSec();
+                            previous_x_error = delta_x;
+                            previous_y_error = delta_y;
                             delta_y = (-current_goal->y+current_pose->pose.position.y);
                             delta_x = (current_goal->x-current_pose->pose.position.x);
                             pose_count=0;
-                            //gotpose = false;
+                            gotpose = false;
                         }
                         else {
                             if(pose_count >= 5)
@@ -219,13 +232,20 @@ class SBController
                         ROS_WARN("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
                         ROS_WARN("goal: (%f,%f)\n",current_goal->x,current_goal->y);
                         ROS_WARN("delta_x: %f  delta_y: %f",delta_x,delta_y);
-                        desPitch = delta_x*-pitch_p;
-                        desRoll = delta_y*roll_p;
-                        if(desRoll >= 0) desRoll = MIN(max_roll,desRoll);
-                        else desRoll = MAX(-max_roll,desRoll);
-                        if(desPitch >= 0) desPitch = MIN(max_pitch,desPitch);
-                        else desPitch = MAX(-max_pitch,desPitch);
-                        ROS_INFO("desPitch: %f  desRoll: %f",desPitch,desRoll);
+                        
+                        // PD NAV CONTROL
+                        {
+                            derivitive_x = (delta_x - previous_x_error)/(dt);
+                            derivitive_y = (delta_y - previous_y_error)/(dt);
+                            
+                            desPitch = (delta_x*-pitch_p)+(derivitive_x*-pitch_d);
+                            desRoll = (delta_y*roll_p)+(derivitive_y*-roll_d);
+                            if(desRoll >= 0) desRoll = MIN(max_roll,desRoll);
+                            else desRoll = MAX(-max_roll,desRoll);
+                            if(desPitch >= 0) desPitch = MIN(max_pitch,desPitch);
+                            else desPitch = MAX(-max_pitch,desPitch);
+                            ROS_INFO("desPitch: %f  desRoll: %f",desPitch,desRoll);
+                        }
                     }
                     else{
                         ROS_WARN("Cannot auto fly, transitioning to IDLE.");
@@ -333,6 +353,8 @@ class SBController
             
             n.param("pitch_p_value", pitch_p, DEFAULT_PITCH_P_VALUE);
             n.param("roll_p_value", roll_p, DEFAULT_ROLL_P_VALUE);
+            n.param("pitch_d_value", pitch_d, DEFAULT_PITCH_D_VALUE);
+            n.param("roll_d_value", roll_d, DEFAULT_ROLL_D_VALUE);
             n.param("max_pitch", pitch_p, DEFAULT_MAX_AUTO_PITCH);
             n.param("max_roll", max_pitch, DEFAULT_MAX_AUTO_ROLL);
             n.param("nav_state_timeout", nav_state_timeout, DEFAULT_NAV_STATE_TIMEOUT);
