@@ -23,24 +23,6 @@
 * along with Skybotix API. If not, see <http://www.gnu.org/licenses/>.
 * 
 ************************************************************/
-
-/**
- *  @file   CoaxController.cpp
- *  @author Aaron Parker
- *  @date   03-24-2011
- *  @brief  Controller for the CoaX helicopter robot, running ROS, assumes 
- *          global pose data is available.
- */
-
-#define switch_nav_mode_key "n"
-#define stop_key            "s"
-#define increase_pitch_key  "k"
-#define decrease_pitch_key  "i"
-#define increase_roll_key   "l"
-#define decrease_roll_key   "j"
-#define increase_height_key "u"
-#define decrease_height_key "o"
-
 #include <sys/time.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -49,7 +31,7 @@
 #include <assert.h>
 
 #include <ros/ros.h>
-//#include <joy/Joy.h>
+#include <joy/Joy.h>
 // Just for constants, and their text conversion
 #include <com/sbapi.h>
 
@@ -60,7 +42,8 @@
 #include <coax_msgs/CoaxReachNavState.h>
 #include <coax_msgs/CoaxSetTimeout.h>
 #include <coax_msgs/CoaxControl.h>
-#include <coax_client/Keyboard.h>
+#include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/Pose2D.h>
 
 #include <string>
 #include <vector>
@@ -75,20 +58,32 @@
 #define DEBUG(c) res=0;c;if (res) printf("Result of "#c": %d\n",res)
 #define CRITICAL(c) res=0;c;if (res) {printf("Result of "#c": %d\n",res); return res;}
 
+#define NAV_STATE_TIMEOUT   5
+#define AUTO_POSE_TIMEOUT   1
+#define MAX_AUTO_ROLL       0.1
+#define MAX_AUTO_PITCH      0.1
+#define PITCH_P_VALUE       0.1
+#define ROLL_P_VALUE        0.1
+
 static int end = 0;
 
 void sighdl(int n) {
     end ++;
 }
 
+
 class SBController
 {
     protected:
-        //joy::Joy joystate;
-        coax_client::Keyboard key;
+        boost::shared_ptr<joy::Joy> joystate;
         boost::shared_ptr<coax_msgs::CoaxState> state;
+        boost::shared_ptr<geometry_msgs::PoseStamped> current_pose;
+        boost::shared_ptr<geometry_msgs::PoseStamped> previous_pose;
+        boost::shared_ptr<geometry_msgs::Pose2D> current_goal;
         ros::Subscriber state_sub;
-        ros::Subscriber key_sub;
+        ros::Subscriber joy_sub;
+        ros::Subscriber heli_pose_sub;
+        ros::Subscriber heli_goal_sub;
         ros::Publisher control_pub;
         ros::ServiceClient cfgControlClt;
         ros::ServiceClient cfgCommClt;
@@ -96,22 +91,46 @@ class SBController
         ros::ServiceClient reachNavStateClt;
         ros::ServiceClient setTimeoutClt;
 
-        bool firstctrl,gotkey;
+        bool firstctrl,gotjoy,automode,gotpose;
+        float delta_x,delta_y;
     public:
         SBController() {
             firstctrl = true;
-            gotkey = false;
-            //joystate.buttons.resize(12);
-            //joystate.axes.resize(12);
+            gotjoy = false;
+            automode = false;
+            gotpose = false;
+            current_goal = boost::shared_ptr<geometry_msgs::Pose2D>(new geometry_msgs::Pose2D());
+            current_goal->x = .5;
+            current_goal->y = .5;
+            //current_pose = boost::shared_ptr<geometry_msgs::PoseStamped>(new geometry_msgs::PoseStamped());
         }
         ~SBController() {
         }
 
+        void joyCallback(boost::shared_ptr<joy::Joy> msg) {
+            //printf("Got Joy\n");
+            assert(msg->buttons.size()>4);
+            assert(msg->axes.size()>=2);
+            joystate = msg;
+            gotjoy = true;
+        }
+        
         void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg) {
             // printf("Got State\n");
             state = msg;
         }
 
+        void goalPoseCallback(boost::shared_ptr<geometry_msgs::Pose2D> msg){
+            current_goal = msg;
+        }
+        
+        void heliPoseCallback(boost::shared_ptr<geometry_msgs::PoseStamped> msg){
+            //std::cout << "got pose" << std::endl;
+            previous_pose = current_pose;
+            current_pose = msg;
+            gotpose = true;
+        }
+        
         int reachNavState(unsigned int state, float timeout) {
             coax_msgs::CoaxReachNavState srv;
             srv.request.desiredState = state;
@@ -156,50 +175,85 @@ class SBController
             return 0;
         }
 
-        void keyboardCallback(const coax_client::Keyboard::ConstPtr& msg) {
-            //assert(msg->buttons.size()>4);
-            //assert(msg->axes.size()>=2);
-            //joystate = *msg;
-            gotkey = true;
-            key = *msg;
-        }
-
-        void autoctrl() {
+        void joyctrl() {
             ros::Rate looprate(10);
             int res = 0;
             float desHeight=0.0;
+            double desYaw = 0;
+            double desRoll = 0;
+            double desPitch = 0;
 
             while (ros::ok()) {
+                //ROS_INFO("trying a joyctrl");
                 looprate.sleep();
                 ros::spinOnce();
-                if (!gotkey) continue;
+                if (!gotjoy || state == NULL) continue;
 
                 if (state->errorFlags) {
                     printf("An error has been detected on the PIC: %02X\n",
                             state->errorFlags);
-                    DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
+                    DEBUG(res = reachNavState(SB_NAV_STOP,NAV_STATE_TIMEOUT));
                     return;
                 }
+                
+                //if autoflight is enabled
+                if(true){
+                    if(current_goal != NULL && current_pose != NULL &&
+                    (ros::Time::now()-current_pose->header.stamp).toSec()<=AUTO_POSE_TIMEOUT){
+                        if(gotpose){
+                            delta_y = (-current_goal->y+current_pose->pose.position.y);
+                            delta_x = (current_goal->x-current_pose->pose.position.x);
+                            //gotpose = false;
+                        }
+                        else {
+                            ROS_INFO("have not gotten a new pose recently, may timeout");
+                        }
+                        //ROS_INFO("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
+                        //ROS_INFO("goal: (%f,%f)\n",current_goal->x,current_goal->y);
+                        //ROS_INFO("delta_x: %f  delta_y: %f",delta_x,delta_y);
+                        desPitch = delta_x*-PITCH_P_VALUE;
+                        desRoll = delta_y*ROLL_P_VALUE;
+                        if(desRoll >= 0) desRoll = MIN(MAX_AUTO_ROLL,desRoll);
+                        else desRoll = MAX(-MAX_AUTO_ROLL,desRoll);
+                        if(desPitch >= 0) desPitch = MIN(MAX_AUTO_PITCH,desPitch);
+                        else desPitch = MAX(-MAX_AUTO_PITCH,desPitch);
+                        ROS_INFO("desPitch: %f  desRoll: %f",desPitch,desRoll);
+                    }
+                    else{
+                        //ROS_WARN("Cannot auto fly, transitioning to IDLE.");
+                        if(current_goal == NULL) ROS_WARN("No Goal");
+                        else if(current_pose == NULL) ROS_WARN("No Pose");
+                        else ROS_WARN("timed out: %f - %f = %f",ros::Time::now().toSec(),current_pose->header.stamp.toSec(),(ros::Time::now()-current_pose->header.stamp).toSec());
+                        ROS_INFO("turning auto mode off");
+                        //DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
+                        //ROS_INFO("Transition to IDLE completed");
+                        automode = false;
+                        //break;
+                    }
+                }
 
-                switch (state->mode.navigation) 
-                {
+                switch (state->mode.navigation) {
                     case SB_NAV_STOP:
                         desHeight = 0;
                         firstctrl = true;
-                        if (key.key==switch_nav_mode_key) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,30.0));
+                        if (joystate->buttons[0]) {
+                            DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
                             ROS_INFO("Transition to IDLE completed");
                         }
                         break;
                     case SB_NAV_IDLE:
                         desHeight = 0;
                         firstctrl = true;
-                        if (key.key==switch_nav_mode_key) {
-                                DEBUG(res = reachNavState(SB_NAV_CTRLLED,30.0));
+                        if (joystate->buttons[0]) {
+                            if (joystate->axes[2] > -0.8) {
+                                ROS_INFO("Refusing transition to controlled while the height axis (%.2f) is above -0.8",joystate->axes[2]);
+                            } else {
+                                DEBUG(res = reachNavState(SB_NAV_CTRLLED,NAV_STATE_TIMEOUT));
                                 ROS_INFO("Transition to CTRLLED completed");
                             }
-                        if (key.key==stop_key) {
-                            DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
+                        }
+                        if (joystate->buttons[1]) {
+                            DEBUG(res = reachNavState(SB_NAV_STOP,NAV_STATE_TIMEOUT));
                             ROS_INFO("Transition to STOP completed");
                         }
                         break;
@@ -209,96 +263,61 @@ class SBController
                     case SB_NAV_SINK:
                         firstctrl = true;
                         desHeight = state->zrange;
-                        if (key.key==stop_key) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,30.0));
+                        if (joystate->buttons[1]) {
+                            DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
                             ROS_INFO("Transition to IDLE completed");
                         }
                         break;
                     case SB_NAV_CTRLLED:
-                        {
-                            double desYaw = 0;
-                            double desRoll = state->roll;
-                            double desPitch = state->pitch;
-                            //std::cout << "is controlled! " << key.key << std::endl;
-                            if (firstctrl) {
-                                desHeight = state->zrange;
-                                printf("Initial control: desHeight = %f\n",desHeight);
-                                firstctrl = false;
-                            }
-                            if (key.key==switch_nav_mode_key) {
-                                DEBUG(res = reachNavState(SB_NAV_IDLE,30.0));
-                                ROS_INFO("Transition to IDLE completed");
-                                break;
-                            }
-                            if(key.key==stop_key)
-                            {
-                                DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
-                                ROS_INFO("Transition to IDLE completed");
-                                break;
-                            }
-                            if(key.key=="q")
-                            {
-                                desRoll = 0;
-                                desPitch = 0;
-                            }
-#if 1
-                            if (key.key==decrease_height_key) { 
-                                desHeight -= 2e-2; 
-                                key.key = "q";
-                                printf("Height: %f\n",desHeight);
-                            }
-                            else if (key.key==increase_height_key) {
-                                desHeight += 2e-2; 
-                                key.key = "q";
-                                printf("Height: %f\n",desHeight);
-                            }
-                            else if (key.key==increase_roll_key)
-                            {
-                                desRoll += .01; 
-                                key.key = "q";
-                                printf("Roll: %f\n",desRoll);
-                            }
-                            else if (key.key==decrease_roll_key)
-                            {
-                                desRoll = -.01; 
-                                key.key = "q";
-                                printf("Roll: %f\n",desRoll);
-                            }
-                            else if (key.key==increase_pitch_key)
-                            {
-                                desPitch = .01; 
-                                key.key = "q";
-                                printf("Pitch: %f\n",desPitch);
-                            }
-                            else if (key.key==decrease_pitch_key)
-                            {
-                                desPitch = -.01; 
-                                key.key = "q";
-                                printf("Pitch: %f\n",desPitch);
-                            }
-#else
-                            //desHeight = ((1 + joystate.axes[2])/2) * 1.0;
-#endif
-                            //if (joystate.buttons[3]) { desYaw = -80*M_PI/180; }
-                            //if (joystate.buttons[4]) { desYaw = +80*M_PI/180.; }
-                            // desYaw /= 17.; // IMU BUG
-                            DEBUG(res = setControl(desRoll,desPitch,desYaw,desHeight));
-                            /*ROS_INFO("Battery: %f GyroZ: %f Joy %.3f %.3f",
-                                    state->battery,
-                                    state->gyro[2], 
-                                    desHeight, state->zrange);*/
+                    {
+                        if (firstctrl) {
+                            desHeight = state->zrange;
+                            printf("Initial control: desHeight = %f\n",desHeight);
+                            firstctrl = false;
+                        }
+                        if (joystate->buttons[0]) {
+                            DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
+                            ROS_INFO("Transition to IDLE completed");
+                            automode = false;
                             break;
                         }
+                        
+                        if(joystate->buttons[2]){
+                            automode = true;
+                            ROS_INFO("turning auto mode on");
+                        }
+                        
+                        if(!automode)
+                        {
+                            desHeight = ((1 + joystate->axes[2])/2) * 1.0;
+                            if (joystate->buttons[3]) { desYaw = -80*M_PI/180; }
+                            if (joystate->buttons[4]) { desYaw = +80*M_PI/180.; }
+                            desPitch = -(0.25*joystate->axes[1]);
+                            desRoll = -(0.25*joystate->axes[0]);
+                        }
+                        DEBUG(res = setControl(desRoll,desPitch,desYaw,desHeight));
+                        ROS_INFO("Battery: %f GyroZ: %f Joy %.3f %.3f",
+                                state->battery,
+                                state->gyro[2], 
+                                desHeight, state->zrange);
+                        break;
+                    }
                     default:
                         break;
                 }
-                key.key = "q";
+                
+                if(gotpose)
+                    gotpose = false;
             }
         }
 
         int initialise(ros::NodeHandle & n) {
-            std::string coax_server = "coax_server";
-            std::string key_topic = "/keyboard";
+            std::string coax_server = "/coax_server";
+            std::string joytopic = "/joy";
+            std::string goal_node_prefix = "";
+            std::string pose_node_prefix = "/blob_mapper";
+            // n.param<std::string>("coax_server",coax_server,coax_server);
+            // n.param<std::string>("joy_topic",joytopic,joytopic);
 
             cfgControlClt = n.serviceClient<coax_msgs::CoaxConfigureControl>(coax_server+"/configure_control");
             cfgCommClt = n.serviceClient<coax_msgs::CoaxConfigureComm>(coax_server+"/configure_comm");
@@ -309,11 +328,16 @@ class SBController
             // Subscribe to the state
             ros::TransportHints hints;
             state_sub = n.subscribe(coax_server+"/state",1,&SBController::stateCallback, this, hints.udp());
+            heli_pose_sub = n.subscribe("/blob_mapper/helicopter_pose",1,&SBController::heliPoseCallback,this);
+            heli_goal_sub = n.subscribe("/goal",1,&SBController::goalPoseCallback,this);
+            // state_sub = n.subscribe(coax_server+"/state",1,&SBController::stateCallback, this);
+            // Publishing the control
             control_pub = n.advertise<coax_msgs::CoaxControl>(coax_server+"/control",10);
 
-            key_sub = n.subscribe(key_topic,1,&SBController::keyboardCallback, this);
+            joy_sub = n.subscribe(joytopic,1,&SBController::joyCallback, this);
 
-            ROS_INFO("Coax namespace %s keyboard topic %s",coax_server.c_str(),key_topic.c_str());
+            ROS_INFO("Coax namespace %s joy topic %s",coax_server.c_str(),joytopic.c_str());
+            ROS_INFO("Listening for heli poses: %s",(pose_node_prefix+"/helicopter_pose").c_str());
             ROS_INFO("Coax Teleop initialised and ready to roll!");
             return 0;
         }
@@ -330,12 +354,18 @@ int main(int argc, char *argv[])
     ros::NodeHandle n;
 
     SBController api;
-
+    
     CRITICAL(res = api.initialise(n));
+    
+    //ROS_INFO("and not here");
 
-    api.autoctrl();
+    api.joyctrl();
+    
+    //ROS_INFO("and certainly not here");
 
     ros::shutdown();
 
     return 0;
 }
+
+        

@@ -15,6 +15,7 @@
   <depend package="cmvision"/>
   <depend package="geometry_msgs"/>
   <depend package="nav_msgs"/>
+  <depend package="joy"/>
 
 </package>
 
