@@ -62,14 +62,18 @@ int main(int argc, char **argv)
 	int FPS = 10;
 	int height = 480;
 	int width = 640;
+	int hue = 0;
+	int saturation = 0;
+	int contrast = 0;
+	int sharpness = 0;
+	int brightness = 0;
 	
 	nh.param( "v4l_id", camID, int(camID) );
 	nh.param( "fps", FPS, int(FPS));
 	nh.param( "height", height, int(height));
 	nh.param( "width", width, int(width));
 	
-	ROS_INFO( "Using USB camera at V4L index: %d at %d FPS. Image is %d x %d.", camID, FPS , width, height);
-	
+	ROS_INFO( "Using USB camera at V4L index: %d at %d FPS. Image is %d x %d.", camID, FPS , width, height);	
 	//delete params to support multiple instances of this node with different
 	// config options
 	nh.deleteParam( "v4l_id" );
@@ -89,14 +93,27 @@ int main(int argc, char **argv)
 
 
 	Camera cap_device( device.c_str(), width, height, FPS );
-
 	
-	/*ROS_INFO("Min-Max brightness: %d-%d",cap_device.minBrightness(),cap_device.maxBrightness());
+	nh.param( "brightness",brightness,int(cap_device.defaultBrightness()));
+	nh.param( "contrast",contrast,int(cap_device.defaultContrast()));
+	nh.param( "saturation",saturation,int(cap_device.defaultSaturation()));
+	nh.param( "sharpness",sharpness,int(cap_device.defaultSharpness()));
+	nh.param( "hue",hue,int(cap_device.defaultHue()));
+	
+	ROS_INFO("brightness: %d  contrast: %d  hue: %d  saturation: %d  sharpness: %d",brightness,contrast,hue,saturation,sharpness);
+
+	cap_device.setHue(hue);
+	cap_device.setBrightness(brightness);
+	cap_device.setContrast(contrast);
+	cap_device.setSaturation(saturation);
+	cap_device.setSharpness(sharpness);
+
+	ROS_INFO("Min-Max brightness: %d-%d",cap_device.minBrightness(),cap_device.maxBrightness());
 	ROS_INFO("Min-Max contrast: %d-%d",cap_device.minContrast(),cap_device.maxContrast());
 	ROS_INFO("Min-Max saturation: %d-%d",cap_device.minSaturation(),cap_device.maxSaturation());
 	ROS_INFO("Min-Max hue: %d-%d",cap_device.minHue(),cap_device.maxHue());
-	ROS_INFO("Min-Max sharpness: %d-%d",cap_device.minSharpness(),cap_device.maxSharpness());	
-*/
+	ROS_INFO("Min-Max sharpness: %d-%d",cap_device.minSharpness(),cap_device.maxSharpness());
+
 	while ( ros::ok() )
 	{
 		cap_device.Get() == 0 ? cap_status = 0 : cap_status = 1;	
