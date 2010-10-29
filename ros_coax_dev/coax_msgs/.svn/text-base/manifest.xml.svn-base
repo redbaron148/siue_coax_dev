@@ -1,0 +1,18 @@
+<package>
+  <description brief="coax_msgs">
+
+     coax_msgs
+
+  </description>
+  <author>Cedric Pradalier</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/coax_msgs</url>
+
+  <export>
+    <cpp cflags="-I${prefix}/include -I${prefix}/msg/cpp -I${prefix}/srv/cpp" />
+  </export>
+
+</package>
+
+

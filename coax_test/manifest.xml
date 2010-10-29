@@ -1,0 +1,18 @@
+<package>
+  <description brief="coax_test">
+
+     coax_test
+
+  </description>
+  <author>aaron</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/coax_test</url>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="coax_msgs"/>
+  <depend package="coax_server"/>
+
+</package>
+
+

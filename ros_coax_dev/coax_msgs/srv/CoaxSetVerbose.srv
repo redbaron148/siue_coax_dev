@@ -1,0 +1,4 @@
+uint8 verbose
+uint8 channel
+---
+int8 result
