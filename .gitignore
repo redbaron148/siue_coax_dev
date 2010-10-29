@@ -1,4 +1,5 @@
 *.swp
-Build/*
+build/*
 bin/*
+
 
