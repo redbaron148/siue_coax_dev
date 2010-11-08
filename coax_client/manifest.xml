@@ -1,0 +1,17 @@
+<package>
+  <description brief="coax_client">
+
+     coax_client
+
+  </description>
+  <author>Aaron Parker</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/coax_client</url>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="coax_msgs"/>
+
+</package>
+
+
