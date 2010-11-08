@@ -2,5 +2,5 @@
 build/*
 bin/*
 *~
-msg_gen/
-srv_gen/
+msg_gen/*
+srv_gen/*
