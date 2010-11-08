@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "test_coax_client");
 	ros::NodeHandle n;
 
-	ros::Subscriber coax_state_subscriber = n.subscribe("coax_server/state",1,state_subscriber_callback);
+	//ros::Subscriber coax_state_subscriber = n.subscribe("coax_server/state",1,state_subscriber_callback);
 	reach_nav_state_client = n.serviceClient<coax_msgs::CoaxReachNavState>("coax_server/reach_nav_state");
 	
 	coax_msgs::CoaxReachNavState nav_state;
