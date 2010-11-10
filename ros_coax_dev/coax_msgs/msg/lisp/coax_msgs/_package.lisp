@@ -2,16 +2,16 @@
   (:use cl
         roslisp-msg-protocol)
   (:export
-   "<COAXSTATE>"
    "<COAX3DPOSE>"
-   "<COAXCONTENT>"
-   "<COAXVERSION>"
-   "<COAXKEEPALIVE>"
-   "<COAXCONTROLPARAMETERS>"
-   "<COAXRAWCONTROL>"
    "<COAXCONSTANTS>"
-   "<COAXTRIMMODE>"
    "<COAXCONTROL>"
+   "<COAXSTATE>"
+   "<COAXTRIMMODE>"
+   "<COAXCONTENT>"
+   "<COAXRAWCONTROL>"
+   "<COAXCONTROLPARAMETERS>"
+   "<COAXKEEPALIVE>"
    "<COAXMODES>"
+   "<COAXVERSION>"
   ))
 
