@@ -17,7 +17,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #uncomment if you have defined messages
-#rosbuild_genmsg()
+rosbuild_genmsg()
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
@@ -33,3 +33,4 @@ rosbuild_add_executable(test_coax_liftoff src/TestCoaxAutoflight.cpp)
 rosbuild_add_executable(test_coax_idler src/TestCoaxIdler.cpp)
 rosbuild_add_executable(test_coax_client src/TestCoaxSubscriber.cpp)
 rosbuild_add_executable(test_coax_publisher src/CoaxVelocityControl.cpp)
+rosbuild_add_executable(test_coax_filter src/CoaxFilteredState.cpp)
