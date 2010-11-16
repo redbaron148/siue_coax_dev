@@ -2,7 +2,7 @@
 
 dir
 63
-svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software/PC/ros_coax/coax_ui/src
+svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software/PC/ros_coax/coax_3d_controller
 svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software
 
 
@@ -26,14 +26,14 @@ cedricp
 
 acd97046-e316-4fc5-875c-59745847672f
 
-CoaxGUIHandler.h
+manifest.xml
 file
 
 
 
 
-2010-10-22T16:43:35.985575Z
-deae080829cb0c9fb93088149597fce3
+2010-10-22T16:43:35.909575Z
+a3f430896de0331adfc1be5b8ad640c4
 2010-03-16T12:53:08.671447Z
 1
 cedricp
@@ -58,50 +58,19 @@ cedricp
 
 
 
-2035
+420
 
-main.cpp
-file
-
-
-
-
-2010-10-22T16:43:35.985575Z
-d1f135f37073fbd9325828149583e7ae
-2010-03-16T12:53:08.671447Z
-1
-cedricp
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-556
+src
+dir
 
-CoaxGUI.ui
+mainpage.dox
 file
 
 
 
 
-2010-10-22T16:43:35.989575Z
-118de9e2285ca694d8f3107bdcd7db7e
+2010-10-22T16:43:35.909575Z
+7492e23bd16f2f1801b1d2ca98dedae4
 2010-03-16T12:53:08.671447Z
 1
 cedricp
@@ -126,16 +95,16 @@ cedricp
 
 
 
-240130
+890
 
-CoaxGUIHandler.cpp
+CMakeLists.txt
 file
 
 
 
 
-2010-10-22T16:43:35.989575Z
-36bc7010d8def331716a25670e96378b
+2010-10-22T16:43:35.909575Z
+9ccb35e26c5d706e17382a4c090a0c55
 2010-03-16T12:53:08.671447Z
 1
 cedricp
@@ -160,5 +129,39 @@ cedricp
 
 
 
-12608
+1275
+
+Makefile
+file
+
+
+
+
+2010-10-22T16:43:35.909575Z
+de72d1139081b9051e08124168a243a3
+2010-03-16T12:53:08.671447Z
+1
+cedricp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15553
 

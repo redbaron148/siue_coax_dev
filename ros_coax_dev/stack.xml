@@ -1,5 +1,5 @@
-<stack>
-  <description brief="ros_coax_dev">
+<stack name="ros_coax" version="0.1.0">
+  <description brief="ros_coax">
 
      ros_coax
 
@@ -7,10 +7,6 @@
   <author>Maintained by Cedric Pradalier</author>
   <license>BSD</license>  
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/ros_coax_dev</url>
-  <depend stack="common_msgs" /> <!-- geometry_msgs, sensor_msgs -->
-  <depend stack="image_common" /> <!-- image_transport -->
-  <depend stack="ros" /> <!-- rospy, std_msgs, roscpp -->
-  <depend stack="vision_opencv" /> <!-- opencv2, cv_bridge -->
+  <url>http://ros.org/wiki/ros_coax</url>
 
 </stack>

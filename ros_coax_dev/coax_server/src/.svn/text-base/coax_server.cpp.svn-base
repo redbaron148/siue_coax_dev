@@ -84,6 +84,10 @@ class SBController
 			for (unsigned int i=0;i<8;i++) {
 				COPY(rcChannel[i]);
 			}
+			COPY(coaxspeed.state);
+			COPY(coaxspeed.light);
+			COPY(coaxspeed.vel_x);
+			COPY(coaxspeed.vel_y);
 			COPY(o_altitude);
 			COPY(o_tol);
 			for (unsigned int i=0;i<2;i++) {
@@ -113,7 +117,7 @@ class SBController
 			res = 0;
 			sbSimpleParseChannel(simple,devname.c_str(),NULL);
 			simple->initNavState = SB_NAV_STOP;
-			simple->cmdTimeout = 2000;
+			simple->cmdTimeout = 5000;
 			simple->ctrlTimeout = 1000;
 			simple->rollCtrlMode = SB_CTRL_POS;
 			simple->pitchCtrlMode = SB_CTRL_POS;
@@ -121,6 +125,9 @@ class SBController
 			simple->yawCtrlMode = SB_CTRL_VEL;
 			simple->sensorList = &sensorList;
 
+			simple->commFreq = 30;
+			// simple->commContent = SBS_TIMESTAMP | SBS_RPY | SBS_IMU_ALL | SBS_RANGES_ALL | 
+            //     SBS_PRESSURE | SBS_BATTERY | SBS_O_XY | SBS_XY_REL | SBS_COAXSPEED;
 			simple->stateFunc = rosStateExportCB;
 			simple->userData = this;
 			simple->oaMode = SB_OA_NONE;

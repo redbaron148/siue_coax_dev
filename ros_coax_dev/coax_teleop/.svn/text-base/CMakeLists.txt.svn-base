@@ -21,25 +21,14 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
+set(COAXHOME $ENV{HOME}/coax/coax-software/deploy)
+set(COAXTARGET linux)
+include_directories(${COAXHOME}/${COAXTARGET}/include)
+
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
 #rosbuild_add_boost_directories()
 #rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
+rosbuild_add_executable(${PROJECT_NAME} src/coaxjoy.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
-
-set(COAXHOME $ENV{HOME}/coax/coax-software/deploy)
-set(COAXTARGET linux)
-link_directories(${COAXHOME}/${COAXTARGET}/lib)
-include_directories(${COAXHOME}/${COAXTARGET}/include)
-
-
-add_definitions(-DSBC_HAS_IO -DDEFENSIVE -DSBC_HAS_COMM -DSBC_HAS_PTHREAD -DLINUX)
-rosbuild_add_executable(coax_server src/coax_server.cpp)
-target_link_libraries(coax_server sbcom pthread rt)
-
-# rosbuild_add_executable(coax_server_sim src/coax_server_sim.cpp)
-# target_link_libraries(coax_server_sim sbcom pthread rt)
-
-

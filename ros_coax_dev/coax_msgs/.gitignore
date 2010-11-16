@@ -1,7 +1,9 @@
 *.swp
-build/*
-bin/*
+build
+bin
 *~
-msg_gen/*
-srv_gen/*
+*_gen
+*_gen
 src/
+msg/lisp
+srv/lisp
