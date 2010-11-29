@@ -1,5 +1,0 @@
-<launch>
-	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyUSB0:1" output="screen"/>
-	<node pkg="coax_client" type="test_coax_publisher" name="coax_velocity_control" output="screen"/>
-	<node pkg="coax_client" type="test_coax_filter" name="coax_filter" output="screen"/>
-</launch>
