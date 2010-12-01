@@ -42,3 +42,5 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 	cout << endl;
 	ROS_INFO("bwah!");
 }
+
+

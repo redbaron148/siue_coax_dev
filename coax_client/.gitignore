@@ -1,5 +1,6 @@
 *.swp
 build/*
 bin/*
+data/~*
 *~
 *_gen
