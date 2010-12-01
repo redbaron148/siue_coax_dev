@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="coax_client" type="coaxSim" name="simulator" args="/home/aaron/coax-software/PC/simulation_ode/textures"/>
+</launch>

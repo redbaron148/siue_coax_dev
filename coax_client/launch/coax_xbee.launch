@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="coax_server" type="coax_server" name="coax_server" output="screen" args="/dev/ttyUSB0:1"/>
+</launch>
