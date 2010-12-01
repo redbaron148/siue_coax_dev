@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "coax_filtered");
 	ros::NodeHandle n("/coax_filtered");
 	
-	ros::Subscriber state_sub = n.subscribe("/coax_server/state", 50, stateCallback);
+	ros::Subscriber state_sub = n.subscribe("/coax_server/state", 50, &stateCallback);
 	
 	filtered_state_pub = n.advertise<coax_client::CoaxStateFiltered>("/coax_filtered/state", 50);
 	
@@ -39,10 +39,30 @@ int main(int argc, char **argv)
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
+	static double faccel[3] = {0,0,0};
+	double roll = floorf(msg->roll * 100 +  0.5) / 100;
+	double pitch = floorf(msg->pitch * 100 +  0.5) / 100;
+	double yaw = floorf(msg->yaw * 100 +  0.5) / 100;
+
 	coax_client::CoaxStateFiltered new_state;
 	
 	new_state.header.stamp = ros::Time::now();
-	new_state.header.frame_id = "continuous"; 
+	new_state.header.frame_id = "continuous";
+	faccel[0] = .6*faccel[0]+.4*msg->accel[0];
+	faccel[1] = .6*faccel[1]+.4*msg->accel[1];
+	faccel[2] = .6*faccel[2]+.4*msg->accel[2];
+
+	new_state.accel[0] = faccel[0];
+	new_state.accel[1] = faccel[1];
+	new_state.accel[2] = faccel[2];
+
+	new_state.global_accel[0] = cos(pitch)*cos(yaw)*faccel[0]-sin(yaw)*cos(pitch)*faccel[1]+sin(pitch)*faccel[2];
+	new_state.global_accel[1] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*faccel[0])-
+			  ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *faccel[1])-
+			  (sin(roll)*cos(pitch)*faccel[2]);
+	new_state.global_accel[2] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*faccel[0])+
+			  (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*faccel[1])+
+			  (cos(roll)*cos(pitch)*faccel[2]);
 	
 	new_state.ranges[0] = calculateDistance(max(msg->hranges[0],0.05f),DEFAULT_FRONT_SLOPE,DEFAULT_FRONT_OFFSET);
 	new_state.ranges[1] = calculateDistance(max(msg->hranges[1],0.05f),DEFAULT_LEFT_SLOPE,DEFAULT_LEFT_OFFSET);

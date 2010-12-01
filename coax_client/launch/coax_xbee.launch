@@ -1,3 +1,4 @@
 <launch>
 	<node pkg="coax_server" type="coax_server" name="coax_server" output="screen" args="/dev/ttyUSB0:1"/>
+	<node pkg="coax_client" type="test_coax_filter" name="state_filtered" output="screen"/>
 </launch>
