@@ -48,6 +48,7 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 	
 	new_state.header.stamp = ros::Time::now();
 	new_state.header.frame_id = "continuous";
+
 	faccel[0] = .6*faccel[0]+.4*msg->accel[0];
 	faccel[1] = .6*faccel[1]+.4*msg->accel[1];
 	faccel[2] = .6*faccel[2]+.4*msg->accel[2];
