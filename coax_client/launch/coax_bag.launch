@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="coax_client" name="csv_dump" type="coax_server_csv.py" />
+</launch>
