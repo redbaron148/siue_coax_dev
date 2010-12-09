@@ -1,0 +1,11 @@
+<launch>
+	
+	<group ns="coax_filtered">
+		<param name="accel/new_x_weight" value="0.7" />
+		<param name="accel/new_y_weight" value="0.5" />
+		<param name="localization/update_period" value="50" />
+		<param name="publish_freq" value="50" />
+		<param name="state_msg_buffer" value="10" />
+	</group>
+	<node pkg="coax_client" type="test_coax_filter" name="filtered_state" output="screen"/>
+</launch>
