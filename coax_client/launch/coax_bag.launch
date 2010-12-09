@@ -1,3 +1,4 @@
 <launch>
-	<node pkg="coax_client" name="csv_dump" type="coax_server_csv.py" />
+	<node pkg="coax_client" name="state_dump" type="coax_server_csv.py" />
+	<node pkg="coax_client" name="fstate_dump" type="coax_filtered_csv.py" />
 </launch>

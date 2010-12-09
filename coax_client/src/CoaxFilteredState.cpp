@@ -42,7 +42,7 @@ ros::Publisher filtered_state_pub;
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg);
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset);
 void getParams(const ros::NodeHandle &nh);
-double round(const double &num);
+double roundTwo(const double &num);
 
 int main(int argc, char **argv)
 {
@@ -73,9 +73,9 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
     static unsigned int current_frame = 0;
 
     //rounding functions. Rounds rpy values to two decimal places.
-	double roll = round(roll);
-	double pitch = round(pitch);
-	double yaw = round(yaw);
+	double roll = roundTwo(roll);
+	double pitch = roundTwo(pitch);
+	double yaw = roundTwo(yaw);
 
 	coax_client::CoaxStateFiltered new_state;
     current_frame++;
@@ -284,7 +284,7 @@ void getParams(const ros::NodeHandle &nh)
     }
 }
 
-double round(const double &num)
+double roundTwo(const double &num)
 {
-    return floorf(msg->roll * 1000 +  0.05) / 1000;
+    return floorf(num * 1000 +  0.05) / 1000;
 }
