@@ -43,6 +43,10 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg);
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset);
 void getParams(const ros::NodeHandle &nh);
 double roundTwo(const double &num);
+double runningAvg(const double &prev, const double &next, const double &n)
+{
+    return ((prev*(n-1))+next)/n;
+}
 
 int main(int argc, char **argv)
 {
@@ -68,9 +72,9 @@ int main(int argc, char **argv)
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
-	static double faccel[3] = {0,0,0};
-    static double runningavg[3] = {0};
-    static unsigned int current_frame = 0;
+	static double faccel[3] = {0};  //filtered acceleration values (x,y,z)
+    static double runningavg[3] = {0};  //running average of the accelerations over the period
+    static unsigned int current_state = 0;  //filtered state we are currently processing
 
     //rounding functions. Rounds rpy values to two decimal places.
 	double roll = roundTwo(roll);
@@ -78,32 +82,31 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 	double yaw = roundTwo(yaw);
 
 	coax_client::CoaxStateFiltered new_state;
-    current_frame++;
+    current_state++;
 	
-	new_state.header.stamp = ros::Time::now();
-	new_state.header.frame_id = "continuous";
+	new_state.header = msg->header;
 
     for(int i = 0;i<3;i++)
     {
+        //convert the distance data from the IR sensors to meter readings.
         new_state.ranges[0] = calculateDistance(max(msg->hranges[i],0.05f),IR_TUNE[i][SLOPE],IR_TUNE[i][OFFSET]);
+        
+        //low pass filter
 	    new_state.accel[i] = faccel[i] = (1.-ACCEL_FILTER_K[i])*faccel[i]+ACCEL_FILTER_K[i]*msg->accel[i];
+        
     }
 
-    //new_state.ranges[0] = calculateDistance(max(msg->hranges[0],0.05f),DEFAULT_FRONT_SLOPE,DEFAULT_FRONT_OFFSET);
-    //new_state.ranges[1] = calculateDistance(max(msg->hranges[1],0.05f),DEFAULT_LEFT_SLOPE,DEFAULT_LEFT_OFFSET);
-    //new_state.ranges[2] = calculateDistance(max(msg->hranges[2],0.05f),DEFAULT_RIGHT_SLOPE,DEFAULT_RIGHT_OFFSET);
+    //transform local acceleration values to global values.  accel z should generally stay -9.8 (gravity)
+    new_state.global_accel[X] = cos(pitch)*cos(yaw)*faccel[X]-sin(yaw)*cos(pitch)*faccel[Y]+sin(pitch)*faccel[Z];
+    new_state.global_accel[Y] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*faccel[X])-
+		      ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *faccel[Y])-
+		      (sin(roll)*cos(pitch)*faccel[Z]);
+    new_state.global_accel[A] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*faccel[X])+
+		      (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*faccel[Y])+
+		      (cos(roll)*cos(pitch)*faccel[Z]);
 
-    new_state.global_accel[0] = cos(pitch)*cos(yaw)*faccel[0]-sin(yaw)*cos(pitch)*faccel[1]+sin(pitch)*faccel[2];
-    new_state.global_accel[1] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*faccel[0])-
-		      ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *faccel[1])-
-		      (sin(roll)*cos(pitch)*faccel[2]);
-    new_state.global_accel[2] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*faccel[0])+
-		      (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*faccel[1])+
-		      (cos(roll)*cos(pitch)*faccel[2]);
-    
-    runningavg[0] = ((runningavg[0]*(current_frame-1))+new_state.global_accel[0])/current_frame;
-
-    new_state.global_accel_avg[0] = runningavg[0];
+    for(int i = 0;i < 3;i++)
+        runningavg[i] = runningAvg(runningavg[i],new_state.global_accel[i],current_state);
 
     if(current_frame == 50)
     {
