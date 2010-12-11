@@ -1,17 +1,18 @@
 <launch>
-	<group ns="coax_filtered">
-		<param name="accel/new_x_weight" value="0.5" />
-		<param name="accel/new_y_weight" value="0.5" />
-		<param name="localization/update_period" value="50" />
-		<param name="publish_freq" value="50" />
-		<param name="state_msg_buffer" value="10" />
-	</group>
-
-    <group ns="fstate_data_dump">
-        <param name="filename" value="filtered_state"/>
-        <param name="overwrite" value="false"/>
+    <group ns="coax_filtered">
+	<param name="accel/new_x_weight" value="0.5" />
+	<param name="accel/new_y_weight" value="0.5" />
+	<param name="localization/update_period" value="10" />
+	<param name="publish_freq" value="50" />
+	<param name="state_msg_buffer" value="50" />
     </group>
 
-	<node pkg="coax_client" type="test_coax_filter" name="filtered_state" output="screen" />
+    <group ns="fstate_data_dump">
+        <param name="filename" value="filtered_state" />
+        <param name="overwrite" value="true" />
+        <param name="time_diff" value="1" />
+    </group>
+
+    <node pkg="coax_client" type="test_coax_filter" name="filtered_state" output="screen" />
     <node pkg="coax_client" type="coax_filter_csv.py" name="fstate_data_dump" output="screen" />
 </launch>

@@ -43,9 +43,10 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg);
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset);
 void getParams(const ros::NodeHandle &nh);
 double roundTwo(const double &num);
-double runningAvg(const double &prev, const double &next, const double &n)
+double runningAvg(const double &prev, const double &next, const unsigned int &n)
 {
-    return ((prev*(n-1))+next)/n;
+    //ROS_INFO("prev: %f  next: %f  n: %d", prev, next, n);
+    return ((prev*(n-1))+next)/double(n);
 }
 
 int main(int argc, char **argv)
@@ -57,14 +58,14 @@ int main(int argc, char **argv)
 	
 	ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
 	
-	filtered_state_pub = n.advertise<coax_client::CoaxStateFiltered>("state", 5);
+	filtered_state_pub = n.advertise<coax_client::CoaxStateFiltered>("state", 20);
 	
 	ros::Rate loop_rate(PUBLISH_FREQ);
 	
 	while(ros::ok())
 	{
-		loop_rate.sleep();
 		ros::spinOnce();
+        loop_rate.sleep();
 	}
 	
 	return 0;
@@ -72,19 +73,31 @@ int main(int argc, char **argv)
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
-	static double faccel[3] = {0};  //filtered acceleration values (x,y,z)
-    static double runningavg[3] = {0};  //running average of the accelerations over the period
-    static unsigned int current_state = 0;  //filtered state we are currently processing
+	//static double faccel[3] = {0};  //filtered acceleration values (x,y,z)
+    //static double runningavg[3] = {0};  //running average of the accelerations over the period
+    static const unsigned int start_seq = msg->header.seq;
+    //static double prev_vel = 0;
+    static coax_client::CoaxStateFiltered prev_state = coax_client::CoaxStateFiltered();
+    static ros::Time beginning_period_time;
+
+   // ROS_INFO("test text...");
 
     //rounding functions. Rounds rpy values to two decimal places.
 	double roll = roundTwo(roll);
 	double pitch = roundTwo(pitch);
 	double yaw = roundTwo(yaw);
+    int tmp = ((msg->header.seq-start_seq)%LOCALIZATION_UPDATE_PERIOD)+1;
 
-	coax_client::CoaxStateFiltered new_state;
-    current_state++;
+    //cout << "count = " << tmp << endl;
+
+	coax_client::CoaxStateFiltered new_state = coax_client::CoaxStateFiltered();
 	
 	new_state.header = msg->header;
+
+    if(tmp == 1)
+    {
+        beginning_period_time = msg->header.stamp;
+    }
 
     for(int i = 0;i<3;i++)
     {
@@ -92,29 +105,34 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
         new_state.ranges[0] = calculateDistance(max(msg->hranges[i],0.05f),IR_TUNE[i][SLOPE],IR_TUNE[i][OFFSET]);
         
         //low pass filter
-	    new_state.accel[i] = faccel[i] = (1.-ACCEL_FILTER_K[i])*faccel[i]+ACCEL_FILTER_K[i]*msg->accel[i];
+	    new_state.accel[i] = (1.-ACCEL_FILTER_K[i])*prev_state.accel[i]+ACCEL_FILTER_K[i]*msg->accel[i];
         
     }
 
     //transform local acceleration values to global values.  accel z should generally stay -9.8 (gravity)
-    new_state.global_accel[X] = cos(pitch)*cos(yaw)*faccel[X]-sin(yaw)*cos(pitch)*faccel[Y]+sin(pitch)*faccel[Z];
-    new_state.global_accel[Y] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*faccel[X])-
-		      ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *faccel[Y])-
-		      (sin(roll)*cos(pitch)*faccel[Z]);
-    new_state.global_accel[A] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*faccel[X])+
-		      (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*faccel[Y])+
-		      (cos(roll)*cos(pitch)*faccel[Z]);
+    new_state.global_accel[X] = cos(pitch)*cos(yaw)*new_state.accel[X]-sin(yaw)*cos(pitch)*new_state.accel[Y]+sin(pitch)*new_state.accel[Z];
+    new_state.global_accel[Y] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*new_state.accel[X])-
+		      ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *new_state.accel[Y])-
+		      (sin(roll)*cos(pitch)*new_state.accel[Z]);
+    new_state.global_accel[Z] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*new_state.accel[X])+
+		      (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*new_state.accel[Y])+
+		      (cos(roll)*cos(pitch)*new_state.accel[Z]);
 
     for(int i = 0;i < 3;i++)
-        runningavg[i] = runningAvg(runningavg[i],new_state.global_accel[i],current_state);
-
-    if(current_frame == 50)
     {
-        current_frame = 0;
-        runningavg[0] = new_state.global_accel[0];
+        new_state.global_accel_avg[i] = runningAvg(prev_state.global_accel_avg[i],new_state.global_accel[i],tmp);
+
+        if(tmp == LOCALIZATION_UPDATE_PERIOD)
+        {
+            new_state.global_vel_avg[i] = (new_state.global_accel_avg[i]*(new_state.header.stamp-beginning_period_time).toSec()) + prev_state.global_vel_avg[i];
+        }
+        else
+            new_state.global_vel_avg[i] = prev_state.global_vel_avg[i];
     }
-	
+
 	filtered_state_pub.publish(new_state);
+
+    prev_state = new_state;
 }
 
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset)
@@ -289,5 +307,5 @@ void getParams(const ros::NodeHandle &nh)
 
 double roundTwo(const double &num)
 {
-    return floorf(num * 1000 +  0.05) / 1000;
+    return floorf(num * 1000 +  0.5) / 1000;
 }
