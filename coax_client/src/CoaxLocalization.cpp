@@ -9,6 +9,9 @@
 #define DEFAULT_MSG_QUEUE           20
 #define DEFAULT_UPDATE_PERIOD       10
 
+//used for ease of access of accel arrays, accel x axis = accel[X], etc...
+enum {X = 0,Y,Z};
+
 //global params, set by getParams function.
 int PUBLISH_FREQ;
 int FSTATE_MSG_BUFFER;
@@ -19,7 +22,7 @@ using namespace std;
 
 ros::Publisher filtered_state_pub;
 
-void stateCallback(const coax_client::CoaxStateFilteredConstPtr& msg);
+void stateCallback(boost::shared_ptr<coax_client::CoaxStateFiltered> msg);
 void getParams(const ros::NodeHandle &nh);
 double runningAvg(const double &prev, const double &next, const unsigned int &n);
 
@@ -30,7 +33,7 @@ int main(int argc, char **argv)
 
     getParams(n);
 	
-	ros::Subscriber state_sub = n.subscribe("/coax_filter/state", FSTATE_MSG_BUFFER, &stateCallback);
+	ros::Subscriber state_sub = n.subscribe("/coax_filtered/state", FSTATE_MSG_BUFFER, &stateCallback);
 	
 	filtered_state_pub = n.advertise<coax_client::CoaxLocalization>("state", MSG_QUEUE);
 	
@@ -45,14 +48,39 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-void stateCallback(const coax_client::CoaxStateFilteredConstPtr& msg)
+void stateCallback(boost::shared_ptr<coax_client::CoaxStateFiltered> msg)
 {
+    static boost::shared_ptr<coax_client::CoaxStateFiltered> prev_msg(new coax_client::CoaxStateFiltered());
+    static unsigned short int start_seq = msg->header.seq;
+    static float running_avg_accel[3] = {0};
+    static int tmp;
+    tmp = ((msg->header.seq-start_seq)%UPDATE_PERIOD)+1;
+
+    for(int i = 0;i<3;i++)
+    {
+        running_avg_accel[i] = runningAvg(running_avg_accel[i],msg->global_accel[i],tmp);
+    }
     
+    cout << "update period: " << UPDATE_PERIOD << endl;
+    cout << "tmp:           " << tmp << endl;
+    
+    if(tmp == UPDATE_PERIOD)
+    {
+        coax_client::CoaxLocalization new_msg;
+        new_msg.header = msg->header;
+        for(int i=0;i<3;i++)
+        {
+            new_msg.global_accel_avg[i]=running_avg_accel[i];
+            running_avg_accel[i] = 0;
+        }
+        filtered_state_pub.publish(new_msg);
+    }
+
+    prev_msg = msg;
 }
 
 void getParams(const ros::NodeHandle &nh)
 {
-
     //avg accel update period (number of msgs until next localization udpate)
     if (nh.getParam("update_period", UPDATE_PERIOD))
     {
