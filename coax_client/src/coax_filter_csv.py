@@ -5,7 +5,7 @@ import os.path
 import datetime
 from coax_client.msg import CoaxStateFiltered
 
-data = "time,accel[0],accel[1],accel[2],global_accel[0],global_accel[1],global_accel[2],global_accel_avg[0],global_accel_avg[1],global_accel_avg[2],global_vel_avg[0],global_vel_avg[1],global_vel_avg[2]"
+data = "time,accel[0],accel[1],accel[2],global_accel[0],global_accel[1],global_accel[2],global_accel_avg[0],global_accel_avg[1],global_accel_avg[2]"
 
 last_write = 0
 data_is_dirty = 0
@@ -21,7 +21,7 @@ def callback(state):
     data += ","+`state.accel[0]`+","+`state.accel[1]`+","+`state.accel[2]`
     data += ","+`state.global_accel[0]`+","+`state.global_accel[1]`+","+`state.global_accel[2]`
     data += ","+`state.global_accel_avg[0]`+","+`state.global_accel_avg[1]`+","+`state.global_accel_avg[2]`
-    data += ","+`state.global_vel_avg[0]`+","+`state.global_vel_avg[1]`+","+`state.global_vel_avg[2]`
+    #data += ","+`state.global_vel_avg[0]`+","+`state.global_vel_avg[1]`+","+`state.global_vel_avg[2]`
     if not data_is_dirty:
         data_is_dirty = 1
     last_write = rospy.Time.now().secs
@@ -54,7 +54,7 @@ def listener():
             newfile.close()
             rospy.loginfo("wrote %d messages",count);
             count = 0
-    if time_diff == 0:
+    if time_diff == 0 or data_is_dirty:
         filename = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename
         newfile = open("/home/aaron/ros_pkgs/siue_coax_dev/coax_client/data/"+filename+".csv",'w')
         newfile.write(data)
