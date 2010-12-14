@@ -6,13 +6,13 @@
         </group>
 	    <param name="publish_freq" value="20" />
 	    <param name="state_msg_buffer" value="50" />
-        <param name="fstate_msg_queue" value="20" />
+        <param name="msg_queue" value="20" />
     </group>
 
     <group ns="coax_localization">
         <param name="publish_freq" value="20" />
 	    <param name="state_msg_buffer" value="50" />
-        <param name="fstate_msg_queue" value="20" />
+        <param name="msg_queue" value="20" />
     </group>
 
     <group ns="fstate_data_dump">

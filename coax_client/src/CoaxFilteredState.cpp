@@ -19,7 +19,7 @@
 //default values used with the node handler
 #define DEFAULT_PUBLISH_FREQ        50
 #define DEFAULT_STATE_MSG_BUFFER    50
-#define DEFAULT_FSTATE_MSG_QUEUE    20
+#define DEFAULT_MSG_QUEUE           20
 
 //used for ease of access of accel arrays, accel x axis = accel[X], etc...
 enum {X = 0,Y,Z};
@@ -31,7 +31,7 @@ double IR_TUNE[3][2];
 double ACCEL_FILTER_K[3];
 int PUBLISH_FREQ;
 int STATE_MSG_BUFFER;
-int FSTATE_MSG_QUEUE;
+int MSG_QUEUE;
 
 using namespace std;
 
@@ -41,11 +41,6 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg);
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset);
 void getParams(const ros::NodeHandle &nh);
 double roundTwo(const double &num);
-/*double runningAvg(const double &prev, const double &next, const unsigned int &n)
-{
-    //ROS_INFO("prev: %f  next: %f  n: %d", prev, next, n);
-    return ((prev*(n-1))+next)/double(n);
-}*/
 
 int main(int argc, char **argv)
 {
@@ -56,7 +51,7 @@ int main(int argc, char **argv)
 	
 	ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
 	
-	filtered_state_pub = n.advertise<coax_client::CoaxStateFiltered>("state", FSTATE_MSG_QUEUE);
+	filtered_state_pub = n.advertise<coax_client::CoaxStateFiltered>("state", MSG_QUEUE);
 	
 	ros::Rate loop_rate(PUBLISH_FREQ);
 	
@@ -120,9 +115,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("IR/front_slope"))
-            ROS_WARN("IR/front_slope must be a double. Setting default value.");
+            ROS_WARN("IR/front_slope must be a double. Setting default value: %f", DEFAULT_FRONT_SLOPE);
         else
-            ROS_WARN("No value set for IR/front_slope. Setting default value.");
+            ROS_WARN("No value set for IR/front_slope. Setting default value: %f", DEFAULT_FRONT_SLOPE);
         IR_TUNE[FRONT][SLOPE] = DEFAULT_FRONT_SLOPE;
     }
 
@@ -133,9 +128,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("IR/left_slope"))
-            ROS_WARN("IR/left_slope must be a double. Setting default value.");
+            ROS_WARN("IR/left_slope must be a double. Setting default value: %f", DEFAULT_LEFT_SLOPE);
         else
-            ROS_WARN("No value set for IR/left_slope. Setting default value.");
+            ROS_WARN("No value set for IR/left_slope. Setting default value: %f", DEFAULT_LEFT_SLOPE);
         IR_TUNE[LEFT][SLOPE] = DEFAULT_LEFT_SLOPE;
     }
 
@@ -146,9 +141,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("IR/right_slope"))
-            ROS_WARN("IR/right_slope must be a double. Setting default value.");
+            ROS_WARN("IR/right_slope must be a double. Setting default value: %f", DEFAULT_RIGHT_SLOPE);
         else
-            ROS_WARN("No value set for IR/right_slope. Setting default value.");
+            ROS_WARN("No value set for IR/right_slope. Setting default value: %f", DEFAULT_RIGHT_SLOPE);
         IR_TUNE[RIGHT][SLOPE] = DEFAULT_RIGHT_SLOPE;
     }
     
@@ -160,9 +155,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("IR/front_offset"))
-            ROS_WARN("IR/front_offset must be a double. Setting default value.");
+            ROS_WARN("IR/front_offset must be a double. Setting default value: %f", DEFAULT_FRONT_OFFSET);
         else
-            ROS_WARN("No value set for IR/front_offset. Setting default value.");
+            ROS_WARN("No value set for IR/front_offset. Setting default value: %f", DEFAULT_FRONT_OFFSET);
         IR_TUNE[FRONT][OFFSET] = DEFAULT_FRONT_OFFSET;
     }
 
@@ -173,9 +168,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("IR/left_offset"))
-            ROS_WARN("IR/left_offset must be a double. Setting default value.");
+            ROS_WARN("IR/left_offset must be a double. Setting default value: %f", DEFAULT_LEFT_OFFSET);
         else
-            ROS_WARN("No value set for IR/left_offset. Setting default value.");
+            ROS_WARN("No value set for IR/left_offset. Setting default value: %f", DEFAULT_LEFT_OFFSET);
         IR_TUNE[LEFT][OFFSET] = DEFAULT_LEFT_OFFSET;
     }
 
@@ -186,9 +181,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("IR/right_offset"))
-            ROS_WARN("IR/right_offset must be a double. Setting default value.");
+            ROS_WARN("IR/right_offset must be a double. Setting default value: %f", DEFAULT_RIGHT_OFFSET);
         else
-            ROS_WARN("No value set for IR/right_offset. Setting default value.");
+            ROS_WARN("No value set for IR/right_offset. Setting default value: %f", DEFAULT_RIGHT_OFFSET);
         IR_TUNE[RIGHT][OFFSET] = DEFAULT_RIGHT_OFFSET;
     }
 
@@ -200,9 +195,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("accel/new_x_weight"))
-            ROS_WARN("accel/new_x_weight must be a double between 0 and 1. Setting default value.");
+            ROS_WARN("accel/new_x_weight must be a float between 0 and 1. Setting default value: %f", DEFAULT_X_FILTER_K);
         else
-            ROS_WARN("No value set for accel/new_x_weight. Setting default value.");
+            ROS_WARN("No value set for accel/new_x_weight. Setting default value: %f", DEFAULT_X_FILTER_K);
         ACCEL_FILTER_K[X] = DEFAULT_X_FILTER_K;
     }
 
@@ -213,9 +208,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("accel/new_y_weight"))
-            ROS_WARN("accel/new_y_weight must be a double between 0 and 1. Setting default value.");
+            ROS_WARN("accel/new_y_weight must be a float between 0 and 1. Setting default value: %f", DEFAULT_Y_FILTER_K);
         else
-            ROS_WARN("No value set for accel/new_y_weight. Setting default value.");
+            ROS_WARN("No value set for accel/new_y_weight. Setting default value: %f", DEFAULT_Y_FILTER_K);
         ACCEL_FILTER_K[Y] = DEFAULT_Y_FILTER_K;
     }
 
@@ -226,25 +221,11 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("accel/new_z_weight"))
-            ROS_WARN("accel/new_z_weight must be a double between 0 and 1. Setting default value.");
+            ROS_WARN("accel/new_z_weight must be a double between 0 and 1. Setting default value: %f", DEFAULT_Z_FILTER_K);
         else
-            ROS_WARN("No value set for accel/new__weight. Setting default value.");
+            ROS_WARN("No value set for accel/new__weight. Setting default value: %f", DEFAULT_Z_FILTER_K);
         ACCEL_FILTER_K[Z] = DEFAULT_Z_FILTER_K;
     }
-
-    /*//number of messages between starting and ending
-    if (nh.getParam("avg_period", AVG_PERIOD))
-    {
-        ROS_INFO("Set avg_period to %d.", AVG_PERIOD);
-    }
-    else
-    {
-        if(nh.hasParam("avg_period"))
-            ROS_WARN("avg_period must be an integer. Setting default value.");
-        else
-            ROS_WARN("No value set for avg_period. Setting default value.");
-        AVG_PERIOD = DEFAULT_AVG_PERIOD;
-    }*/
 
     //frequency this node publishes a new topic
     if (nh.getParam("publish_freq", PUBLISH_FREQ))
@@ -254,9 +235,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("publish_freq"))
-            ROS_WARN("publish_freq must be an integer. Setting default value.");
+            ROS_WARN("publish_freq must be an integer. Setting default value: %d", DEFAULT_PUBLISH_FREQ);
         else
-            ROS_WARN("No value set for publish_freq. Setting default value.");
+            ROS_WARN("No value set for publish_freq. Setting default value: %d", DEFAULT_PUBLISH_FREQ);
         PUBLISH_FREQ = DEFAULT_PUBLISH_FREQ;
     }
 
@@ -268,24 +249,24 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("state_msg_buffer"))
-            ROS_WARN("state_msg_buffer must be an integer. Setting default value.");
+            ROS_WARN("state_msg_buffer must be an integer. Setting default value: %d", DEFAULT_STATE_MSG_BUFFER);
         else
-            ROS_WARN("No value set for state_msg_buffer. Setting default value.");
+            ROS_WARN("No value set for state_msg_buffer. Setting default value: %d", DEFAULT_STATE_MSG_BUFFER);
         STATE_MSG_BUFFER = DEFAULT_STATE_MSG_BUFFER;
     }
 
     //number of messages this node will queue for publishing before it drops data
-    if (nh.getParam("fstate_msg_queue", FSTATE_MSG_QUEUE))
+    if (nh.getParam("msg_queue", MSG_QUEUE))
     {
-        ROS_INFO("Set fstate_msg_queue to %d.", FSTATE_MSG_QUEUE);
+        ROS_INFO("Set msg_queue to %d.", MSG_QUEUE);
     }
     else
     {
-        if(nh.hasParam("fstate_msg_queue"))
-            ROS_WARN("fstate_msg_queue must be an integer. Setting default value.");
+        if(nh.hasParam("msg_queue"))
+            ROS_WARN("msg_queue must be an integer. Setting default value: %d", DEFAULT_MSG_QUEUE);
         else
-            ROS_WARN("No value set for fstate_msg_queue. Setting default value.");
-        FSTATE_MSG_QUEUE = DEFAULT_FSTATE_MSG_QUEUE;
+            ROS_WARN("No value set for msg_queue. Setting default value: %d", DEFAULT_MSG_QUEUE);
+        MSG_QUEUE = DEFAULT_MSG_QUEUE;
     }
 }
 
