@@ -1,4 +1,6 @@
 <launch>
-	<node pkg="coax_client" name="state_dump" type="coax_server_csv.py" />
-	<node pkg="coax_client" name="fstate_dump" type="coax_filtered_csv.py" />
+    <include file="$(find coax_client)/launch/basic.launch"/>
+    
+    <arg name="args" default=""/>    
+	<node pkg="rosbag" type="play" name="rosbag" output="screen" args="$(arg args)"/>
 </launch>
