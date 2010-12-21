@@ -5,7 +5,7 @@ import os.path
 import datetime
 from coax_client.msg import CoaxLocalization
 
-data = "time,global_accel_avg[0],global_accel_avg[1],global_accel_avg[2]"
+data = "time,global_accel_avg[0],global_accel_avg[1],global_accel_avg[2],global_vel_avg[0],global_vel_avg[1],global_vel_avg[2],position[0],position[1],position[2]"
 
 last_write = 0
 data_is_dirty = 0
@@ -19,6 +19,8 @@ def callback(state):
     data += "\n"+`state.header.stamp.to_sec()`
     #data += ","+`state.accel[0]`+","+`state.accel[1]`+","+`state.accel[2]`
     data += ","+`state.global_accel_avg[0]`+","+`state.global_accel_avg[1]`+","+`state.global_accel_avg[2]`
+    data += ","+`state.global_vel_avg[0]`+","+`state.global_vel_avg[1]`+","+`state.global_vel_avg[2]`
+    data += ","+`state.position[0]`+","+`state.position[1]`+","+`state.position[2]`
     if not data_is_dirty:
         data_is_dirty = 1
     last_write = rospy.Time.now().secs

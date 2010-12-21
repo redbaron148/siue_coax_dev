@@ -2,20 +2,20 @@
     <!-- basics for data gathering. not platform specific. can run from simulator, xbee, onboard, etc... -->
     <group ns="coax_filter">
         <group ns="accel">
-	        <param name="new_x_weight" value="0.0" />
+	        <param name="new_x_weight" value="0.5" />
 	        <param name="new_y_weight" value="0.5" />
 	        <param name="new_z_weight" value="0.5" />
         </group>
-	    <param name="publish_freq" value="20" />
+	    <param name="publish_freq" value="30" />
 	    <param name="state_msg_buffer" value="50" />
         <param name="msg_queue" value="20" />
     </group>
 
     <group ns="coax_localization">
-        <param name="publish_freq" value="20" />
+        <param name="publish_freq" value="30" />
 	    <param name="state_msg_buffer" value="50" />
         <param name="msg_queue" value="20" />
-        <param name="update_period" value="1"/>
+        <param name="update_period" value="5"/>
     </group>
 
     <node pkg="coax_client" type="test_coax_filter" name="filtered_state" output="screen" />

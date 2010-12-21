@@ -1,6 +1,7 @@
 <launch>
     <include file="$(find coax_client)/launch/basic.launch"/>
     
-    <arg name="args" default=""/>    
-	<node pkg="rosbag" type="play" name="rosbag" output="screen" args="$(arg args)"/>
+    <arg name="options" default=""/>
+    <arg name="bag_file" default=""/>
+	<node pkg="rosbag" type="play" name="rosbag" output="screen" args="$(arg options) $(arg bag_file)"/>
 </launch>

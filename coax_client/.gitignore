@@ -3,6 +3,7 @@ build/*
 bin/*
 data/~*
 data/.~*
+data/*
 msg/lisp
 *~
 *_gen

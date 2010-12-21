@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
     //static coax_client::CoaxStateFiltered prev_state;
-    static float prev_accel[3] = {0.0};    
+    static float prev_accel[3] = {0.0};
 
     //rounding functions. Rounds rpy values to two decimal places. (getting rid of some error)
 	double roll = msg->roll;//roundTwo(msg->roll);
@@ -86,7 +86,7 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
         //low pass filter
 	    new_state.accel[i] = ((1.-ACCEL_FILTER_K[i])*prev_accel[i])+(ACCEL_FILTER_K[i]*msg->accel[i]);
         prev_accel[i] = new_state.accel[i];
-        //cout << "filter val: " << ACCEL_FILTER_K[i] << endl;
+        //cout << "accel[" << i << "]: " << new_state.accel[i] << endl;
     }
 
     //transform local acceleration values to global values.  accel z should generally stay -9.8 (gravity)

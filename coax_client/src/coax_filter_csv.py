@@ -28,38 +28,49 @@ def callback(state):
     count += 1
     
 def listener():
-    rospy.init_node('fstate_data_dump')
-    rospy.Subscriber('/coax_filtered/state', CoaxStateFiltered, callback)
+    rospy.init_node('csv_filter_dd')
+    rospy.Subscriber('/coax_filter/state', CoaxStateFiltered, callback)
     global data_is_dirty
     global count
-    filename = rospy.get_param('/fstate_data_dump/filename','tmp')
-    time_diff = rospy.get_param('/fstate_data_dump/time_diff',1)
-    if os.path.isfile("/home/aaron/ros_pkgs/siue_coax_dev/coax_client/"+filename+".csv"):
-        rospy.logwarn("The file %s.csv already exists.", filename)
-    rospy.loginfo("writing to file %s every %d seconds after recieving a message.", filename+".csv",time_diff);
+    global data
+    filename = rospy.get_param('/csv_filter_dd/filename','tmp')
+    time_diff = rospy.get_param('/csv_filter_dd/time_diff',1)
+    path = rospy.get_param('/csv_filter_dd/path','')
+    overwrite = rospy.get_param("/csv_filter_dd/overwrite","true")
+    full_filename = path+filename+".csv"
+    rospy.loginfo("writing to %s after %d seconds without recieving a message; overwrite: %s", full_filename,time_diff, overwrite)
     
     while not rospy.is_shutdown():
         if data_is_dirty and ((rospy.Time.now().secs-last_write) > time_diff and time_diff != 0):
             data_is_dirty = 0
-            if os.path.isfile(filename+".csv"):
-                if rospy.get_param("/fstate_data_dump/overwrite","true"):
-                    rospy.logwarn("The file %s.csv already exists, overwriting now.", filename)
+            if os.path.isfile(full_filename):
+                if overwrite:
+                    rospy.logwarn("The file %s already exists, overwriting now.", full_filename)
                 else:
-                    rospy.logwarn("The file %s.csv already exists, creating new file called %s.csv",filename, datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename)
-                    filename = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename
-            rospy.loginfo("writing data to file %s.csv",filename)
-            global data
-            newfile = open("/home/aaron/ros_pkgs/siue_coax_dev/coax_client/data/"+filename+".csv",'w')
+                    rospy.logwarn("The file %s already exists, creating new file %s",full_filename, path+datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename+".csv")
+                    full_filename = path+datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename+".csv"
+            rospy.loginfo("writing data to %s",full_filename)
+            newfile = open(full_filename,'w')
             newfile.write(data)
             newfile.close()
             rospy.loginfo("wrote %d messages",count);
             count = 0
-    if time_diff == 0 or data_is_dirty:
-        filename = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename
-        newfile = open("/home/aaron/ros_pkgs/siue_coax_dev/coax_client/data/"+filename+".csv",'w')
+            data = '';
+    #print `data_is_dirty`+"\n\n\n"
+    if data_is_dirty or (data_is_dirty and time_diff == 0):
+        print "bwah!!!!!\n\n\n"
+        if os.path.isfile(full_filename):
+            if overwrite:
+                rospy.logwarn("The file %s already exists, overwriting now.", full_filename)
+            else:
+                rospy.logwarn("The file %s already exists, creating new file %s",full_filename, path+datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename+".csv")
+                full_filename = path+datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S.")+filename+".csv"
+        rospy.loginfo("writing data to %s",full_filename)
+        newfile = open(full_filename,'w')
         newfile.write(data)
         newfile.close()
         rospy.loginfo("wrote %d messages",count);
+        count = 0
 
 if __name__ == '__main__':
     try:

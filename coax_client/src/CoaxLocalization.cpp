@@ -50,11 +50,11 @@ int main(int argc, char **argv)
 
 void stateCallback(boost::shared_ptr<coax_client::CoaxStateFiltered> msg)
 {
-    static coax_client::CoaxLocalization prev_msg = coax_client::CoaxLocalization();
-    static unsigned short int count = 0;
+    static boost::shared_ptr<coax_client::CoaxLocalization> prev_msg;
     static float running_avg_accel[3] = {0};
-    static int tmp;
-    tmp = (count%UPDATE_PERIOD)+1;
+    static int tmp = 0;
+    float delta_time = 0.;
+    tmp = (tmp%UPDATE_PERIOD)+1;
 
     for(int i = 0;i<3;i++)
     {
@@ -63,18 +63,26 @@ void stateCallback(boost::shared_ptr<coax_client::CoaxStateFiltered> msg)
     
     if(tmp == UPDATE_PERIOD)
     {
-        coax_client::CoaxLocalization new_msg;
-        new_msg.header = msg->header;
+        running_avg_accel[2] += 9.81;
+        boost::shared_ptr<coax_client::CoaxLocalization> new_msg(new coax_client::CoaxLocalization);
+        
+        if(prev_msg != NULL)
+            delta_time = msg->header.stamp.toSec()-prev_msg->header.stamp.toSec();
+        else
+            prev_msg = new_msg;
+            
+        new_msg->header = msg->header;
         for(int i=0;i<3;i++)
         {
-            new_msg.global_accel_avg[i]=running_avg_accel[i];
-            prev_msg.global_accel_avg[i]=0;
+            running_avg_accel[i] = floorf(running_avg_accel[i] * 100 +  0.5) / 100;
+            new_msg->global_accel_avg[i]=running_avg_accel[i];
+            new_msg->global_vel_avg[i]=(running_avg_accel[i]*delta_time)+prev_msg->global_vel_avg[i];
+            new_msg->position[i] = (.5*running_avg_accel[i]*delta_time*delta_time)+(new_msg->global_vel_avg[i]*delta_time)+prev_msg->position[i];
+            running_avg_accel[i]=0;
         }
         filtered_state_pub.publish(new_msg);
         prev_msg = new_msg;
     }
-
-    count ++;
 }
 
 void getParams(const ros::NodeHandle &nh)
