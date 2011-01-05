@@ -8,6 +8,7 @@ using namespace std;
 string node_name;
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg);
+double runningAvg(const double &previous, const double &new_value, const double &n);
 
 int main(int argc, char **argv)
 {
@@ -33,8 +34,14 @@ int main(int argc, char **argv)
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
 	static tf::TransformBroadcaster br;
+	static int n = 0;
 	tf::Transform transform;
 	transform.setOrigin( tf::Vector3(msg->accel[0],msg->accel[1],msg->accel[2]) );
 	transform.setRotation( tf::Quaternion(msg->roll, msg->pitch, msg->yaw) );
 	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", node_name));
+}
+
+double runningAvg(const double &previous, const double &new_value, const double &n)
+{
+	return ((previous*(n-1))+new_value)/n;
 }
