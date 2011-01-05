@@ -18,6 +18,6 @@
         <param name="update_period" value="5"/>
     </group>
 
-    <node pkg="coax_client" type="test_coax_filter" name="filtered_state" output="screen" />
-    <node pkg="coax_client" type="test_coax_localization" name="coax_localization" output="screen" />
+    <node pkg="coax_client" type="coax_filter_node" name="filtered_state_node" output="screen"/>
+    <node pkg="coax_client" type="coax_localization_node" name="coax_localization_node" output="screen" />
 </launch>

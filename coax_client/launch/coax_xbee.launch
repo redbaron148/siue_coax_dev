@@ -5,7 +5,7 @@
         <param name="publish_freq" value="30" />
 	    <param name="state_msg_buffer" value="50" />
         <param name="msg_queue" value="20" />
-        <param name="update_period" value="30"/>
+        <param name="update_period" value="10"/>
     </group>
     
 	<node pkg="coax_server" type="coax_server" name="coax_server" output="screen" args="/dev/ttyUSB0:1"/>

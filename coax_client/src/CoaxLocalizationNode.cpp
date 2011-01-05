@@ -1,26 +1,17 @@
 #include <ros/ros.h>
 #include <coax_client/CoaxFilteredState.h>
 #include <coax_client/CoaxLocalization.h>
+#include <CoaxClientConst.h>
 #include <math.h>
 
-//default values used with the node handler
-#define DEFAULT_PUBLISH_FREQ        50
-#define DEFAULT_FSTATE_MSG_BUFFER   50
-#define DEFAULT_MSG_QUEUE           20
-#define DEFAULT_UPDATE_PERIOD       10
-
-//used for ease of access of accel arrays, accel x axis = accel[X], etc...
-enum {X = 0,Y,Z};
-
-//global params, set by getParams function.
+//global variables
 int PUBLISH_FREQ;
 int FSTATE_MSG_BUFFER;
 int MSG_QUEUE;
 int UPDATE_PERIOD;
+ros::Publisher filtered_state_pub;
 
 using namespace std;
-
-ros::Publisher filtered_state_pub;
 
 void stateCallback(boost::shared_ptr<coax_client::CoaxFilteredState> msg);
 void getParams(const ros::NodeHandle &nh);
@@ -74,7 +65,7 @@ void stateCallback(boost::shared_ptr<coax_client::CoaxFilteredState> msg)
         new_msg->header = msg->header;
         for(int i=0;i<3;i++)
         {
-            running_avg_accel[i] = floorf(running_avg_accel[i] * 100 +  0.5) / 100;
+            running_avg_accel[i] = floorf(running_avg_accel[i] * 10 +  0.5) / 10;
             new_msg->global_accel_avg[i]=running_avg_accel[i];
             new_msg->global_vel_avg[i]=(running_avg_accel[i]*delta_time)+prev_msg->global_vel_avg[i];
             new_msg->position[i] = (.5*running_avg_accel[i]*delta_time*delta_time)+(new_msg->global_vel_avg[i]*delta_time)+prev_msg->position[i];
@@ -95,10 +86,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("update_period"))
-            ROS_WARN("%s/update_period must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_UPDATE_PERIOD);
+            ROS_WARN("%s/update_period must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_UPDATE_PERIOD);
         else
-            ROS_WARN("No value set for %s/update_period. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_UPDATE_PERIOD);
-        UPDATE_PERIOD = DEFAULT_UPDATE_PERIOD;
+            ROS_WARN("No value set for %s/update_period. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_UPDATE_PERIOD);
+        UPDATE_PERIOD = DEFAULT_LOC_NODE_UPDATE_PERIOD;
     }
 
     //frequency this node publishes a new topic
@@ -109,10 +100,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("publish_freq"))
-            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_PUBLISH_FREQ);
+            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_PUBLISH_FREQ);
         else
-            ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_PUBLISH_FREQ);
-        PUBLISH_FREQ = DEFAULT_PUBLISH_FREQ;
+            ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_PUBLISH_FREQ);
+        PUBLISH_FREQ = DEFAULT_LOC_NODE_PUBLISH_FREQ;
     }
 
     //number of states from coax_filter this node will buffer before it begins to drop them
@@ -123,10 +114,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("fstate_msg_buffer"))
-            ROS_WARN("%s/fstate_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_MSG_BUFFER);
+            ROS_WARN("%s/fstate_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_FSTATE_MSG_BUFFER);
         else
-            ROS_WARN("No value set for %s/fstate_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_MSG_BUFFER);
-        FSTATE_MSG_BUFFER = DEFAULT_FSTATE_MSG_BUFFER;
+            ROS_WARN("No value set for %s/fstate_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_FSTATE_MSG_BUFFER);
+        FSTATE_MSG_BUFFER = DEFAULT_LOC_NODE_FSTATE_MSG_BUFFER;
     }
 
     //number of messages this node will queue for publishing before droping old data
@@ -137,10 +128,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("msg_queue"))
-            ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_MSG_QUEUE);
+            ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_MSG_QUEUE);
         else
-            ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_MSG_QUEUE);
-        MSG_QUEUE = DEFAULT_MSG_QUEUE;
+            ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_LOC_NODE_MSG_QUEUE);
+        MSG_QUEUE = DEFAULT_LOC_NODE_MSG_QUEUE;
     }
 }
 
