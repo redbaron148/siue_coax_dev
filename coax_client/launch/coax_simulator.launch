@@ -1,0 +1,5 @@
+<launch>
+	<include file="$(find coax_client)/launch/basic.launch"/>
+	
+	<node pkg="coax_server" name="coax_server" type="coax_server" output="screen" args="localhost"/>
+</launch>

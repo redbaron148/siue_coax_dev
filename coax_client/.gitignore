@@ -1,5 +1,10 @@
 *.swp
 build/*
 bin/*
+data/~*
+data/.~*
+data/*
+msg/lisp
 *~
 *_gen
+src/coax_client

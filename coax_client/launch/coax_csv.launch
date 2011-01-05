@@ -1,0 +1,52 @@
+<launch>
+
+    <arg name="file" default="coax_server-3x5ft-4th" />
+    <arg name="from_bag" default="true" />
+
+    <!-- launch when using a bag -->
+	<include file="$(find coax_client)/launch/coax_bag.launch" if="$(arg from_bag)">
+	    <arg name="options" value="--pause" />
+	    <arg name="bag_file" value="$(find coax_client)/bag/$(arg file).bag"/>
+	</include>
+
+    <!-- launch when using the xbee on actual board. -->
+	<include file="$(find coax_client)/launch/coax_xbee.launch" unless="$(arg from_bag)"/>
+	
+	<group ns="coax_filter">
+        <group ns="accel">
+	        <param name="new_x_weight" value="0.5" />
+	        <param name="new_y_weight" value="0.5" />
+	        <param name="new_z_weight" value="0.5" />
+        </group>
+	    <param name="publish_freq" value="30" />
+	    <param name="state_msg_buffer" value="50" />
+        <param name="msg_queue" value="20" />
+    </group>
+    
+    <group ns="coax_localization">
+        <param name="publish_freq" value="30" />
+	    <param name="state_msg_buffer" value="50" />
+        <param name="msg_queue" value="20" />
+        <param name="update_period" value="15"/>
+    </group>
+	
+	<group ns="csv_dd">
+        <param name="filename" value="localization_$(arg file)" />
+        <param name="overwrite" value="false" />
+        <param name="time_diff" value="0" />
+        <param name="path" value="$(find coax_client)/data/" />
+    </group>
+	
+	<group ns="csv_filter_dd">
+        <param name="filename" value="filter_$(arg file)" />
+        <param name="overwrite" value="false" />
+        <param name="time_diff" value="0" />
+        <param name="path" value="$(find coax_client)/data/" />
+    </group>
+	
+	<!-- localization state dumping -->
+	<node name="csv_dd" pkg="coax_client" type="coax_csv.py" output="screen"/>
+	
+	<!-- filtered state dumping -->
+	<node name="csv_dd_filter" pkg="coax_client" type="coax_filter_csv.py" output="screen" />
+</launch>
