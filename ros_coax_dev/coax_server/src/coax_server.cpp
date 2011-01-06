@@ -461,7 +461,7 @@ int main(int argc, char **argv)
 	services.push_back(n.advertiseService("reset", &SBController::reset, &api));
 
 	// Publishing the state
-	ros::Publisher coax_pub = n.advertise<coax_msgs::CoaxState>("state",50);
+	ros::Publisher coax_pub = n.advertise<coax_msgs::CoaxState>("state",40);
 	api.registerPublisher(&coax_pub);
 
 	// Subscribing to control message (without acknowledgement)
