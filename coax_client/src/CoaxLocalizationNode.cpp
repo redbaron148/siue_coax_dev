@@ -4,7 +4,7 @@
 #include <CoaxClientConst.h>
 #include <math.h>
 
-//global variables
+//global 
 int PUBLISH_FREQ;
 int FSTATE_MSG_BUFFER;
 int MSG_QUEUE;
@@ -65,7 +65,7 @@ void stateCallback(boost::shared_ptr<coax_client::CoaxFilteredState> msg)
         new_msg->header = msg->header;
         for(int i=0;i<3;i++)
         {
-            running_avg_accel[i] = floorf(running_avg_accel[i] * 10 +  0.5) / 10;
+            //running_avg_accel[i] = floorf(running_avg_accel[i] * 100 +  0.5) / 100;
             new_msg->global_accel_avg[i]=running_avg_accel[i];
             new_msg->global_vel_avg[i]=(running_avg_accel[i]*delta_time)+prev_msg->global_vel_avg[i];
             new_msg->position[i] = (.5*running_avg_accel[i]*delta_time*delta_time)+(new_msg->global_vel_avg[i]*delta_time)+prev_msg->position[i];

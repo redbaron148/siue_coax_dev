@@ -1,0 +1,4 @@
+<launch>
+    <arg name="file" default=""/>
+    <node pkg="rostopic" type="echo" name="csv_dump" output="screen" args="-p -b $(arg file).bag -a >> $(arg file).csv"/>
+</launch>

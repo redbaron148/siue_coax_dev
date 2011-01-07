@@ -53,9 +53,9 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
     static float prev_accel[3] = {0.0};
 
     //rounding functions. Rounds rpy values to two decimal places. (getting rid of some error)
-	double roll = roundTwo(msg->roll);
-	double pitch = roundTwo(msg->pitch);
-	double yaw = roundTwo(msg->yaw);
+	double roll = msg->roll;//roundTwo(msg->roll);
+	double pitch = msg->pitch;//roundTwo(msg->pitch);
+	double yaw = msg->yaw;//roundTwo(msg->yaw);
 
 	coax_client::CoaxFilteredState new_state = coax_client::CoaxFilteredState();
 	
