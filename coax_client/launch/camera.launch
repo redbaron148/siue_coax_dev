@@ -1,0 +1,7 @@
+<launch>
+	<arg name="fps" default="5"/>
+	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen">
+		<param name="fps" value="$(arg fps)"/>
+		<param name="v4l_id" value="0"/>
+	</node>
+</launch>
