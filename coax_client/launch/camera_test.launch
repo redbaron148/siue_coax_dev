@@ -1,9 +1,12 @@
 <launch>
-	<arg name="fps" default="5"/>
-	<include file="camera.launch">
-		<arg name="fps" default="$(arg fps)"/>
-	</include>
+	<group ns="usb_camera">
+		<param name="fps" value="1"/>
+		<param name="width" value="640"/>
+		<param name="height" value="480"/>
+	</group>
 
-	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttys0"/>
-	<node pkg="coax_filter" type="coax_fitler" name="coax_filter"/>
+	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen"/>
+
+	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyS0"/>
+	<node pkg="coax_client" type="coax_filter_node" name="coax_filter" output="screen"/>
 </launch>

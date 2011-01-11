@@ -1,7 +1,9 @@
 <launch>
-	<arg name="fps" default="5"/>
-	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen">
-		<param name="fps" value="$(arg fps)"/>
-		<param name="v4l_id" value="0"/>
-	</node>
+	<group ns="usb_camera">
+		<param name="fps" value="1"/>
+		<param name="width" value="320"/>
+		<param name="height" value="240"/>
+	</group>
+
+	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen"/>
 </launch>

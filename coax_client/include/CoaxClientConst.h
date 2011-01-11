@@ -1,6 +1,9 @@
 #ifndef COAX_CONSTANTS
 #define COAX_CONSTANTS
 
+#define FILTER_ACCEL						0
+#define CONVERT_ACCEL_TO_GLOBAL	0
+
 //default values used to calculate the actual distance detected by IR sensors
 #define DEFAULT_FRONT_SLOPE         -41.4835
 #define DEFAULT_FRONT_OFFSET        50.7125
