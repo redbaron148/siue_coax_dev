@@ -1,0 +1,6 @@
+<launch>
+	<arg name="args" default=""/>
+	
+	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyUSB0:1" output="screen" />
+	<node pkg="rosbag" type="record" name="recorder" args="/coax_server/state -O$(find coax_client)/bag/$(arg args)" output="screen" />
+</launch>

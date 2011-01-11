@@ -29,10 +29,19 @@ rosbuild_genmsg()
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
+<<<<<<< HEAD
 rosbuild_add_executable(test_coax_liftoff src/TestCoaxAutoflight.cpp)
 rosbuild_add_executable(test_coax_idler src/TestCoaxIdler.cpp)
 rosbuild_add_executable(test_coax_client src/TestCoaxSubscriber.cpp)
 rosbuild_add_executable(test_coax_publisher src/CoaxVelocityControl.cpp)
 rosbuild_add_executable(test_coax_filter src/CoaxFilteredState.cpp)
+=======
+#rosbuild_add_executable(test_coax_liftoff src/TestCoaxAutoflight.cpp)
+#rosbuild_add_executable(test_coax_idler src/TestCoaxIdler.cpp)
+#rosbuild_add_executable(test_coax_client src/TestCoaxSubscriber.cpp)
+#rosbuild_add_executable(test_coax_publisher src/CoaxVelocityControl.cpp)
+rosbuild_add_executable(coax_filter_node src/CoaxFilteredStateNode.cpp)
+rosbuild_add_executable(coax_localization_node src/CoaxLocalizationNode.cpp)
+>>>>>>> b3d488a2077dbe7f4d793c4e02d821565a6b782b
 #rosbuild_add_executable(test_coax_distance src/CoaxDistanceCalc.cpp)
 #rosbuild_add_executable(test_matrix src/test_matrix.cpp)

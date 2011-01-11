@@ -125,7 +125,7 @@ class SBController
 			simple->yawCtrlMode = SB_CTRL_VEL;
 			simple->sensorList = &sensorList;
 
-			simple->commFreq = 50;
+			simple->commFreq = 30;
 			// simple->commContent = SBS_TIMESTAMP | SBS_RPY | SBS_IMU_ALL | SBS_RANGES_ALL | 
             //     SBS_PRESSURE | SBS_BATTERY | SBS_O_XY | SBS_XY_REL | SBS_COAXSPEED;
 			simple->stateFunc = rosStateExportCB;
@@ -461,7 +461,7 @@ int main(int argc, char **argv)
 	services.push_back(n.advertiseService("reset", &SBController::reset, &api));
 
 	// Publishing the state
-	ros::Publisher coax_pub = n.advertise<coax_msgs::CoaxState>("state",50);
+	ros::Publisher coax_pub = n.advertise<coax_msgs::CoaxState>("state",40);
 	api.registerPublisher(&coax_pub);
 
 	// Subscribing to control message (without acknowledgement)

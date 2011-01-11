@@ -1,0 +1,10 @@
+<launch>
+    <arg name="file" default=""/>
+    
+    <include file="$(find coax_client)/launch/coax_bag.launch">
+        <arg name="file" value="coax_server_$(arg file).bag"/>
+    </include>
+    
+    <arg name="topics" default="/coax_server/state /coax_localization/state /coax_filter/state"/>
+    <node pkg="rosbag" type="record" name="recorder" output="screen" args="$(arg topics) -O $(find coax_client)/bag/$(arg file).bag"/>
+</launch>

@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <coax_msgs/CoaxState.h>
-#include <coax_client/CoaxStateFiltered.h>
+#include <coax_client/CoaxFilteredState.h>
 #include <math.h>
 
 //default values used to calculate the actual distance detected by IR sensors

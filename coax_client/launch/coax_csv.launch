@@ -1,0 +1,15 @@
+<launch>
+
+    <arg name="file" default="" />
+    <arg name="options" default=""/>
+
+    <!-- launch when using a bag -->
+	<node pkg="rosbag" type="play" name="playback" output="screen" args="$(arg options) $(find coax_client)/bag/$(arg file).bag"/>
+	
+	<param name="path" value="$(find coax_client)/data/new_data/"/>
+	<param name="filename" value="$(arg file)"/>
+	<param name="overwrite" value="true"/>
+	
+	<!-- localization state dumping -->
+	<node name="csv_dd" pkg="coax_client" type="coax_csv.py" output="screen"/>
+</launch>

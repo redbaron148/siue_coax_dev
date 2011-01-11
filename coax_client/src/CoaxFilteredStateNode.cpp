@@ -1,41 +1,25 @@
+/*
+ *  File Name:  CoaxFilteredStateNode.cpp
+ *  Programmer: Aaron Parker
+ *  Date Made:  01-05-2010
+ *  Description: ROS node, filters data recieved from coax_server.  Converts 
+ */
+
 #include <ros/ros.h>
 #include <coax_msgs/CoaxState.h>
-#include <coax_client/CoaxStateFiltered.h>
+#include <coax_client/CoaxFilteredState.h>
+#include <CoaxClientConst.h>
 #include <math.h>
 
-//default values used to calculate the actual distance detected by IR sensors
-#define DEFAULT_FRONT_SLOPE         -41.4835
-#define DEFAULT_FRONT_OFFSET        50.7125
-#define DEFAULT_LEFT_SLOPE          -39.1334
-#define DEFAULT_LEFT_OFFSET         48.1207
-#define DEFAULT_RIGHT_SLOPE         -38.8275
-#define DEFAULT_RIGHT_OFFSET        47.5877
-
-//used in the low pass filter for the accel data. Weight of new value.
-#define DEFAULT_X_FILTER_K          0.5
-#define DEFAULT_Y_FILTER_K          0.5
-#define DEFAULT_Z_FILTER_K          0.5
-
-//default values used with the node handler
-#define DEFAULT_PUBLISH_FREQ        50
-#define DEFAULT_STATE_MSG_BUFFER    50
-#define DEFAULT_MSG_QUEUE           20
-
-//used for ease of access of accel arrays, accel x axis = accel[X], etc...
-enum {X = 0,Y,Z};
-enum {FRONT = 0, LEFT, RIGHT};
-enum {SLOPE = 0, OFFSET};
-
-//global params, set by getParams function.
+//global variables
 double IR_TUNE[3][2];
 double ACCEL_FILTER_K[3];
 int PUBLISH_FREQ;
 int STATE_MSG_BUFFER;
 int MSG_QUEUE;
+ros::Publisher filtered_state_pub;
 
 using namespace std;
-
-ros::Publisher filtered_state_pub;
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg);
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset);
@@ -51,7 +35,7 @@ int main(int argc, char **argv)
 	
 	ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
 	
-	filtered_state_pub = n.advertise<coax_client::CoaxStateFiltered>("state", MSG_QUEUE);
+	filtered_state_pub = n.advertise<coax_client::CoaxFilteredState>("state", MSG_QUEUE);
 	
 	ros::Rate loop_rate(PUBLISH_FREQ);
 	
@@ -66,7 +50,6 @@ int main(int argc, char **argv)
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
-    //static coax_client::CoaxStateFiltered prev_state;
     static float prev_accel[3] = {0.0};
 
     //rounding functions. Rounds rpy values to two decimal places. (getting rid of some error)
@@ -74,7 +57,7 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 	double pitch = msg->pitch;//roundTwo(msg->pitch);
 	double yaw = msg->yaw;//roundTwo(msg->yaw);
 
-	coax_client::CoaxStateFiltered new_state = coax_client::CoaxStateFiltered();
+	coax_client::CoaxFilteredState new_state = coax_client::CoaxFilteredState();
 	
 	new_state.header = msg->header;
 
@@ -236,10 +219,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("publish_freq"))
-            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_PUBLISH_FREQ);
+            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_NODE_PUBLISH_FREQ);
         else
-            ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_PUBLISH_FREQ);
-        PUBLISH_FREQ = DEFAULT_PUBLISH_FREQ;
+            ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_NODE_PUBLISH_FREQ);
+        PUBLISH_FREQ = DEFAULT_FSTATE_NODE_PUBLISH_FREQ;
     }
 
     //number of states from coax_server this node will buffer before it begins to drop them
@@ -250,10 +233,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("state_msg_buffer"))
-            ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_STATE_MSG_BUFFER);
+            ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_NODE_STATE_MSG_BUFFER);
         else
-            ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_STATE_MSG_BUFFER);
-        STATE_MSG_BUFFER = DEFAULT_STATE_MSG_BUFFER;
+            ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_NODE_STATE_MSG_BUFFER);
+        STATE_MSG_BUFFER = DEFAULT_FSTATE_NODE_STATE_MSG_BUFFER;
     }
 
     //number of messages this node will queue for publishing before it drops data
@@ -264,14 +247,14 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("msg_queue"))
-            ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_MSG_QUEUE);
+            ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_NODE_MSG_QUEUE);
         else
-            ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_MSG_QUEUE);
-        MSG_QUEUE = DEFAULT_MSG_QUEUE;
+            ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FSTATE_NODE_MSG_QUEUE);
+        MSG_QUEUE = DEFAULT_FSTATE_NODE_MSG_QUEUE;
     }
 }
 
 double roundTwo(const double &num)
 {
-    return floorf(num * 10 +  0.5) / 10;
+    return floorf(num * 100 +  0.5) / 100;
 }
