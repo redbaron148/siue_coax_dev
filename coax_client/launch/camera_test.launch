@@ -1,0 +1,9 @@
+<launch>
+	<arg name="fps" default="5"/>
+	<include file="camera.launch">
+		<arg name="fps" default="$(arg fps)"/>
+	</include>
+
+	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttys0"/>
+	<node pkg="coax_filter" type="coax_fitler" name="coax_filter"/>
+</launch>
