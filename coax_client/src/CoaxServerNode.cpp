@@ -10,9 +10,6 @@
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
 #include <coax_client/FindBlobPosition.h>
-//#include <coax_msgs/CoaxState.h>
-//#include <cmvision/Blobs.h>
-//#include <>
 
 //global variables
 double FIELD_OF_VIEW_HORIZ;
@@ -24,7 +21,7 @@ double ratio;
 using namespace std;
 
 bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
-                             coax_client::FindBlobPosition::Response &res );
+                           coax_client::FindBlobPosition::Response &res );
 void getParams(const ros::NodeHandle &nh);
 
 int main(int argc, char **argv)
@@ -34,7 +31,7 @@ int main(int argc, char **argv)
   
   getParams(n);
 
-  ros::ServiceServer service = n.advertiseService("add_two_ints", calculateBlobPosition);
+  ros::ServiceServer service = n.advertiseService("find_blob_position", calculateBlobPosition);
   ROS_INFO("coax_services started.");
   ros::spin();
 
