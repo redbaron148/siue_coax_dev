@@ -42,17 +42,19 @@ bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
                              coax_client::FindBlobPosition::Response &res )
 {
     float altitude = req.state.zfiltered;
-    float center_x = (req.blobs.blobs[req.blob_num].right+req.blobs.blobs[req.blob_num].left)/2.0;
-    float center_y = (req.blobs.blobs[req.blob_num].top+req.blobs.blobs[req.blob_num].bottom)/2.0;
+    float x = (req.blobs.blobs[req.blob_num].right+req.blobs.blobs[req.blob_num].left)/2.0;
+    float y = (req.blobs.blobs[req.blob_num].top+req.blobs.blobs[req.blob_num].bottom)/2.0;
     unsigned short int width = req.blobs.image_width;
     unsigned short int height = req.blobs.image_height;
-    
-    ROS_INFO("center_x: %f\ncenter_y: %f\n",center_x, center_y);
+    float center_x = width/2.0;
+    float center_y = height/2.0;
+    float x_from_center = x-center_x;
+    float y_from_center = y-center_y;
     
     float degrees_per_pixel_horiz   = FIELD_OF_VIEW_HORIZ/width;
     float degrees_per_pixel_vert    = FIELD_OF_VIEW_VERT/height;
     
-    ROS_INFO("dpp horiz: %f\ndpp vert: %f\n",degrees_per_pixel_horiz, degrees_per_pixel_vert);
+    ROS_INFO("\n\ndegree horiz: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
     
     return true;
 }
