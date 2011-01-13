@@ -1,14 +1,14 @@
 /*
- *  File Name:  CoaxFilteredStateNode.cpp
- *  Programmer: Aaron Parker
- *  Date Made:  01-05-2010
- *  Description: ROS node, filters data recieved from coax_server topic 
- *							 /coax_server/state
+ *  File Name:      CoaxFilteredStateNode.cpp
+ *  Programmer:     Aaron Parker
+ *  Date Made:      01-05-2010
+ *  Description:    ROS node, filters data recieved from coax_server topic 
+ *				    /coax_server/state
  *  
- *  Date Modified: 01-11-2010
- *  Description: Put conditional wrappers in to decide if accel. filtering
- *							 should be done and if the accel. values should be 
- *							 converted to global coordinates. 
+ *  Date Modified:  01-11-2010
+ *  Description:    Put conditional wrappers in to decide if accel. filtering
+ *				    should be done and if the accel. values should be 
+ *				    converted to global coordinates. 
  */
 
 #include <ros/ros.h>
@@ -25,6 +25,7 @@ double ACCEL_FILTER_K[3];
 int PUBLISH_FREQ;
 int STATE_MSG_BUFFER;
 int MSG_QUEUE;
+
 ros::Publisher filtered_state_pub;
 
 using namespace std;
@@ -77,22 +78,16 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
     {
         //convert the distance data from the IR sensors to meter readings.
         new_state.ranges[i] = calculateDistance(max(msg->hranges[i],0.05f),IR_TUNE[i][SLOPE],IR_TUNE[i][OFFSET]);
-				
-				#if CONVERT_ACCEL_TO_GLOBALi
-				new_state.global_accel[i] = 0.0;
-				#endif
 
         //low pass filter
-				#if FILTER_ACCEL
-				new_state.accel[i] = ((1.-ACCEL_FILTER_K[i])*prev_accel[i])+(ACCEL_FILTER_K[i]*msg->accel[i]);
+        #if FILTER_ACCEL
+        new_state.accel[i] = ((1.-ACCEL_FILTER_K[i])*prev_accel[i])+(ACCEL_FILTER_K[i]*msg->accel[i]);
         prev_accel[i] = new_state.accel[i];
-				#else
-				new_state.accel[i] = msg->accel[i];
-				#endif
+        #endif
         //cout << "accel[" << i << "]: " << new_state.accel[i] << endl;
     }
 		
-		#if CONVERT_ACCEL_TO_GLOBAL
+    #if CONVERT_ACCEL_TO_GLOBAL
     //transform local acceleration values to global values.  accel z should generally stay -9.8 (gravity)
     new_state.global_accel[X] = cos(pitch)*cos(yaw)*new_state.accel[X]-sin(yaw)*cos(pitch)*new_state.accel[Y]+sin(pitch)*new_state.accel[Z];
     new_state.global_accel[Y] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*new_state.accel[X])-
@@ -101,9 +96,9 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
     new_state.global_accel[Z] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*new_state.accel[X])+
 		      (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*new_state.accel[Y])+
 		      (cos(roll)*cos(pitch)*new_state.accel[Z]);
-		#endif
+	#endif
 
-		filtered_state_pub.publish(new_state);
+	filtered_state_pub.publish(new_state);
 }
 
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset)
@@ -193,7 +188,7 @@ void getParams(const ros::NodeHandle &nh)
         IR_TUNE[RIGHT][OFFSET] = DEFAULT_RIGHT_OFFSET;
     }
 
-		#if FILTER_ACCEL
+	#if FILTER_ACCEL
     //accel k values
     if (nh.getParam("accel/new_x_weight", ACCEL_FILTER_K[X]) && (ACCEL_FILTER_K[X] <= 1 && ACCEL_FILTER_K[X] >= 0))
     {
@@ -233,7 +228,7 @@ void getParams(const ros::NodeHandle &nh)
             ROS_WARN("No value set for %s/accel/new__weight. Setting default value: %f",nh.getNamespace().c_str(), DEFAULT_Z_FILTER_K);
         ACCEL_FILTER_K[Z] = DEFAULT_Z_FILTER_K;
     }
-		#endif
+	#endif
 		
     //frequency this node publishes a new topic
     if (nh.getParam("publish_freq", PUBLISH_FREQ))
