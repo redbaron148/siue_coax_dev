@@ -1,0 +1,8 @@
+# given a blob and a COAX helicopter state, return the 3d position of the blob
+# relative to the helicopter
+
+cmvision/blobs      blobs
+uint8               blob_num
+coax_msgs/CoaxState state
+---
+geometry_msgs/Point point

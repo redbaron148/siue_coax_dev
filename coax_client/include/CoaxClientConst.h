@@ -1,21 +1,29 @@
 #ifndef COAX_CONSTANTS
 #define COAX_CONSTANTS
 
-#define FILTER_ACCEL						0
-#define CONVERT_ACCEL_TO_GLOBAL	0
+//field of view from COAX webcam, in degrees.
+#define DEFAULT_FIELD_OF_VIEW    54.6
+
+//conditional compilation defines
+#ifndef FILTER_ACCEL //if 1, filters the accel. readings
+#define FILTER_ACCEL			0
+#endif
+#ifndef CONVERT_ACCEL_TO_GLOBAL //if 1, converts accel. readings to global frame
+#define CONVERT_ACCEL_TO_GLOBAL 0
+#endif
 
 //default values used to calculate the actual distance detected by IR sensors
-#define DEFAULT_FRONT_SLOPE         -41.4835
-#define DEFAULT_FRONT_OFFSET        50.7125
-#define DEFAULT_LEFT_SLOPE          -39.1334
-#define DEFAULT_LEFT_OFFSET         48.1207
-#define DEFAULT_RIGHT_SLOPE         -38.8275
-#define DEFAULT_RIGHT_OFFSET        47.5877
+#define DEFAULT_FRONT_SLOPE     -41.4835
+#define DEFAULT_FRONT_OFFSET    50.7125
+#define DEFAULT_LEFT_SLOPE      -39.1334
+#define DEFAULT_LEFT_OFFSET     48.1207
+#define DEFAULT_RIGHT_SLOPE     -38.8275
+#define DEFAULT_RIGHT_OFFSET    47.5877
 
 //used in the low pass filter for the accel data. Weight of new value.
-#define DEFAULT_X_FILTER_K          0.5
-#define DEFAULT_Y_FILTER_K          0.5
-#define DEFAULT_Z_FILTER_K          0.5
+#define DEFAULT_X_FILTER_K  0.5
+#define DEFAULT_Y_FILTER_K  0.5
+#define DEFAULT_Z_FILTER_K  0.5
 
 //default values used with filtered state node
 #define DEFAULT_FSTATE_NODE_PUBLISH_FREQ        50
