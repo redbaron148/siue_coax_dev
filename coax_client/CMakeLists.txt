@@ -19,7 +19,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined messages
 rosbuild_genmsg()
 #uncomment if you have defined services
-#rosbuild_gensrv()
+rosbuild_gensrv()
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
@@ -35,5 +35,6 @@ rosbuild_genmsg()
 #rosbuild_add_executable(test_coax_publisher src/CoaxVelocityControl.cpp)
 rosbuild_add_executable(coax_filter_node src/CoaxFilteredStateNode.cpp)
 rosbuild_add_executable(coax_localization_node src/CoaxLocalizationNode.cpp)
+rosbuild_add_executable(coax_services_node src/CoaxServerNode.cpp)
 #rosbuild_add_executable(test_coax_distance src/CoaxDistanceCalc.cpp)
 #rosbuild_add_executable(test_matrix src/test_matrix.cpp)

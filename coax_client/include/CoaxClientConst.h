@@ -2,7 +2,8 @@
 #define COAX_CONSTANTS
 
 //field of view from COAX webcam, in degrees.
-#define DEFAULT_FIELD_OF_VIEW    54.6
+#define DEFAULT_FIELD_OF_VIEW_HORIZ 54.6
+#define DEFAULT_FIELD_OF_VIEW_VERT  41.27
 
 //conditional compilation defines
 #ifndef FILTER_ACCEL //if 1, filters the accel. readings

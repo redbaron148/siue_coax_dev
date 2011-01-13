@@ -4,7 +4,7 @@ bin/*
 data/~*
 data/.~*
 data/*
-msg/lisp
+*/lisp
 *~
 *_gen
 src/coax_client

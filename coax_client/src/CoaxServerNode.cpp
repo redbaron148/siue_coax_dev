@@ -10,13 +10,20 @@
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
 #include <coax_client/FindBlobPosition.h>
+//#include <coax_msgs/CoaxState.h>
+//#include <cmvision/Blobs.h>
+//#include <>
 
 //global variables
-double FIELD_OF_VIEW;
+double FIELD_OF_VIEW_HORIZ;
+double FIELD_OF_VIEW_VERT;
+
+//calculated variables
+double ratio;
 
 using namespace std;
 
-double calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
+bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
                              coax_client::FindBlobPosition::Response &res );
 void getParams(const ros::NodeHandle &nh);
 
@@ -24,33 +31,62 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "coax_services");
   ros::NodeHandle n("coax_services");
+  
+  getParams(n);
 
-  ros::ServiceServer service = n.advertiseService("find_blob_position", calculateBlobPosition);
+  ros::ServiceServer service = n.advertiseService("add_two_ints", calculateBlobPosition);
   ROS_INFO("coax_services started.");
   ros::spin();
 
   return 0;
 }
 
-double calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
+bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
                              coax_client::FindBlobPosition::Response &res )
 {
+    float altitude = req.state.zfiltered;
+    float center_x = (req.blobs.blobs[req.blob_num].right+req.blobs.blobs[req.blob_num].left)/2.0;
+    float center_y = (req.blobs.blobs[req.blob_num].top+req.blobs.blobs[req.blob_num].bottom)/2.0;
+    unsigned short int width = req.blobs.image_width;
+    unsigned short int height = req.blobs.image_height;
     
+    ROS_INFO("center_x: %f\ncenter_y: %f\n",center_x, center_y);
+    
+    float degrees_per_pixel_horiz   = FIELD_OF_VIEW_HORIZ/width;
+    float degrees_per_pixel_vert    = FIELD_OF_VIEW_VERT/height;
+    
+    ROS_INFO("dpp horiz: %f\ndpp vert: %f\n",degrees_per_pixel_horiz, degrees_per_pixel_vert);
+    
+    return true;
 }
 
 void getParams(const ros::NodeHandle &nh)
 {
     //field of view of the camera onboard the gumstix of the COAX helicopter in degrees.
-    if (nh.getParam("field_of_view", FIELD_OF_VIEW))
+    if (nh.getParam("field_of_view_horiz", FIELD_OF_VIEW_HORIZ))
     {
-        ROS_INFO("Set %s/field_of_view to %d",nh.getNamespace().c_str(), FIELD_OF_VIEW);
+        ROS_INFO("Set %s/field_of_view_horiz to %f",nh.getNamespace().c_str(), FIELD_OF_VIEW_HORIZ);
     }
     else
     {
         if(nh.hasParam("field_of_view"))
-            ROS_WARN("%s/field_of_view must be an double. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FIELD_OF_VIEW;
+            ROS_WARN("%s/field_of_view_horiz must be a float. Setting default value: %f",nh.getNamespace().c_str(), DEFAULT_FIELD_OF_VIEW_HORIZ);
         else
-            ROS_WARN("No value set for %s/field_of_view. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FIELD_OF_VIEW);
-        FIELD_OF_VIEW = DEFAULT_FIELD_OF_VIEW;
+            ROS_WARN("No value set for %s/field_of_view_horiz. Setting default value: %f",nh.getNamespace().c_str(), DEFAULT_FIELD_OF_VIEW_HORIZ);
+        FIELD_OF_VIEW_HORIZ = DEFAULT_FIELD_OF_VIEW_HORIZ;
+    }
+    
+    //field of view of the camera onboard the gumstix of the COAX helicopter in degrees.
+    if (nh.getParam("field_of_view_vert", FIELD_OF_VIEW_VERT))
+    {
+        ROS_INFO("Set %s/field_of_view_vert to %f",nh.getNamespace().c_str(), FIELD_OF_VIEW_VERT);
+    }
+    else
+    {
+        if(nh.hasParam("field_of_view_vert"))
+            ROS_WARN("%s/field_of_view_vert must be a float. Setting default value: %f",nh.getNamespace().c_str(), DEFAULT_FIELD_OF_VIEW_VERT);
+        else
+            ROS_WARN("No value set for %s/field_of_view_vert. Setting default value: %f",nh.getNamespace().c_str(), DEFAULT_FIELD_OF_VIEW_VERT);
+        FIELD_OF_VIEW_VERT = DEFAULT_FIELD_OF_VIEW_VERT;
     }
 }

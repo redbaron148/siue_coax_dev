@@ -12,6 +12,8 @@
   <depend package="rospy"/>
   <depend package="coax_msgs"/>
   <depend package="coax_server"/>
+  <depend package="cmvision"/>
+  <depend package="geometry_msgs"/>
 
 </package>
 
