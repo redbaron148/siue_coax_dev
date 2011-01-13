@@ -1,7 +1,7 @@
 <launch>
-	<arg name="fps" default="5"/>
-	<arg name="width" default="320"/>
-	<arg name="height" default="240"/>
+	<arg name="fps" default="10"/>
+	<arg name="width" default="160"/>
+	<arg name="height" default="120"/>
 
 	<group ns="usb_camera">
 		<param name="fps" value="$(arg fps)"/>
