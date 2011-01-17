@@ -1,5 +1,5 @@
 <launch>
-    <include file="$(find coax_client)/launch/basic.launch"/>
+    <!--include file="$(find coax_client)/launch/basic.launch"/-->
     
     <group ns="coax_localization">
         <param name="publish_freq" value="30" />

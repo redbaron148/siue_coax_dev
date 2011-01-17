@@ -10,9 +10,9 @@
 		<param name="height" value="$(arg height)"/>
 	</group>
 
-	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen"/>
 	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyS0"/>
 	<node pkg="coax_client" type="coax_filter_node" name="coax_filter" output="screen"/>
+	<node pkg="coax_client" type="blob_filter_node" name="blob_filter" output="screen"/>
 	
 	<group ns="cmvision">
 		<param name="color_file" value="$(find coax_client)/include/$(arg color_file)"/>
@@ -25,5 +25,4 @@
 	<node pkg="cmvision" type="cmvision" name="blob_tracking">
 		<remap from="image" to="image_0"/>
 	</node>
-	<!--node pkg="coax_client" type="coax_services_node" name="coax_services" output="screen"/-->
 </launch>
