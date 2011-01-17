@@ -22,7 +22,7 @@ double ratio;
 
 using namespace std;
 
-ros::Publisher chatter_pub;
+ros::Publisher filtered_blob_pub;
 boost::shared_ptr<coax_msgs::CoaxState> cur_state;
 
 void blobsCallback(cmvision::Blobs msg);
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     ros::Subscriber state_sub = n.subscribe("/coax_server/state", 1, &stateCallback);
     ros::Subscriber blobs_sub = n.subscribe("/blobs", 1, &blobsCallback);
 
-    chatter_pub = n.advertise<coax_client::FilteredBlobs>("/blob_filter/blobs", 1);
+    filtered_blob_pub = n.advertise<coax_client::FilteredBlobs>("/blob_filter/blobs", 1);
 
     ros::spin();
 
@@ -53,6 +53,8 @@ void blobsCallback(cmvision::Blobs msg)
     fblobs.roll = cur_state->roll;
     fblobs.altitude = cur_state->zfiltered;
     fblobs.blobs = msg;
+    
+    filter_blob_pub.publish(fblobs);
 }
 
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
