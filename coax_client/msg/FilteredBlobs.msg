@@ -6,3 +6,4 @@ float32 yaw
 float32 altitude
 
 cmvision/Blobs blobs
+

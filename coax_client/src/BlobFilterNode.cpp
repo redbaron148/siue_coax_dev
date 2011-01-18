@@ -26,6 +26,46 @@ boost::shared_ptr<coax_msgs::CoaxState> cur_state;
 
 void blobsCallback(cmvision::Blobs msg);
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
+void getParams(const ros::NodeHandle &nh);
+
+int main(int argc, char **argv)
+{
+    ros::init(argc, argv, "blob_filter");
+    ros::NodeHandle n("blob_filter");
+
+    ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
+    ros::Subscriber blobs_sub = n.subscribe("/blobs", BLOBS_MSG_BUFFER, &blobsCallback);
+
+    filtered_blob_pub = n.advertise<coax_client::FilteredBlobs>("/blob_filter/blobs", MSG_QUEUE);
+    getParams(n);
+
+    ros::Rate loop_rate(PUBLISH_FREQ);
+	while(ros::ok())
+	{
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	return 0;
+}
+
+void blobsCallback(cmvision::Blobs msg)
+{
+    coax_client::FilteredBlobs fblobs;
+    fblobs.header.stamp = ros::Time::now();
+    fblobs.header.frame_id = "coax";
+    fblobs.yaw = cur_state->yaw;
+    fblobs.pitch = cur_state->pitch;
+    fblobs.roll = cur_state->roll;
+    fblobs.altitude = cur_state->zfiltered;
+    fblobs.blobs = msg;
+}
+
+void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
+{
+    cur_state = msg;
+}
+
 void getParams(const ros::NodeHandle &nh)
 {
 	//frequency this node publishes a new topic
@@ -83,44 +123,4 @@ void getParams(const ros::NodeHandle &nh)
 	    ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
 	  MSG_QUEUE = DEFAULT_FBLOB_NODE_MSG_QUEUE;
 	}
-}
-
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "blob_filter");
-    ros::NodeHandle n("blob_filter");
-
-    ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
-    ros::Subscriber blobs_sub = n.subscribe("/blobs", BLOBS_MSG_BUFFER, &blobsCallback);
-
-    filtered_blob_pub = n.advertise<coax_client::FilteredBlobs>("/blob_filter/blobs", MSG_QUEUE);
-
-		ros::Rate loop_rate(PUBLISH_FREQ);
-	while(ros::ok())
-	{
-		ros::spinOnce();
-		loop_rate.sleep();
-	}
-
-	return 0;
-}
-
-void blobsCallback(cmvision::Blobs msg)
-{
-    coax_client::FilteredBlobs fblobs;
-    fblobs.header.stamp = ros::Time::now();
-    fblobs.header.frame_id = "coax";
-    fblobs.yaw = cur_state->yaw;
-    fblobs.pitch = cur_state->pitch;
-    fblobs.roll = cur_state->roll;
-    fblobs.altitude = cur_state->zfiltered;
-    fblobs.blobs = msg;
-    
-    filtered_blob_pub.publish(fblobs);
-		ROS_INFO("%f",(msg.header.stamp - ros::Time::now()).toSec());
-}
-
-void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
-{
-    cur_state = msg;
 }
