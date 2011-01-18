@@ -59,6 +59,8 @@ void blobsCallback(cmvision::Blobs msg)
     fblobs.roll = cur_state->roll;
     fblobs.altitude = cur_state->zfiltered;
     fblobs.blobs = msg;
+    
+    filtered_blob_pub.publish(fblobs);
 }
 
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
