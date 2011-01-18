@@ -10,7 +10,6 @@
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
 #include <cmvision/Blobs.h>
-#include <coax_client/FilteredBlobs.h>
 #include <coax_msgs/CoaxState.h>
 
 //global variables
@@ -22,7 +21,6 @@ int MSG_QUEUE;
 using namespace std;
 
 ros::Publisher filtered_blob_pub;
-boost::shared_ptr<coax_msgs::CoaxState> cur_state;
 
 void blobsCallback(cmvision::Blobs msg);
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
@@ -40,6 +38,7 @@ int main(int argc, char **argv)
     getParams(n);
 
     ros::Rate loop_rate(PUBLISH_FREQ);
+    
 	while(ros::ok())
 	{
 		ros::spinOnce();
@@ -51,21 +50,15 @@ int main(int argc, char **argv)
 
 void blobsCallback(cmvision::Blobs msg)
 {
-    coax_client::FilteredBlobs fblobs;
-    fblobs.header.stamp = ros::Time::now();
-    fblobs.header.frame_id = "coax";
-    fblobs.yaw = cur_state->yaw;
-    fblobs.pitch = cur_state->pitch;
-    fblobs.roll = cur_state->roll;
-    fblobs.altitude = cur_state->zfiltered;
-    fblobs.blobs = msg;
-    
-    filtered_blob_pub.publish(fblobs);
+    if(msg.blob_count > 0)
+    {
+        filtered_blob_pub.publish(msg);
+    }
 }
 
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
 {
-    cur_state = msg;
+    cur_alt = msg.zfiltered;
 }
 
 void getParams(const ros::NodeHandle &nh)
