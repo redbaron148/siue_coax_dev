@@ -23,7 +23,7 @@
 		<param name="color_radius_pix" value="0" />
 	</group>
 
-	<node pkg="cmvision" type="cmvision" name="blob_tracking">
+	<node pkg="cmvision" type="cmvision" name="cmvision">
 		<remap from="image" to="image_0"/>
 	</node>
 </launch>

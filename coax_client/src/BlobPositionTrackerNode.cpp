@@ -1,22 +1,17 @@
 /*
  *  File Name:      CoaxServerNode.cpp
  *  Programmer:     Aaron Parker
- *  Date Made:      01-11-2010
- *  Description:    ROS node, can be used to call service function calls to be 
- *                  performed by the COAX onboard gumstix.
- *				    
+ *  Date Made:      01-17-2010
+ *  Description:    ROS node, which filters which
  */
 
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
-#include <coax_client/FindBlobPosition.h>
+#include <coax_client/>
 
 //global variables
 double FIELD_OF_VIEW_HORIZ;
 double FIELD_OF_VIEW_VERT;
-
-//calculated variables
-double ratio;
 
 using namespace std;
 
@@ -24,16 +19,16 @@ void getParams(const ros::NodeHandle &nh);
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "coax_services");
-  ros::NodeHandle n("coax_services");
-  
-  getParams(n);
+	ros::init(argc, argv, "coax_services");
+	ros::NodeHandle n("coax_services");
+	
+	getParams(n);
 
-  ros::ServiceServer service = n.advertiseService("find_blob_position", calculateBlobPosition);
-  ROS_INFO("coax_services started.");
-  ros::spin();
+	ros::ServiceServer service = n.advertiseService("find_blob_position", calculateBlobPosition);
+	ROS_INFO("coax_services started.");
+	ros::spin();
 
-  return 0;
+	return 0;
 }
 
 bool calculateBlobPosition(coax_client::FindBlobPosition::Request &req,
