@@ -26,6 +26,12 @@
 #define DEFAULT_Y_FILTER_K  0.5
 #define DEFAULT_Z_FILTER_K  0.5
 
+//default values used with filtered blobs node
+#define DEFAULT_FBLOB_NODE_PUBLISH_FREQ		10
+#define DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER	1
+#define DEFAULT_FBLOB_NODE_BLOBS_MSG_BUFFER	1
+#define DEFAULT_FBLOB_NODE_MSG_QUEUE		1
+
 //default values used with filtered state node
 #define DEFAULT_FSTATE_NODE_PUBLISH_FREQ        50
 #define DEFAULT_FSTATE_NODE_STATE_MSG_BUFFER    50
