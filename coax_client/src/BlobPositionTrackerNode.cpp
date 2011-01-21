@@ -41,19 +41,21 @@ int main(int argc, char **argv)
 	ros::NodeHandle n("blob_positions");
 	
 	getParams(n);
-
+    
     ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_filter/blobs", FBLOBS_MSG_BUFFER, &fBlobsCallback);
     ros::Subscriber coax_state_sub = n.subscribe("/coax_server/state",STATE_MSG_BUFFER, &stateCallback);
     blob_pose_pub = n.advertise<coax_client::BlobPositions>("/blob_position/blobs", MSG_QUEUE);
-
-    ros::Rate loop_rate(PUBLISH_FREQ);
     
-	while(ros::ok())
+    ros::spin();
+    
+    //ros::Rate loop_rate(PUBLISH_FREQ);
+    
+	/*while(ros::ok())
 	{
 		ros::spinOnce();
 		loop_rate.sleep();
-	}
-
+	}*/
+    
 	return 0;
 }
 
@@ -61,21 +63,16 @@ void fBlobsCallback(cmvision::Blobs msg)
 {
     coax_client::BlobPositions blob_poses;
     blob_poses.header = msg.header;
-    ROS_INFO("time diff: %f", (msg.header.stamp - CUR_STATE->header.stamp).toSec());
-    //blob_poses.blobs = msg.blobs;
+    ROS_INFO("state is %f seconds ahead of the fblob.", (msg.header.stamp - CUR_STATE->header.stamp).toSec());
     
-    /*float altitude = 30;
-    float x = (req.blobs.blobs[req.blob_num].right+req.blobs.blobs[req.blob_num].left)/2.0;
-    float y = (req.blobs.blobs[req.blob_num].top+req.blobs.blobs[req.blob_num].bottom)/2.0;
-    unsigned short int width = req.blobs.image_width;
-    unsigned short int height = req.blobs.image_height;
-    float center_x = width/2.0;
-    float center_y = height/2.0;
-    float x_from_center = x-center_x;
-    float y_from_center = y-center_y;
+    float altitude = CUR_STATE->zfiltered;
+    float center_x = msg.image_width/2.0;
+    float center_y = msg.image_height/2.0;
+    float x_from_center = msg.blobs[0].x-center_x;
+    float y_from_center = msg.blobs[0].y-center_y;
     
-    float degrees_per_pixel_horiz   = FIELD_OF_VIEW_HORIZ/width;
-    float degrees_per_pixel_vert    = FIELD_OF_VIEW_VERT/height;
+    float degrees_per_pixel_horiz   = FIELD_OF_VIEW_HORIZ/msg.image_width;
+    float degrees_per_pixel_vert    = FIELD_OF_VIEW_VERT/msg.image_height;
     
     float angle_horiz = degrees_per_pixel_horiz*x_from_center;
     float angle_vert  = degrees_per_pixel_vert*y_from_center;
@@ -84,7 +81,7 @@ void fBlobsCallback(cmvision::Blobs msg)
     
     ROS_INFO("x: %f\n",altitude*tan(angle_horiz*3.14159/180.));
     
-    return true;*/
+    //blob_pose_pub.publish(blob_poses);
 }
 
 void getParams(const ros::NodeHandle &nh)
