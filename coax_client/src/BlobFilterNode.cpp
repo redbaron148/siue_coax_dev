@@ -5,6 +5,9 @@
  *  Description:    ROS node, filters and publishes important blobs under topic 
  *                  "/blob_filter/blobs". Also contains orientation and altitude
  *                  of helicopter.
+ *  01-21-2011:     reporting the orientation of the helicopter doesn't make 
+ *                  much sense when filtering blobs. was just easier for the 
+ *                  project at hand.
  */
 
 #include <ros/ros.h>
@@ -14,7 +17,7 @@
 
 //global variables
 int PUBLISH_FREQ;
-int STATE_MSG_BUFFER;
+//int STATE_MSG_BUFFER;
 int BLOBS_MSG_BUFFER;
 int MSG_QUEUE;
 
@@ -23,19 +26,17 @@ using namespace std;
 ros::Publisher filtered_blob_pub;
 
 void blobsCallback(cmvision::Blobs msg);
-void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
 void getParams(const ros::NodeHandle &nh);
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "blob_filter");
     ros::NodeHandle n("blob_filter");
-
-    ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
-    ros::Subscriber blobs_sub = n.subscribe("/blobs", BLOBS_MSG_BUFFER, &blobsCallback);
-
-    filtered_blob_pub = n.advertise<coax_client::FilteredBlobs>("/blob_filter/blobs", MSG_QUEUE);
+    
     getParams(n);
+
+    ros::Subscriber blobs_sub = n.subscribe("/blobs", BLOBS_MSG_BUFFER, &blobsCallback);
+    filtered_blob_pub = n.advertise<cmvision::Blobs>("/blob_filter/blobs", MSG_QUEUE);
 
     ros::Rate loop_rate(PUBLISH_FREQ);
     
@@ -56,11 +57,6 @@ void blobsCallback(cmvision::Blobs msg)
     }
 }
 
-void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
-{
-    cur_alt = msg.zfiltered;
-}
-
 void getParams(const ros::NodeHandle &nh)
 {
 	//frequency this node publishes a new topic
@@ -77,7 +73,7 @@ void getParams(const ros::NodeHandle &nh)
 	  PUBLISH_FREQ = DEFAULT_FBLOB_NODE_PUBLISH_FREQ;
 	}
 	
-	//number of states from coax_server this node will buffer before it begins to drop them
+	/*//number of states from coax_server this node will buffer before it begins to drop them
 	if (nh.getParam("state_msg_buffer", STATE_MSG_BUFFER))
 	{
 		ROS_INFO("Set %s/state_msg_buffer to %d",nh.getNamespace().c_str(), STATE_MSG_BUFFER);
@@ -89,7 +85,7 @@ void getParams(const ros::NodeHandle &nh)
 		else
 			ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER);
 		STATE_MSG_BUFFER = DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER;
-	}
+	}*/
 
 	//number of states from coax_server this node will buffer before it begins to drop them
 	if (nh.getParam("blobs_msg_buffer", BLOBS_MSG_BUFFER))

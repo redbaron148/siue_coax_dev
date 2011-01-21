@@ -1,3 +1,3 @@
-Header  header
+Header header
 
-coax_client/BlobPose    blobs
+coax_client/BlobPose[]  blobs

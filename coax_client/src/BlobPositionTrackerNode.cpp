@@ -1,30 +1,39 @@
 /*
- *  File Name:      CoaxServerNode.cpp
+ *  File Name:      BlobPositionTrackerNode.cpp
  *  Programmer:     Aaron Parker
  *  Date Made:      01-17-2010
  *  Description:    ROS node, subscribes to /blob_filter/blobs, calculates 
  *                  position relative to the coax helicopter of every blob in 
  *                  the topic.
+ *  01-21-2011:     
  */
 
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
+#include <coax_msgs/CoaxState.h>
 #include <coax_client/BlobPositions.h>
+#include <cmvision/Blobs.h>
 
 //global variables
 double FIELD_OF_VIEW_HORIZ;
 double FIELD_OF_VIEW_VERT;
 int PUBLISH_FREQ;
 int FBLOBS_MSG_BUFFER;
+int STATE_MSG_BUFFER;
 int MSG_QUEUE;
 
-ros::Publisher blob_position_pub;
+boost::shared_ptr<coax_msgs::CoaxState> CUR_STATE;
+
+ros::Publisher blob_pose_pub;
 
 using namespace std;
 
+void fBlobsCallback(cmvision::Blobs msg);
+void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
+{
+    CUR_STATE = msg;
+}
 void getParams(const ros::NodeHandle &nh);
-void filteredBlobsCallback(coax_client::FilteredBlobs msg);
-bool 
 
 int main(int argc, char **argv)
 {
@@ -34,10 +43,8 @@ int main(int argc, char **argv)
 	getParams(n);
 
     ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_filter/blobs", FBLOBS_MSG_BUFFER, &fBlobsCallback);
-
-    filtered_blob_pub = n.advertise<coax_client::FilteredBlobs>("/blob_positions/blobs", MSG_QUEUE);
-    
-    getParams(n);
+    ros::Subscriber coax_state_sub = n.subscribe("/coax_server/state",STATE_MSG_BUFFER, &stateCallback);
+    blob_pose_pub = n.advertise<coax_client::BlobPositions>("/blob_position/blobs", MSG_QUEUE);
 
     ros::Rate loop_rate(PUBLISH_FREQ);
     
@@ -50,12 +57,12 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-void filteredBlobsCallback(cmvision::Blobs msg)
+void fBlobsCallback(cmvision::Blobs msg)
 {
     coax_client::BlobPositions blob_poses;
     blob_poses.header = msg.header;
-    blob_poses.blobs = msg.blobs;
-    
+    ROS_INFO("time diff: %f", (msg.header.stamp - CUR_STATE->header.stamp).toSec());
+    //blob_poses.blobs = msg.blobs;
     
     /*float altitude = 30;
     float x = (req.blobs.blobs[req.blob_num].right+req.blobs.blobs[req.blob_num].left)/2.0;
@@ -124,18 +131,32 @@ void getParams(const ros::NodeHandle &nh)
 	  PUBLISH_FREQ = DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ;
 	}
 
-	//number of states from coax_server this node will buffer before it begins to drop them
-	if (nh.getParam("blobs_msg_buffer", FBLOBS_MSG_BUFFER))
+	//number of filtered blobs from blob_filter this node will buffer before it begins to drop them
+	if (nh.getParam("filtered_blobs_msg_buffer", FBLOBS_MSG_BUFFER))
 	{
-		ROS_INFO("Set %s/blobs_msg_buffer to %d",nh.getNamespace().c_str(), FBLOBS_MSG_BUFFER);
+		ROS_INFO("Set %s/filtered_blobs_msg_buffer to %d",nh.getNamespace().c_str(), FBLOBS_MSG_BUFFER);
 	}
 	else
 	{
-		if(nh.hasParam("blobs_msg_buffer"))
-			ROS_WARN("%s/blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
+		if(nh.hasParam("filtered_blobs_msg_buffer"))
+			ROS_WARN("%s/filtered_blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
 	  else
-		  ROS_WARN("No value set for %s/blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
+		  ROS_WARN("No value set for %s/filtered_blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
 	  FBLOBS_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER;
+	}
+	
+	//number of states from coax_server this node will buffer before it begins to drop them
+	if (nh.getParam("state_msg_buffer", STATE_MSG_BUFFER))
+	{
+		ROS_INFO("Set %s/state_msg_buffer to %d",nh.getNamespace().c_str(), STATE_MSG_BUFFER);
+	}
+	else
+	{
+		if(nh.hasParam("state_msg_buffer"))
+			ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER);
+	  else
+		  ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER);
+	  STATE_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER;
 	}
 	
 	//number of messages this node will queue for publishing before it drops data

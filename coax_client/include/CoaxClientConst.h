@@ -1,9 +1,13 @@
-#ifndef COAX_CONSTANTS
-#define COAX_CONSTANTS
+#ifndef COAX_CONSTANTS_H
+#define COAX_CONSTANTS_H
 
 //field of view from COAX webcam, in degrees.
 #define DEFAULT_FIELD_OF_VIEW_HORIZ 54.6
 #define DEFAULT_FIELD_OF_VIEW_VERT  41.27
+#define DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ 10
+#define DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER 1
+#define DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER 1
+#define DEFAULT_BLOB_POS_NODE_MSG_QUEUE
 
 //conditional compilation defines
 #ifndef FILTER_ACCEL //if 1, filters the accel. readings
