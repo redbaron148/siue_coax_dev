@@ -67,7 +67,7 @@ void fBlobsCallback(cmvision::Blobs msg)
     blob_poses.header = msg.header;
     ROS_INFO("state is %f seconds ahead of the fblob.", (CUR_STATE->header.stamp - msg.header.stamp).toSec());
     
-    float altitude = cur_state->zfiltered;
+    float altitude = cur_state.zrange;
     float center_x = msg.image_width/2.0;
     float center_y = msg.image_height/2.0;
     float x_from_center = msg.blobs[0].x-center_x;
@@ -81,10 +81,10 @@ void fBlobsCallback(cmvision::Blobs msg)
     
     //ROS_INFO("\n\ny: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
     
-    ROS_INFO("degrees from center horiz: %f",angle_horiz-(cur_state->roll*180.0/3.14159));
-    ROS_INFO("degrees from center vert: %f",angle_vert-(cur_state->pitch*180.0/3.14159));
-    ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-cur_state->roll));
-    ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-cur_state->pitch));
+    ROS_INFO("degrees from center horiz: %f",angle_horiz-(cur_state.roll*180.0/3.14159));
+    ROS_INFO("degrees from center vert: %f",angle_vert-(cur_state.pitch*180.0/3.14159));
+    ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-cur_state.roll));
+    ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-cur_state.pitch));
     
     STATE_VECTOR.clear();
     
