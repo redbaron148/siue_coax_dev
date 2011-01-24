@@ -23,7 +23,9 @@ int FBLOBS_MSG_BUFFER;
 int STATE_MSG_BUFFER;
 int MSG_QUEUE;
 
-vector <boost::shared_ptr<coax_msgs::CoaxState> > STATE_VECTOR;
+std::vector< boost::shared_ptr<coax_msgs::CoaxState> > STATE_VECTOR;
+
+//std::vector< int > int_vector;
 
 ros::Publisher blob_pose_pub;
 
@@ -32,7 +34,10 @@ using namespace std;
 void fBlobsCallback(cmvision::Blobs msg);
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
 {
-    STATE_VECTOR.insert(msg);
+	static std::vector< boost::shared_ptr<coax_msgs::CoaxState> >::iterator it = STATE_VECTOR.begin();
+	it = STATE_VECTOR.insert(it,msg);
+	if(distance(STATE_VECTOR.begin(),it) >= 10)
+		it = STATE_VECTOR.begin();
 }
 void getParams(const ros::NodeHandle &nh);
 
@@ -65,9 +70,9 @@ void fBlobsCallback(cmvision::Blobs msg)
     coax_client::BlobPositions blob_poses;
     coax_msgs::CoaxState cur_state;
     blob_poses.header = msg.header;
-    ROS_INFO("state is %f seconds ahead of the fblob.", (CUR_STATE->header.stamp - msg.header.stamp).toSec());
+    ROS_INFO("state is %f seconds ahead of the fblob.", (cur_state.header.stamp - msg.header.stamp).toSec());
     
-    float altitude = cur_state->zfiltered;
+    float altitude = cur_state.zfiltered;
     float center_x = msg.image_width/2.0;
     float center_y = msg.image_height/2.0;
     float x_from_center = msg.blobs[0].x-center_x;
@@ -81,12 +86,14 @@ void fBlobsCallback(cmvision::Blobs msg)
     
     //ROS_INFO("\n\ny: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
     
-    ROS_INFO("degrees from center horiz: %f",angle_horiz-(cur_state->roll*180.0/3.14159));
-    ROS_INFO("degrees from center vert: %f",angle_vert-(cur_state->pitch*180.0/3.14159));
-    ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-cur_state->roll));
-    ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-cur_state->pitch));
+    ROS_INFO("degrees from center horiz: %f",angle_horiz-(cur_state.roll*180.0/3.14159));
+    ROS_INFO("degrees from center vert: %f",angle_vert-(cur_state.pitch*180.0/3.14159));
+    ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-cur_state.roll));
+    ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-cur_state.pitch));
     
-    STATE_VECTOR.clear();
+    ROS_INFO("Time of first: %f",STATE_VECTOR.back()->header.stamp.toSec());
+    ROS_INFO("Time of last: %f",STATE_VECTOR.front()->header.stamp.toSec());
+	ROS_INFO("Size of vec: %d",STATE_VECTOR.size());
     
     //blob_pose_pub.publish(blob_poses);
 }
