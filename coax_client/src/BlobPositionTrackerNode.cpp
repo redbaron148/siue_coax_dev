@@ -71,8 +71,8 @@ void fBlobsCallback(cmvision::Blobs msg)
     coax_msgs::CoaxState cur_state;
     blob_poses.header = msg.header;
     ROS_INFO("state is %f seconds ahead of the fblob.", (cur_state.header.stamp - msg.header.stamp).toSec());
-    
-    float altitude = cur_state.zfiltered;
+
+    float altitude = cur_state.zrange;
     float center_x = msg.image_width/2.0;
     float center_y = msg.image_height/2.0;
     float x_from_center = msg.blobs[0].x-center_x;
