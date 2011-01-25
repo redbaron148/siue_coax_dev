@@ -1,2 +1,2 @@
 cmvision/Blob   blob
-geometry_msgs/Pose  pose
+geometry_msgs/Point  pose
