@@ -14,7 +14,7 @@
 	<node pkg="coax_server" type="coax_server" name="coax_server" args="/dev/ttyS0"/>
 	<node pkg="coax_client" type="coax_filter_node" name="coax_filter" output="screen"/>
 	<node pkg="coax_client" type="blob_filter_node" name="blob_filter" output="screen"/>
-	<node pkg="coax_client" type="blob_position_node" name="blob_position" output="screen"/>
+	<!--node pkg="coax_client" type="blob_position_node" name="blob_position" output="screen"/-->
 
 	<group ns="cmvision">
 		<param name="color_file" value="$(find coax_client)/include/$(arg color_file)"/>
