@@ -11,8 +11,8 @@
 	</group>
 
 	<group ns="blob_positions">
-		<param name="field_of_view_horiz" value="40" />
-		<param name="field_of_view_vert" value="100" />
+		<param name="field_of_view_horiz" value="66.5" />
+		<param name="field_of_view_vert" value="66.5" />
 		<param name="publish_freq" value="10" />
 	</group>
 
