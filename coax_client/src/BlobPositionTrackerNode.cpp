@@ -83,19 +83,9 @@ void fBlobsCallback(cmvision::Blobs msg)
         angle_horiz = degrees_per_pixel_horiz*(msg.blobs[i].x-center_x);
         angle_vert  = degrees_per_pixel_vert*(msg.blobs[i].y-center_y);
         blobs[i].blob = msg.blobs[i];
-        blobs[i].pose.y = .80*sin((angle_horiz*3.14159/180.0)-state->roll);
-        blobs[i].pose.x = .80*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
-        blobs[i].pose.z = 0;
-        //blobs[i].pose.orientation = 
-    
-    //ROS_INFO("\n\ny: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
-    
-    //ROS_INFO("degrees from center horiz: %f",angle_horiz-(state->roll*180.0/3.14159));
-    //ROS_INFO("degrees from center vert: %f",angle_vert-(state->pitch*180.0/3.14159));
-    //ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-state->roll));
-    //ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-state->pitch));
-    
-	//ROS_INFO("Size of vec: %d",STATE_BUFFER.size());
+        blobs[i].pose.y = state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
+        blobs[i].pose.x = state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
+        blobs[i].pose.z = state->zfiltered;
 	}
 	blob_poses.blobs = blobs;
     
