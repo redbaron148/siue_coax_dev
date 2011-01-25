@@ -68,7 +68,7 @@ void fBlobsCallback(cmvision::Blobs msg)
     blob_poses.header = msg.header;
     ROS_INFO("state is %f seconds ahead of the fblob.", fabs((state->header.stamp - msg.header.stamp).toSec()));
 
-    float altitude = state->zrange;
+    float altitude = .762;//state->zrange;
     float center_x = msg.image_width/2.0;
     float center_y = msg.image_height/2.0;
     float x_from_center = msg.blobs[0].x-center_x;
