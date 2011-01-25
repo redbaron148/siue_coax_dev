@@ -13,6 +13,7 @@
 #include <coax_msgs/CoaxState.h>
 #include <coax_client/BlobPositions.h>
 #include <cmvision/Blobs.h>
+#include <roslib/Header.h>
 #include <vector>
 
 //global variables
@@ -23,7 +24,7 @@ int FBLOBS_MSG_BUFFER;
 int STATE_MSG_BUFFER;
 int MSG_QUEUE;
 
-std::vector< boost::shared_ptr<coax_msgs::CoaxState> > STATE_VECTOR;
+std::vector<boost::shared_ptr<coax_msgs::CoaxState> > STATE_BUFFER(10,boost::shared_ptr<coax_msgs::CoaxState>(new coax_msgs::CoaxState));
 
 //std::vector< int > int_vector;
 
@@ -32,14 +33,9 @@ ros::Publisher blob_pose_pub;
 using namespace std;
 
 void fBlobsCallback(cmvision::Blobs msg);
-void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
-{
-	static std::vector< boost::shared_ptr<coax_msgs::CoaxState> >::iterator it = STATE_VECTOR.begin();
-	it = STATE_VECTOR.insert(it,msg);
-	if(distance(STATE_VECTOR.begin(),it) >= 10)
-		it = STATE_VECTOR.begin();
-}
+void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
 void getParams(const ros::NodeHandle &nh);
+boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header header);
 
 int main(int argc, char **argv)
 {
@@ -68,11 +64,11 @@ int main(int argc, char **argv)
 void fBlobsCallback(cmvision::Blobs msg)
 {
     coax_client::BlobPositions blob_poses;
-    coax_msgs::CoaxState cur_state;
+    boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);
     blob_poses.header = msg.header;
-    ROS_INFO("state is %f seconds ahead of the fblob.", (cur_state.header.stamp - msg.header.stamp).toSec());
+    ROS_INFO("state is %f seconds ahead of the fblob.", fabs((state->header.stamp - msg.header.stamp).toSec()));
 
-    float altitude = cur_state.zrange;
+    float altitude = state->zrange;
     float center_x = msg.image_width/2.0;
     float center_y = msg.image_height/2.0;
     float x_from_center = msg.blobs[0].x-center_x;
@@ -86,16 +82,21 @@ void fBlobsCallback(cmvision::Blobs msg)
     
     //ROS_INFO("\n\ny: %f\ndegree vert: %f\n",degrees_per_pixel_horiz*x_from_center, degrees_per_pixel_vert*y_from_center);
     
-    ROS_INFO("degrees from center horiz: %f",angle_horiz-(cur_state.roll*180.0/3.14159));
-    ROS_INFO("degrees from center vert: %f",angle_vert-(cur_state.pitch*180.0/3.14159));
-    ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-cur_state.roll));
-    ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-cur_state.pitch));
+    ROS_INFO("degrees from center horiz: %f",angle_horiz-(state->roll*180.0/3.14159));
+    ROS_INFO("degrees from center vert: %f",angle_vert-(state->pitch*180.0/3.14159));
+    ROS_INFO("x: %f",altitude*sin((angle_horiz*3.14159/180.0)-state->roll));
+    ROS_INFO("y: %f",altitude*sin((angle_vert*3.14159/180.0)-state->pitch));
     
-    ROS_INFO("Time of first: %f",STATE_VECTOR.back()->header.stamp.toSec());
-    ROS_INFO("Time of last: %f",STATE_VECTOR.front()->header.stamp.toSec());
-	ROS_INFO("Size of vec: %d",STATE_VECTOR.size());
+	//ROS_INFO("Size of vec: %d",STATE_BUFFER.size());
     
     //blob_pose_pub.publish(blob_poses);
+}
+
+void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
+{
+    static int count = 0;
+	STATE_BUFFER[count%10] = msg;
+	count ++;
 }
 
 void getParams(const ros::NodeHandle &nh)
@@ -183,4 +184,19 @@ void getParams(const ros::NodeHandle &nh)
 	    ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
 	  MSG_QUEUE = DEFAULT_FBLOB_NODE_MSG_QUEUE;
 	}
+}
+
+boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header header)
+{
+    int closest = 0;
+    float best_time = fabs((STATE_BUFFER[0]->header.stamp-header.stamp).toSec());
+    for(int i = 1;i < 10;i++)
+    {
+        if(fabs((STATE_BUFFER[i]->header.stamp-header.stamp).toSec()) <= best_time)
+        {
+            best_time = fabs((STATE_BUFFER[closest]->header.stamp-header.stamp).toSec());
+            closest = i;
+        }
+    }
+    return STATE_BUFFER[closest];
 }
