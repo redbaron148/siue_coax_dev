@@ -76,15 +76,15 @@ void fBlobsCallback(cmvision::Blobs msg)
     float angle_horiz;
     float angle_vert;
     
-    ROS_INFO("state is %f seconds ahead of the fblob.", fabs((state->header.stamp - msg.header.stamp).toSec()));
+    //ROS_INFO("state is %f seconds ahead of the fblob.", fabs((state->header.stamp - msg.header.stamp).toSec()));
 
-    for(int i = msg.blob_count; i >= 0;i--)
+    for(int i = msg.blob_count-1; i >= 0;i--)
     {
         angle_horiz = degrees_per_pixel_horiz*(msg.blobs[i].x-center_x);
         angle_vert  = degrees_per_pixel_vert*(msg.blobs[i].y-center_y);
         blobs[i].blob = msg.blobs[i];
-        blobs[i].pose.x = 0;
-        blobs[i].pose.y = 0;
+        blobs[i].pose.y = .80*sin((angle_horiz*3.14159/180.0)-state->roll);
+        blobs[i].pose.x = .80*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
         blobs[i].pose.z = 0;
         //blobs[i].pose.orientation = 
     
