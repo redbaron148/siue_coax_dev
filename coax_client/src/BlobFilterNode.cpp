@@ -27,6 +27,43 @@ ros::Publisher filtered_blob_pub;
 
 void blobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
+bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2, const int &thresh)
+{
+	//b1 is to the right of b2
+	if(b1.x > b2.x)
+	{
+		//b1 is below and to the right of b2
+		if(b1.y > b2.y)
+		{
+			return(b1.top)
+		}
+		//b1 is above and to the right of b2
+		else
+		{
+		}
+	}
+	else
+	{
+		//b1 is below and to the left of b2
+		if(b1.y > b2.y)
+		{
+		}
+		//b1 is above and to the left of b2
+		else
+		{
+		}
+	}
+}
+
+cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &desired, const cmvision::Blobs &blobs, const int &threshold)
+{
+	cmvision::Blobs close_blobs;
+	if(!blobs.num_blobs) return close_blobs;
+	for(int i = blobs.num_blobs-1;i >= 0;i--)
+	{
+		if(blobs[i].top >= desired.top-thresh && blobs[i].top)
+	}
+}
 
 int main(int argc, char **argv)
 {
