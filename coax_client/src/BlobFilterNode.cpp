@@ -19,6 +19,7 @@
 int PUBLISH_FREQ;
 //int STATE_MSG_BUFFER;
 int BLOBS_MSG_BUFFER;
+int MIN_BLOB_AREA;
 int MSG_QUEUE;
 
 using namespace std;
@@ -27,42 +28,10 @@ ros::Publisher filtered_blob_pub;
 
 void blobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
-bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2, const int &thresh)
-{
-	//b1 is to the right of b2
-	if(b1.x > b2.x)
-	{
-		//b1 is below and to the right of b2
-		if(b1.y > b2.y)
-		{
-			return(b1.top)
-		}
-		//b1 is above and to the right of b2
-		else
-		{
-		}
-	}
-	else
-	{
-		//b1 is below and to the left of b2
-		if(b1.y > b2.y)
-		{
-		}
-		//b1 is above and to the left of b2
-		else
-		{
-		}
-	}
-}
-
-cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &desired, const cmvision::Blobs &blobs, const int &threshold)
-{
-	cmvision::Blobs close_blobs;
-	if(!blobs.num_blobs) return close_blobs;
-	for(int i = blobs.num_blobs-1;i >= 0;i--)
-	{
-		if(blobs[i].top >= desired.top-thresh && blobs[i].top)
-	}
+bool filterSmallBlobs(cmvision::Blobs &blobs);
+bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2)
+{	
+	return (sqrt(((b1.x-b2.x)^2)+((b1.y+b2.y)^2)) < sqrt(((b1.x-b1.left)^2)+((b1.y+b1.bottom)^2))+sqrt(((b2.x-b2.left)^2)+((b2.y+b2.bottom)^2)));
 }
 
 int main(int argc, char **argv)
@@ -88,10 +57,16 @@ int main(int argc, char **argv)
 
 void blobsCallback(cmvision::Blobs msg)
 {
-    if(msg.blob_count > 0)
-    {
-        filtered_blob_pub.publish(msg);
-    }
+	cmvision::Blobs return_blobs;
+	
+	filterSmallBlobs(msg);
+	
+	if(msg.blob_count == 2)
+	{
+		ROS_INFO("blobs are adjacent: %d",blobsAreAdjacent(msg.blobs[0],msg.blobs[1]));
+	}
+	
+	filtered_blob_pub.publish(msg);
 }
 
 void getParams(const ros::NodeHandle &nh)
@@ -109,20 +84,6 @@ void getParams(const ros::NodeHandle &nh)
 		  ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_PUBLISH_FREQ);
 	  PUBLISH_FREQ = DEFAULT_FBLOB_NODE_PUBLISH_FREQ;
 	}
-	
-	/*//number of states from coax_server this node will buffer before it begins to drop them
-	if (nh.getParam("state_msg_buffer", STATE_MSG_BUFFER))
-	{
-		ROS_INFO("Set %s/state_msg_buffer to %d",nh.getNamespace().c_str(), STATE_MSG_BUFFER);
-	}
-	else
-	{
-		if(nh.hasParam("state_msg_buffer"))
-			ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER);
-		else
-			ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER);
-		STATE_MSG_BUFFER = DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER;
-	}*/
 
 	//number of states from coax_server this node will buffer before it begins to drop them
 	if (nh.getParam("blobs_msg_buffer", BLOBS_MSG_BUFFER))
@@ -151,4 +112,33 @@ void getParams(const ros::NodeHandle &nh)
 	    ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
 	  MSG_QUEUE = DEFAULT_FBLOB_NODE_MSG_QUEUE;
 	}
+	
+	//number of messages this node will queue for publishing before it drops data
+	if (nh.getParam("min_blob_area", MIN_BLOB_AREA))
+	{
+		ROS_INFO("Set %s/min_blob_area to %d",nh.getNamespace().c_str(), MIN_BLOB_AREA);
+	}
+	else
+	{
+		if(nh.hasParam("min_blob_area"))
+		  ROS_WARN("%s/min_blob_area must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_MIN_BLOB_AREA);
+	  else
+	    ROS_WARN("No value set for %s/min_blob_area. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_MIN_BLOB_AREA);
+	  MIN_BLOB_AREA = DEFAULT_FBLOB_MIN_BLOB_AREA;
+	}
+}
+
+bool filterSmallBlobs(cmvision::Blobs &blobs)
+{
+	if(blobs.blob_count == 0) return false;
+	
+    for(int i = blobs.blob_count-1;i>=0;i--)
+	{
+		if(!(blobs.blobs[i].area >= (unsigned)MIN_BLOB_AREA)) 
+		{
+			blobs.blobs.erase(blobs.blobs.begin()+i);
+			blobs.blob_count--;
+		}
+	}
+    return true;
 }

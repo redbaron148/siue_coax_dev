@@ -1,9 +1,15 @@
 <launch>
-	<group ns="usb_camera">
-		<param name="fps" value="1"/>
-		<param name="width" value="640"/>
-		<param name="height" value="480"/>
-	</group>
 
-	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="usb_camera" output="screen"/>
+	<node pkg="usb_camera_node" type="usb_camera_node" name="usb_camera_node" output="screen">
+		<remap from="image_0" to="image"/>
+		<param name="V4L_ID" value="0"/>
+	</node>
+	
+	<node pkg="cmvision" type="cmvision" name="cmvision" output="screen">
+		<param name="color_file" value="$(find coax_client)/include/mrl_stereo_day_colors.txt"/>
+		<param name="mean_shift_on" value="false" />
+		<param name="debug_on" value="true" />
+		<param name="spatial_radius_pix" value="0" />
+		<param name="color_radius_pix" value="0" />
+	</node>
 </launch>
