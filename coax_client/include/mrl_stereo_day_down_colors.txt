@@ -7,6 +7,6 @@
 (  0,  255, 255) 0.000000 10 Teal
 
 [Thresholds]
-( 98:128, 65:87, 218:235 ) #Orange This
-( 127:178, 45:89, 113:136 ) #Yellow This
+( 118:176, 70:88, 184:218 ) #This orange
+( 228:240, 57:74, 122:135 ) #This yellow/green
 
