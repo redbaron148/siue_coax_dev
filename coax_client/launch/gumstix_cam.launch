@@ -1,0 +1,11 @@
+<launch>
+  <arg name="fps" default="10"/>
+  <arg name="width" default="160"/>
+  <arg name="height" default="120"/>
+	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="gumstix_cam_node" output="screen">
+		<param name="fps" value="$(arg fps)" />
+		<param name="width" value="$(arg width)"/>
+		<param name="height" value="$(arg height)"/>
+		<param name="V4L_ID" value="0"/>
+	</node>
+</launch>
