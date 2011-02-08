@@ -141,12 +141,13 @@ bool filterSmallBlobs(cmvision::Blobs &blobs)
 
 bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2)
 {
-    ROS_INFO("b1.x-b2.x: %d", (int)(b1.x-b2.x));
-    ROS_INFO("b1.y-b2.y: %d", (int)(b1.y-b2.y));
+    ROS_INFO("b1.x-b2.x: %d", abs((int)(b1.x-b2.x)));
+    ROS_INFO("b1.y-b2.y: %d", abs((int)(b1.y-b2.y)));
     ROS_INFO("b1.right-b1.left/2: %d",(b1.right-b1.left)/2);
     ROS_INFO("b2.right-b2.left/2: %d",(b2.right-b2.left)/2);
     ROS_INFO("b1.bottom-b1.top/2: %d",(b1.bottom-b1.top)/2);
     ROS_INFO("b2.bottom-b2.top/2: %d",(b2.bottom-b2.top)/2);
-    return ((abs((int)(b1.x-b2.x))-12 <= ((b1.right-b1.left)/2+(b2.right-b2.left)/2)) &&
-            (abs((int)(b1.y-b2.y))-12 <= ((b1.bottom-b1.top)/2+(b2.bottom-b2.top)/2)));
+    
+    return ((abs((int)(b1.x-b2.x))-12 <= (int)((b1.right-b1.left)/2+(b2.right-b2.left)/2)) &&
+            (abs((int)(b1.y-b2.y))-12 <= (int)((b1.bottom-b1.top)/2+(b2.bottom-b2.top)/2)));
 }
