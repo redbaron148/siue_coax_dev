@@ -11,7 +11,7 @@
 
 //conditional compilation defines
 #ifndef FILTER_ACCEL //if 1, filters the accel. readings
-#define FILTER_ACCEL			0
+#define FILTER_ACCEL            0
 #endif
 #ifndef CONVERT_ACCEL_TO_GLOBAL //if 1, converts accel. readings to global frame
 #define CONVERT_ACCEL_TO_GLOBAL 0
@@ -31,11 +31,11 @@
 #define DEFAULT_Z_FILTER_K  0.5
 
 //default values used with filtered blobs node
-#define DEFAULT_FBLOB_NODE_PUBLISH_FREQ		10
-#define DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER	1
-#define DEFAULT_FBLOB_NODE_BLOBS_MSG_BUFFER	1
-#define DEFAULT_FBLOB_NODE_MSG_QUEUE		1
-#define DEFAULT_FBLOB_MIN_BLOB_AREA			1000
+#define DEFAULT_FBLOB_NODE_PUBLISH_FREQ     10
+#define DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER 1
+#define DEFAULT_FBLOB_NODE_BLOBS_MSG_BUFFER 1
+#define DEFAULT_FBLOB_NODE_MSG_QUEUE        1
+#define DEFAULT_FBLOB_MIN_BLOB_AREA         500
 
 //default values used with filtered state node
 #define DEFAULT_FSTATE_NODE_PUBLISH_FREQ        50
