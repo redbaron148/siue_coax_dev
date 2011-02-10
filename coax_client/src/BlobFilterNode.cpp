@@ -27,8 +27,10 @@ ros::Publisher filtered_blob_pub;
 
 void blobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
-bool filterSmallBlobs(cmvision::Blobs &blobs);
+cmvision::Blobs filterSmallBlobs(cmvision::Blobs blobs);
 bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2);
+float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2);
+cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs);
 
 int main(int argc, char **argv)
 {
@@ -55,12 +57,7 @@ void blobsCallback(cmvision::Blobs msg)
 {
     cmvision::Blobs return_blobs;
     
-    filterSmallBlobs(msg);
-    
-    if(msg.blob_count == 2)
-    {
-        ROS_INFO("blobs are adjacent: %d",blobsAreAdjacent(msg.blobs[0],msg.blobs[1]));
-    }
+    return_blobs = filterSmallBlobs(msg);
     
     filtered_blob_pub.publish(msg);
 }
@@ -124,10 +121,8 @@ void getParams(const ros::NodeHandle &nh)
     }
 }
 
-bool filterSmallBlobs(cmvision::Blobs &blobs)
+cmvision::Blobs filterSmallBlobs(cmvision::Blobs blobs)
 {
-    if(blobs.blob_count == 0) return false;
-    
     for(int i = blobs.blob_count-1;i>=0;i--)
     {
         if(!(blobs.blobs[i].area >= (unsigned)MIN_BLOB_AREA)) 
@@ -136,18 +131,26 @@ bool filterSmallBlobs(cmvision::Blobs &blobs)
             blobs.blob_count--;
         }
     }
-    return true;
+    return blobs;
 }
 
 bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2)
 {
-    ROS_INFO("b1.x-b2.x: %d", abs((int)(b1.x-b2.x)));
-    ROS_INFO("b1.y-b2.y: %d", abs((int)(b1.y-b2.y)));
-    ROS_INFO("b1.right-b1.left/2: %d",(b1.right-b1.left)/2);
-    ROS_INFO("b2.right-b2.left/2: %d",(b2.right-b2.left)/2);
-    ROS_INFO("b1.bottom-b1.top/2: %d",(b1.bottom-b1.top)/2);
-    ROS_INFO("b2.bottom-b2.top/2: %d",(b2.bottom-b2.top)/2);
-    
-    return ((abs((int)(b1.x-b2.x))-12 <= (int)((b1.right-b1.left)/2+(b2.right-b2.left)/2)) &&
-            (abs((int)(b1.y-b2.y))-12 <= (int)((b1.bottom-b1.top)/2+(b2.bottom-b2.top)/2)));
+    return ((abs((int)(b1.x-b2.x))-3 <= (int)((b1.right-b1.left)/2+(b2.right-b2.left)/2)) &&
+            (abs((int)(b1.y-b2.y))-3 <= (int)((b1.bottom-b1.top)/2+(b2.bottom-b2.top)/2)));
+}
+
+float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2)
+{
+    return (atan2(b2.y-b1.y,b2.x-b1.x));
+}
+
+cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs)
+{
+    cmvision::Blobs adj_blobs;
+    for(int i = blobs.blob_count-1;i>=0;i--)
+    {
+        if(blobsAreAdjacent(blob,blobs.blobs[i])) adj_blobs.blobs.push_back(blobs.blobs[i]);
+    }
+    return adj_blobs;
 }

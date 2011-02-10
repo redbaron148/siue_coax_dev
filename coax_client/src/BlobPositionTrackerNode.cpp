@@ -5,7 +5,6 @@
  *  Description:    ROS node, subscribes to /blob_filter/blobs, calculates 
  *                  position relative to the coax helicopter of every blob in 
  *                  the topic.
- *  01-21-2011:     
  */
 
 #include <ros/ros.h>
@@ -26,8 +25,6 @@ int MSG_QUEUE;
 
 std::vector<boost::shared_ptr<coax_msgs::CoaxState> > STATE_BUFFER(10,boost::shared_ptr<coax_msgs::CoaxState>(new coax_msgs::CoaxState));
 
-//std::vector< int > int_vector;
-
 ros::Publisher blob_pose_pub;
 
 using namespace std;
@@ -36,13 +33,30 @@ void fBlobsCallback(cmvision::Blobs msg);
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
 void getParams(const ros::NodeHandle &nh);
 boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header header);
+bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2);
+float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2);
+cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs);
+coax_client::BlobPose blobPoseFromBlobs(const cmvision::Blobs &blobs)
+{
+    coax_client::BlobPose blob;
+    for(int i = 0;i>blobs.blob_count;i++)
+    {
+        blob.blob.x += blobs.blobs[i].x;
+        blob.blob.y += blobs.blobs[i].y;
+    }
+    blob.blob.x /= blobs.blob_count;
+    blob.blob.y /= blobs.blob_count;
+    if(blobs.blob_count == 2)
+        blob.pose.theta = blobAngle(blobs.blobs[0],blobs.blobs[1]);
+    else blob.pose.theta = 10;
+}
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "blob_positions");
-	ros::NodeHandle n("blob_positions");
-	
-	getParams(n);
+    ros::init(argc, argv, "blob_positions");
+    ros::NodeHandle n("blob_positions");
+    
+    getParams(n);
     
     ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_filter/blobs", FBLOBS_MSG_BUFFER, &fBlobsCallback);
     ros::Subscriber coax_state_sub = n.subscribe("/coax_server/state",STATE_MSG_BUFFER, &stateCallback);
@@ -52,13 +66,13 @@ int main(int argc, char **argv)
     
     ros::Rate loop_rate(PUBLISH_FREQ);
     
-	while(ros::ok())
-	{
-		ros::spinOnce();
-		loop_rate.sleep();
-	}
+    while(ros::ok())
+    {
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
     
-	return 0;
+    return 0;
 }
 
 void fBlobsCallback(cmvision::Blobs msg)
@@ -75,8 +89,6 @@ void fBlobsCallback(cmvision::Blobs msg)
     
     float angle_horiz;
     float angle_vert;
-    
-    //ROS_INFO("state is %f seconds ahead of the fblob.", fabs((state->header.stamp - msg.header.stamp).toSec()));
 
     for(int i = msg.blob_count-1; i >= 0;i--)
     {
@@ -85,9 +97,9 @@ void fBlobsCallback(cmvision::Blobs msg)
         blobs[i].blob = msg.blobs[i];
         blobs[i].pose.y = state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
         blobs[i].pose.x = state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
-        blobs[i].pose.z = state->zfiltered;
-	}
-	blob_poses.blobs = blobs;
+        //blobs[i].pose.z = state->zfiltered;
+    }
+    blob_poses.blobs = blobs;
     
     blob_pose_pub.publish(blob_poses);
 }
@@ -95,8 +107,8 @@ void fBlobsCallback(cmvision::Blobs msg)
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
 {
     static int count = 0;
-	STATE_BUFFER[count%10] = msg;
-	count ++;
+    STATE_BUFFER[count%10] = msg;
+    count ++;
 }
 
 void getParams(const ros::NodeHandle &nh)
@@ -130,60 +142,60 @@ void getParams(const ros::NodeHandle &nh)
     }
     
     //frequency this node publishes a new topic
-	if(nh.getParam("publish_freq", PUBLISH_FREQ))
-	{
-		ROS_INFO("Set %s/publish_freq to %d",nh.getNamespace().c_str(), PUBLISH_FREQ);
-	}
-	else
-	{
-		if(nh.hasParam("publish_freq"))
-			ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ);
-	  else
-		  ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ);
-	  PUBLISH_FREQ = DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ;
-	}
+    if(nh.getParam("publish_freq", PUBLISH_FREQ))
+    {
+        ROS_INFO("Set %s/publish_freq to %d",nh.getNamespace().c_str(), PUBLISH_FREQ);
+    }
+    else
+    {
+        if(nh.hasParam("publish_freq"))
+            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ);
+      else
+          ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ);
+      PUBLISH_FREQ = DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ;
+    }
 
-	//number of filtered blobs from blob_filter this node will buffer before it begins to drop them
-	if (nh.getParam("filtered_blobs_msg_buffer", FBLOBS_MSG_BUFFER))
-	{
-		ROS_INFO("Set %s/filtered_blobs_msg_buffer to %d",nh.getNamespace().c_str(), FBLOBS_MSG_BUFFER);
-	}
-	else
-	{
-		if(nh.hasParam("filtered_blobs_msg_buffer"))
-			ROS_WARN("%s/filtered_blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
-	  else
-		  ROS_WARN("No value set for %s/filtered_blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
-	  FBLOBS_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER;
-	}
-	
-	//number of states from coax_server this node will buffer before it begins to drop them
-	if (nh.getParam("state_msg_buffer", STATE_MSG_BUFFER))
-	{
-		ROS_INFO("Set %s/state_msg_buffer to %d",nh.getNamespace().c_str(), STATE_MSG_BUFFER);
-	}
-	else
-	{
-		if(nh.hasParam("state_msg_buffer"))
-			ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER);
-	  else
-		  ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER);
-	  STATE_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER;
-	}
-	
-	//number of messages this node will queue for publishing before it drops data
-	if (nh.getParam("msg_queue", MSG_QUEUE))
-	{
-		ROS_INFO("Set %s/msg_queue to %d",nh.getNamespace().c_str(), MSG_QUEUE);
-	}
-	else
-	{
-		if(nh.hasParam("msg_queue"))
-		  ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
-	  else
-	    ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
-	  MSG_QUEUE = DEFAULT_FBLOB_NODE_MSG_QUEUE;
-	}
+    //number of filtered blobs from blob_filter this node will buffer before it begins to drop them
+    if (nh.getParam("filtered_blobs_msg_buffer", FBLOBS_MSG_BUFFER))
+    {
+        ROS_INFO("Set %s/filtered_blobs_msg_buffer to %d",nh.getNamespace().c_str(), FBLOBS_MSG_BUFFER);
+    }
+    else
+    {
+        if(nh.hasParam("filtered_blobs_msg_buffer"))
+            ROS_WARN("%s/filtered_blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
+      else
+          ROS_WARN("No value set for %s/filtered_blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
+      FBLOBS_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER;
+    }
+    
+    //number of states from coax_server this node will buffer before it begins to drop them
+    if (nh.getParam("state_msg_buffer", STATE_MSG_BUFFER))
+    {
+        ROS_INFO("Set %s/state_msg_buffer to %d",nh.getNamespace().c_str(), STATE_MSG_BUFFER);
+    }
+    else
+    {
+        if(nh.hasParam("state_msg_buffer"))
+            ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER);
+      else
+          ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER);
+      STATE_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER;
+    }
+    
+    //number of messages this node will queue for publishing before it drops data
+    if (nh.getParam("msg_queue", MSG_QUEUE))
+    {
+        ROS_INFO("Set %s/msg_queue to %d",nh.getNamespace().c_str(), MSG_QUEUE);
+    }
+    else
+    {
+        if(nh.hasParam("msg_queue"))
+          ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
+      else
+        ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
+      MSG_QUEUE = DEFAULT_FBLOB_NODE_MSG_QUEUE;
+    }
 }
 
 boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header header)
@@ -199,4 +211,29 @@ boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header h
         }
     }
     return STATE_BUFFER[closest];
+}
+
+bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2)
+{
+    return ((abs((int)(b1.x-b2.x))-3 <= (int)((b1.right-b1.left)/2+(b2.right-b2.left)/2)) &&
+            (abs((int)(b1.y-b2.y))-3 <= (int)((b1.bottom-b1.top)/2+(b2.bottom-b2.top)/2)));
+}
+
+float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2)
+{
+    return (atan2(b2.y-b1.y,b2.x-b1.x));
+}
+
+cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs)
+{
+    cmvision::Blobs adj_blobs;
+    for(int i = blobs.blob_count-1;i>=0;i--)
+    {
+        if(blobsAreAdjacent(blob,blobs.blobs[i])) 
+        {
+            adj_blobs.blobs.push_back(blobs.blobs[i]);
+            adj_blobs.blob_count++;
+        }
+    }
+    return adj_blobs;
 }

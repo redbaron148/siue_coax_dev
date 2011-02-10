@@ -35,7 +35,7 @@
 #define DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER 1
 #define DEFAULT_FBLOB_NODE_BLOBS_MSG_BUFFER 1
 #define DEFAULT_FBLOB_NODE_MSG_QUEUE        1
-#define DEFAULT_FBLOB_MIN_BLOB_AREA         500
+#define DEFAULT_FBLOB_MIN_BLOB_AREA         300
 
 //default values used with filtered state node
 #define DEFAULT_FSTATE_NODE_PUBLISH_FREQ        50
