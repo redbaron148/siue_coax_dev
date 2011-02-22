@@ -22,9 +22,9 @@ struct buffer {
 
 
 typedef enum {
-	IO_METHOD_READ,
-	IO_METHOD_MMAP,
-	IO_METHOD_USERPTR,
+    IO_METHOD_READ,
+    IO_METHOD_MMAP,
+    IO_METHOD_USERPTR,
 } io_method;
 
 
@@ -67,7 +67,7 @@ public:
   int n_buffers;
 
   int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh;
-  bool ha;
+  bool ha, awb;
 
 
   Camera(const char *name, int w, int h, int fps=30);
@@ -100,6 +100,23 @@ public:
   int minSharpness();
   int maxSharpness();
   int defaultSharpness();
+  
+  bool isWhiteBalanceTempAuto();
+  /*int maxGamma();
+  int minGamma();
+  int defaultGamma();
+  int maxGain();
+  int minGain();
+  int defaultGain();
+  int maxPowerLineFreq();
+  int minPowerLineFreq();
+  int defaultPowerLineFreq();
+  int maxWhiteBalanceTemp();
+  int minWhiteBalanceTemp();
+  int defaultWhiteBalanceTemp();
+  int maxExposureAuto();
+  int minExposureAuto();
+  int defaultExposureAuto();*/
 
   int setBrightness(int v);
   int setContrast(int v);
