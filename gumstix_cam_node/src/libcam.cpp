@@ -1003,6 +1003,7 @@ int Camera::setHue(int v) {
 }
 
 int Camera::setWhiteBalanceTemp(int v) {
+  std::cout << "bwah?" << std::endl;
   if(v<mwbt || v>Mwbt || awb) return -1;
 
   struct v4l2_control control;
