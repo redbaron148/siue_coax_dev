@@ -890,6 +890,9 @@ bool Camera::isHueAuto() {
   return ha;
 }
 
+bool Camera::isAutoWhiteBalance() {
+  return awb;
+}
 
 int Camera::minSharpness() {
   return msh;
@@ -987,6 +990,20 @@ int Camera::setHueAuto(bool v) {
   return 1;
 }
 
+int Camera::setAutoWhiteBalance(bool v) {
+  if(v<mh || v>Mh) return -1;
+
+  struct v4l2_control control;
+  control.id = V4L2_CID_AUTO_WHITE_BALANCE;
+  control.value = v;
+
+  if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
+    perror("error setting auto white balance");
+    return -1;
+  }
+
+  return 1;
+}
 
 int Camera::setSharpness(int v) {
   if(v<mh || v>Mh) return -1;
