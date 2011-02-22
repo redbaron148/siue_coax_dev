@@ -622,7 +622,7 @@ void Camera::Start() {
       break;
 
     case IO_METHOD_USERPTR:
-      for(i = 0; i < n_buffers; ++i) {
+      for(i = 0; i < (unsigned int)n_buffers; ++i) {
         struct v4l2_buffer buf;
 
         CLEAR (buf);
@@ -673,7 +673,7 @@ void Camera::Stop() {
 
 unsigned char *Camera::Get() {
   struct v4l2_buffer buf;
-  unsigned int i;
+  //unsigned int i;
 
 
   switch(io) {
@@ -712,7 +712,7 @@ unsigned char *Camera::Get() {
         }
       }
 
-      assert(buf.index < n_buffers);
+      assert(buf.index < (unsigned int)n_buffers);
 
 //process_image(buffers[buf.index].start);
 
@@ -763,7 +763,7 @@ return data;
       break;
   }
 
-
+    return NULL;
 }
 
 
@@ -1003,7 +1003,7 @@ int Camera::setHue(int v) {
 }
 
 int Camera::setWhiteBalanceTemp(int v) {
-  if(v<mwbt || v>Mwbt || !awb) return -1;
+  if(v<mwbt || v>Mwbt || awb) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
