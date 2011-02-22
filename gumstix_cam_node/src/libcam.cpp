@@ -580,7 +580,7 @@ void Camera::UnInit() {
       break;
 
     case IO_METHOD_USERPTR:
-      for (i = 0; i < n_buffers; ++i)
+      for (i = 0; i < (unsigned int)n_buffers; ++i)
         free (buffers[i].start);
       break;
   }
@@ -601,7 +601,7 @@ void Camera::Start() {
       break;
 
     case IO_METHOD_MMAP:
-      for(i = 0; i < n_buffers; ++i) {
+      for(i = 0; i < (unsigned int)n_buffers; ++i) {
         struct v4l2_buffer buf;
 
         CLEAR (buf);
@@ -988,7 +988,7 @@ int Camera::setSaturation(int v) {
 
 
 int Camera::setHue(int v) {
-  if(v<mh || v>Mh) return -1;
+  if(v<mh || v>Mh || ha) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_HUE;
@@ -1003,7 +1003,7 @@ int Camera::setHue(int v) {
 }
 
 int Camera::setWhiteBalanceTemp(int v) {
-  if(v<mwbt || v>Mwbt) return -1;
+  if(v<mwbt || v>Mwbt || !awb) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;

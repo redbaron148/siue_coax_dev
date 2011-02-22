@@ -100,7 +100,7 @@ int main(int argc, char **argv)
     nh.param( "saturation",saturation,int(cap_device.defaultSaturation()));
     nh.param( "sharpness",sharpness,int(cap_device.defaultSharpness()));
     nh.param( "hue",hue,int(cap_device.defaultHue()));
-    nh.param( "auto_white_balance",auto_white_balance,cap_device.isAutoWhiteBalance());
+    nh.param( "auto_white_balance",auto_white_balance,auto_white_balance);
     nh.param( "white_balance_temp",white_balance_temp,cap_device.defaultWhiteBalanceTemp());
     
     ROS_INFO("brightness: %d",brightness);
