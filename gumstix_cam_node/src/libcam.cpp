@@ -1008,6 +1008,7 @@ int Camera::setWhiteBalanceTemp(int v) {
   struct v4l2_control control;
   control.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
   control.value = v;
+  std::cout << "got this far!" << std::endl;
 
   if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
     perror("error setting white balance temperature");
