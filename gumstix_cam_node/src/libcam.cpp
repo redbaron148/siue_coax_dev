@@ -1036,7 +1036,7 @@ int Camera::setHueAuto(bool v) {
 }
 
 int Camera::setAutoWhiteBalance(bool v) {
-  if(v<mh || v>Mh) return -1;
+  if(v<mh || v>Mh || v==awb) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_AUTO_WHITE_BALANCE;
@@ -1047,6 +1047,7 @@ int Camera::setAutoWhiteBalance(bool v) {
     return -1;
   }
 
+  awb = v;
   return 1;
 }
 
