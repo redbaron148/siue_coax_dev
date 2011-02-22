@@ -113,12 +113,14 @@ int main(int argc, char **argv)
     cap_device.setContrast(contrast);
     cap_device.setSaturation(saturation);
     cap_device.setSharpness(sharpness);
+    cap_device.setAutoWhiteBalance(auto_white_balance);
 
     ROS_INFO("Min-Max brightness: %d-%d",cap_device.minBrightness(),cap_device.maxBrightness());
     ROS_INFO("Min-Max contrast: %d-%d",cap_device.minContrast(),cap_device.maxContrast());
     ROS_INFO("Min-Max saturation: %d-%d",cap_device.minSaturation(),cap_device.maxSaturation());
     ROS_INFO("Min-Max hue: %d-%d",cap_device.minHue(),cap_device.maxHue());
     ROS_INFO("Min-Max sharpness: %d-%d",cap_device.minSharpness(),cap_device.maxSharpness());
+    
 
     while ( ros::ok() )
     {
