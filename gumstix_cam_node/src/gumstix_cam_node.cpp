@@ -68,6 +68,7 @@ int main(int argc, char **argv)
     int sharpness = 0;
     int brightness = 0;
     int white_balance_temp = 0;
+    int exposure_auto = 0;
     bool auto_white_balance = true;
     
     nh.param( "v4l_id", camID, int(camID) );
@@ -102,6 +103,7 @@ int main(int argc, char **argv)
     nh.param( "hue",hue,int(cap_device.defaultHue()));
     nh.param( "auto_white_balance",auto_white_balance,auto_white_balance);
     nh.param( "white_balance_temp",white_balance_temp,cap_device.defaultWhiteBalanceTemp());
+    nh.param( "exposure_auto",exposure_auto,cap_device.defaultExposureAuto());
     
     ROS_INFO("brightness: %d",brightness);
     ROS_INFO("contrast: %d",contrast);
@@ -110,6 +112,7 @@ int main(int argc, char **argv)
     ROS_INFO("sharpness: %d",sharpness);
     ROS_INFO("auto white balance: %d",auto_white_balance);
     ROS_INFO("white balance temp: %d",white_balance_temp);
+    ROS_INFO("white balance temp: %d",exposure_auto);
 
     cap_device.setHue(hue);
     cap_device.setBrightness(brightness);
@@ -118,6 +121,7 @@ int main(int argc, char **argv)
     cap_device.setSharpness(sharpness);
     cap_device.setAutoWhiteBalance(auto_white_balance);
     cap_device.setWhiteBalanceTemp(white_balance_temp);
+    cap_device.setExposureAuto(exposure_auto);
 
     ROS_INFO("Min-Max brightness: %d-%d",cap_device.minBrightness(),cap_device.maxBrightness());
     ROS_INFO("Min-Max contrast: %d-%d",cap_device.minContrast(),cap_device.maxContrast());
@@ -125,6 +129,7 @@ int main(int argc, char **argv)
     ROS_INFO("Min-Max hue: %d-%d",cap_device.minHue(),cap_device.maxHue());
     ROS_INFO("Min-Max sharpness: %d-%d",cap_device.minSharpness(),cap_device.maxSharpness());
     ROS_INFO("Min-Max white balance temp: %d-%d",cap_device.minWhiteBalanceTemp(),cap_device.maxWhiteBalanceTemp());
+    ROS_INFO("Min-Max exposure auto: %d-%d",cap_device.minExposureAuto(),cap_device.maxExposureAuto());
     
 
     while ( ros::ok() )

@@ -66,7 +66,7 @@ public:
   buffer *buffers;
   int n_buffers;
 
-  int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh, mwbt, Mwbt, dwbt;
+  int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh, mwbt, Mwbt, dwbt, mea, Mea, dea;
   bool ha, awb;
 
 
@@ -115,9 +115,9 @@ public:
   int maxWhiteBalanceTemp();
   int minWhiteBalanceTemp();
   int defaultWhiteBalanceTemp();
-  /*int maxExposureAuto();
+  int maxExposureAuto();
   int minExposureAuto();
-  int defaultExposureAuto();*/
+  int defaultExposureAuto();
 
   int setBrightness(int v);
   int setContrast(int v);
@@ -129,6 +129,7 @@ public:
   //! Added by Aaron Parker
   int setAutoWhiteBalance(bool v);
   int setWhiteBalanceTemp(int v);
+  int setExposureAuto(int v);
 };
 
 

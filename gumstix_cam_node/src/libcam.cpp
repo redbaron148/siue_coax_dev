@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include <iostream>
+
 #include <getopt.h>             /* getopt_long() */
 
 #include <fcntl.h>              /* low-level i/o */
@@ -265,6 +265,23 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
   mb=queryctrl.minimum;
   Mb=queryctrl.maximum;
   db=queryctrl.default_value;
+  
+  memset(&queryctrl, 0, sizeof(queryctrl));
+  queryctrl.id = V4L2_CID_EXPOSURE_AUTO;
+  if(-1 == ioctl (fd, VIDIOC_QUERYCTRL, &queryctrl)) {
+    if(errno != EINVAL) {
+      //perror ("VIDIOC_QUERYCTRL");
+      //exit(EXIT_FAILURE);
+      printf("exposure auto error\n");
+    } else {
+      printf("exposure auto is not supported\n");
+    }
+  } else if(queryctrl.flags & V4L2_CTRL_FLAG_DISABLED) {
+    printf ("exposure auto is not supported\n");
+  }
+  mea=queryctrl.minimum;
+  Mea=queryctrl.maximum;
+  dea=queryctrl.default_value;
   
   memset(&queryctrl, 0, sizeof(queryctrl));
   queryctrl.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
@@ -938,6 +955,19 @@ int Camera::defaultWhiteBalanceTemp()
     return dwbt;
 }
 
+int Camera::maxExposureAuto(){
+    return Mea;
+}
+
+int Camera::minExposureAuto(){
+    return mea;
+}
+
+int Camera::defaultExposureAuto()
+{
+    return dea;
+}
+
 
 int Camera::setBrightness(int v) {
   if(v<mb || v>Mb) return -1;
@@ -1003,19 +1033,32 @@ int Camera::setHue(int v) {
 }
 
 int Camera::setWhiteBalanceTemp(int v) {
-  std::cout << "bwah?" << std::endl;
   if(v<mwbt || v>Mwbt || awb) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
   control.value = v;
-  std::cout << "got this far!" << std::endl;
 
   if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
     perror("error setting white balance temperature");
     return -1;
   }
 
+  return 1;
+}
+
+int Camera::setExposureAuto(int v){
+  if(v<mea || v>Mea) return -1;
+
+  struct v4l2_control control;
+  control.id = V4L2_CID_EXPOSURE_AUTO;
+  control.value = v;
+
+  if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
+    perror("error setting exposure auto");
+    return -1;
+  }
+  
   return 1;
 }
 
