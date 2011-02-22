@@ -284,6 +284,23 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
   dea=queryctrl.default_value;
   
   memset(&queryctrl, 0, sizeof(queryctrl));
+  queryctrl.id = V4L2_CID_EXPOSURE_ABSOLUTE;
+  if(-1 == ioctl (fd, VIDIOC_QUERYCTRL, &queryctrl)) {
+    if(errno != EINVAL) {
+      //perror ("VIDIOC_QUERYCTRL");
+      //exit(EXIT_FAILURE);
+      printf("exposure absolute error\n");
+    } else {
+      printf("exposure absolute is not supported\n");
+    }
+  } else if(queryctrl.flags & V4L2_CTRL_FLAG_DISABLED) {
+    printf ("exposure absolute is not supported\n");
+  }
+  meabs=queryctrl.minimum;
+  Meabs=queryctrl.maximum;
+  deabs=queryctrl.default_value;
+  
+  memset(&queryctrl, 0, sizeof(queryctrl));
   queryctrl.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
   if(-1 == ioctl (fd, VIDIOC_QUERYCTRL, &queryctrl)) {
     if(errno != EINVAL) {
