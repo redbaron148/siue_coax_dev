@@ -925,15 +925,15 @@ int Camera::defaultSharpness() {
   return dsh;
 }
 
-int maxWhiteBalanceTemp(){
+int Camera::maxWhiteBalanceTemp(){
     return Mwbt;
 }
 
-int minWhiteBalanceTemp(){
+int Camera::minWhiteBalanceTemp(){
     return mwbt;
 }
 
-int defaultWhiteBalanceTemp()
+int Camera::defaultWhiteBalanceTemp()
 {
     return dwbt;
 }
