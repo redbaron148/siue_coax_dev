@@ -118,6 +118,9 @@ public:
   int maxExposureAuto();
   int minExposureAuto();
   int defaultExposureAuto();
+  int maxExposureAbsolute();
+  int minExposureAbsolute();
+  int defaultExposureAbsolute();
 
   int setBrightness(int v);
   int setContrast(int v);
@@ -130,6 +133,7 @@ public:
   int setAutoWhiteBalance(bool v);
   int setWhiteBalanceTemp(int v);
   int setExposureAuto(int v);
+  int setExposureAbsolute(int v);
 };
 
 

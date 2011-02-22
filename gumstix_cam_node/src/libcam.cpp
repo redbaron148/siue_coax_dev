@@ -980,9 +980,20 @@ int Camera::minExposureAuto(){
     return mea;
 }
 
-int Camera::defaultExposureAuto()
-{
+int Camera::defaultExposureAuto(){
     return dea;
+}
+
+int Camera::maxExposureAbsolute(){
+    return Meabs;
+}
+
+int Camera::minExposureAbsolute(){
+    return meabs;
+}
+
+int Camera::defaultExposureAbsolute(){
+    return deabs;
 }
 
 
@@ -1069,6 +1080,21 @@ int Camera::setExposureAuto(int v){
 
   struct v4l2_control control;
   control.id = V4L2_CID_EXPOSURE_AUTO;
+  control.value = v;
+
+  if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
+    perror("error setting exposure auto");
+    return -1;
+  }
+  
+  return 1;
+}
+
+int Camera::setExposureAbsolute(int v){
+  if(v<meabs || v>Meabs) return -1;
+
+  struct v4l2_control control;
+  control.id = V4L2_CID_EXPOSURE_ABSOLUTE;
   control.value = v;
 
   if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
