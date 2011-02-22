@@ -327,14 +327,29 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
     if(errno != EINVAL) {
       //perror ("VIDIOC_QUERYCTRL");
       //exit(EXIT_FAILURE);
-      printf("hueauto error\n");
+      printf("hue auto error\n");
     } else {
-      printf("hueauto is not supported\n");
+      printf("hue auto is not supported\n");
     }
   } else if(queryctrl.flags & V4L2_CTRL_FLAG_DISABLED) {
-    printf ("hueauto is not supported\n");
+    printf ("hue auto is not supported\n");
   }
   ha=queryctrl.default_value;
+  
+  memset(&queryctrl, 0, sizeof(queryctrl));
+  queryctrl.id = V4L2_CID_AUTO_WHITE_BALANCE;
+  if(-1 == ioctl (fd, VIDIOC_QUERYCTRL, &queryctrl)) {
+    if(errno != EINVAL) {
+      //perror ("VIDIOC_QUERYCTRL");
+      //exit(EXIT_FAILURE);
+      printf("auto white balance error\n");
+    } else {
+      printf("auto white balance is not supported\n");
+    }
+  } else if(queryctrl.flags & V4L2_CTRL_FLAG_DISABLED) {
+    printf ("auto white balance is not supported\n");
+  }
+  awb=queryctrl.default_value;
 
 
   memset(&queryctrl, 0, sizeof(queryctrl));
@@ -444,9 +459,9 @@ void Camera::init_userp(unsigned int buffer_size) {
                                                      buffer_size);
 
                 if (!buffers[n_buffers].start) {
-    			fprintf (stderr, "Out of memory\n");
-            		exit (EXIT_FAILURE);
-		}
+                fprintf (stderr, "Out of memory\n");
+                    exit (EXIT_FAILURE);
+        }
         }
 
 
@@ -521,13 +536,13 @@ void Camera::init_read (unsigned int buffer_size) {
                 exit (EXIT_FAILURE);
         }
 
-	buffers[0].length = buffer_size;
-	buffers[0].start = malloc (buffer_size);
+    buffers[0].length = buffer_size;
+    buffers[0].start = malloc (buffer_size);
 
-	if (!buffers[0].start) {
-    		fprintf (stderr, "Out of memory\n");
-            	exit (EXIT_FAILURE);
-	}
+    if (!buffers[0].start) {
+            fprintf (stderr, "Out of memory\n");
+                exit (EXIT_FAILURE);
+    }
 */
 }
 
@@ -598,7 +613,7 @@ void Camera::Start() {
         buf.type        = V4L2_BUF_TYPE_VIDEO_CAPTURE;
         buf.memory      = V4L2_MEMORY_USERPTR;
         buf.index       = i;
-        buf.m.userptr	= (unsigned long) buffers[i].start;
+        buf.m.userptr   = (unsigned long) buffers[i].start;
         buf.length      = buffers[i].length;
 
         if(-1 == xioctl (fd, VIDIOC_QBUF, &buf))
@@ -647,20 +662,20 @@ unsigned char *Camera::Get() {
   switch(io) {
     case IO_METHOD_READ:
 /*
-    		if (-1 == read (fd, buffers[0].start, buffers[0].length)) {
-            		switch (errno) {
-            		case EAGAIN:
-                    		return 0;
+            if (-1 == read (fd, buffers[0].start, buffers[0].length)) {
+                    switch (errno) {
+                    case EAGAIN:
+                            return 0;
 
-			case EIO:
+            case EIO:
 
 
-			default:
-				errno_exit ("read");
-			}
-		}
+            default:
+                errno_exit ("read");
+            }
+        }
 
-    		process_image (buffers[0].start);
+            process_image (buffers[0].start);
 */
       break;
 
@@ -698,35 +713,35 @@ return data;
 
     case IO_METHOD_USERPTR:
 /*
-		CLEAR (buf);
+        CLEAR (buf);
 
-    		buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-    		buf.memory = V4L2_MEMORY_USERPTR;
+            buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+            buf.memory = V4L2_MEMORY_USERPTR;
 
-		if (-1 == xioctl (fd, VIDIOC_DQBUF, &buf)) {
-			switch (errno) {
-			case EAGAIN:
-				return 0;
+        if (-1 == xioctl (fd, VIDIOC_DQBUF, &buf)) {
+            switch (errno) {
+            case EAGAIN:
+                return 0;
 
-			case EIO:
+            case EIO:
 
 
-			default:
-				errno_exit ("VIDIOC_DQBUF");
-			}
-		}
+            default:
+                errno_exit ("VIDIOC_DQBUF");
+            }
+        }
 
-		for (i = 0; i < n_buffers; ++i)
-			if (buf.m.userptr == (unsigned long) buffers[i].start
-			    && buf.length == buffers[i].length)
-				break;
+        for (i = 0; i < n_buffers; ++i)
+            if (buf.m.userptr == (unsigned long) buffers[i].start
+                && buf.length == buffers[i].length)
+                break;
 
-		assert (i < n_buffers);
+        assert (i < n_buffers);
 
-    		process_image ((void *) buf.m.userptr);
+            process_image ((void *) buf.m.userptr);
 
-		if (-1 == xioctl (fd, VIDIOC_QBUF, &buf))
-			errno_exit ("VIDIOC_QBUF");
+        if (-1 == xioctl (fd, VIDIOC_QBUF, &buf))
+            errno_exit ("VIDIOC_QBUF");
 */
       break;
   }

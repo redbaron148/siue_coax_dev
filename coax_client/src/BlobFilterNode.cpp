@@ -12,6 +12,7 @@
 
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
+#include <BlobUtilityLibrary.h>
 #include <cmvision/Blobs.h>
 #include <coax_msgs/CoaxState.h>
 
@@ -27,10 +28,7 @@ ros::Publisher filtered_blob_pub;
 
 void blobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
-cmvision::Blobs filterSmallBlobs(cmvision::Blobs blobs);
-bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2);
-float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2);
-cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs);
+unsigned int filterSmallBlobs(cmvision::Blobs &blobs);
 
 int main(int argc, char **argv)
 {
@@ -55,9 +53,7 @@ int main(int argc, char **argv)
 
 void blobsCallback(cmvision::Blobs msg)
 {
-    cmvision::Blobs return_blobs;
-    
-    return_blobs = filterSmallBlobs(msg);
+    filterSmallBlobs(msg);
     
     filtered_blob_pub.publish(msg);
 }
@@ -121,36 +117,13 @@ void getParams(const ros::NodeHandle &nh)
     }
 }
 
-cmvision::Blobs filterSmallBlobs(cmvision::Blobs blobs)
+unsigned int filterSmallBlobs(cmvision::Blobs &blobs)
 {
-    for(int i = blobs.blob_count-1;i>=0;i--)
+    int temp = -1;
+    for(int i = 0;(unsigned int)i<blobs.blob_count;i++)
     {
-        if(!(blobs.blobs[i].area >= (unsigned)MIN_BLOB_AREA)) 
-        {
-            blobs.blobs.erase(blobs.blobs.begin()+i);
-            blobs.blob_count--;
-        }
+        temp = findSimilarAdjacentBlob(i,blobs);
+        if(temp != -1) combineBlobs(temp,i,blobs);
     }
-    return blobs;
-}
-
-bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2)
-{
-    return ((abs((int)(b1.x-b2.x))-3 <= (int)((b1.right-b1.left)/2+(b2.right-b2.left)/2)) &&
-            (abs((int)(b1.y-b2.y))-3 <= (int)((b1.bottom-b1.top)/2+(b2.bottom-b2.top)/2)));
-}
-
-float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2)
-{
-    return (atan2(b2.y-b1.y,b2.x-b1.x));
-}
-
-cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs)
-{
-    cmvision::Blobs adj_blobs;
-    for(int i = blobs.blob_count-1;i>=0;i--)
-    {
-        if(blobsAreAdjacent(blob,blobs.blobs[i])) adj_blobs.blobs.push_back(blobs.blobs[i]);
-    }
-    return adj_blobs;
+    return blobs.blob_count;
 }

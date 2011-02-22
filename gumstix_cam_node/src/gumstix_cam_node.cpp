@@ -19,7 +19,7 @@
  * gumstix_cam_node
  *
  * NOTE: this node was created to work with a custom version of OpenCV on a gumstix.
- *				It is not meant for desktop use.
+ *              It is not meant for desktop use.
  *
  * A ROS node whose function is to capture an image from a webcam, convert that Image
  *  from an OpenCV IplImage to a ROS Image Message, and to broadcast the
@@ -51,12 +51,12 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "gumstix_cam_node");
-	ros::NodeHandle n;
-	ros::NodeHandle nh("~");
-	
-	string topic = "image_";
-	string device = "/dev/video";
+    ros::init(argc, argv, "gumstix_cam_node");
+    ros::NodeHandle n;
+    ros::NodeHandle nh("~");
+    
+    string topic = "image_";
+    string device = "/dev/video";
 
 	int camID = 0;
 	int FPS = 10;
@@ -83,14 +83,13 @@ int main(int argc, char **argv)
 	topic  += boost::lexical_cast<std::string>(camID);
 	device += boost::lexical_cast<std::string>(camID);
 
-	//setup the publisher
-	ros::Publisher cameraPub = n.advertise<sensor_msgs::Image>(topic, 1);
-	
-	ros::Rate loop_rate(FPS);
-	sensor_msgs::CvBridge bridge_;
-	IplImage *rawImg = cvCreateImage(cvSize(width, height), 8, 3);
-	int cap_status = 0;
-
+    //setup the publisher
+    ros::Publisher cameraPub = n.advertise<sensor_msgs::Image>(topic, 1);
+    
+    ros::Rate loop_rate(FPS);
+    sensor_msgs::CvBridge bridge_;
+    IplImage *rawImg = cvCreateImage(cvSize(width, height), 8, 3);
+    int cap_status = 0;
 
 	Camera cap_device( device.c_str(), width, height, FPS );
 	
@@ -139,6 +138,6 @@ int main(int argc, char **argv)
 		loop_rate.sleep();
 	}
 
-	return 0;
+    return 0;
 }
 
