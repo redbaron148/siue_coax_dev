@@ -517,7 +517,7 @@ void Camera::init_mmap() {
     exit(1);
   }
 
-  for(n_buffers = 0; unsigned int(n_buffers) < req.count; ++n_buffers) {
+  for(n_buffers = 0; (unsigned int)n_buffers < req.count; ++n_buffers) {
     struct v4l2_buffer buf;
 
     CLEAR (buf);
@@ -574,7 +574,7 @@ void Camera::UnInit() {
       break;
 
     case IO_METHOD_MMAP:
-      for(i = 0; i < unsigned int(n_buffers); ++i)
+      for(i = 0; i < (unsigned int)n_buffers; ++i)
         if(-1 == munmap (buffers[i].start, buffers[i].length))
           errno_exit ("munmap");
       break;
