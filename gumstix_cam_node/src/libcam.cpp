@@ -265,6 +265,23 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
   mb=queryctrl.minimum;
   Mb=queryctrl.maximum;
   db=queryctrl.default_value;
+  
+  memset(&queryctrl, 0, sizeof(queryctrl));
+  queryctrl.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
+  if(-1 == ioctl (fd, VIDIOC_QUERYCTRL, &queryctrl)) {
+    if(errno != EINVAL) {
+      //perror ("VIDIOC_QUERYCTRL");
+      //exit(EXIT_FAILURE);
+      printf("white balance temperature error\n");
+    } else {
+      printf("white balance temperature is not supported\n");
+    }
+  } else if(queryctrl.flags & V4L2_CTRL_FLAG_DISABLED) {
+    printf ("white balance temperature is not supported\n");
+  }
+  mwbt=queryctrl.minimum;
+  Mwbt=queryctrl.maximum;
+  dwbt=queryctrl.default_value;
 
 
   memset(&queryctrl, 0, sizeof(queryctrl));
@@ -908,7 +925,18 @@ int Camera::defaultSharpness() {
   return dsh;
 }
 
+int maxWhiteBalanceTemp(){
+    return Mwbt;
+}
 
+int minWhiteBalanceTemp(){
+    return mwbt;
+}
+
+int defaultWhiteBalanceTemp()
+{
+    return dwbt;
+}
 
 
 int Camera::setBrightness(int v) {
@@ -964,6 +992,21 @@ int Camera::setHue(int v) {
 
   struct v4l2_control control;
   control.id = V4L2_CID_HUE;
+  control.value = v;
+
+  if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
+    perror("error setting hue");
+    return -1;
+  }
+
+  return 1;
+}
+
+int Camera::setWhiteBalanceTemp(int v) {
+  if(v<mwbt || v>Mwbt) return -1;
+
+  struct v4l2_control control;
+  control.id = V4L2_CID_WHITE_BALANCE_TEMPERATURE;
   control.value = v;
 
   if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {

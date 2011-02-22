@@ -66,7 +66,7 @@ public:
   buffer *buffers;
   int n_buffers;
 
-  int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh;
+  int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh, mwbt, Mwbt, dwbt;
   bool ha, awb;
 
 
@@ -111,11 +111,11 @@ public:
   int defaultGain();
   int maxPowerLineFreq();
   int minPowerLineFreq();
-  int defaultPowerLineFreq();
+  int defaultPowerLineFreq();*/
   int maxWhiteBalanceTemp();
   int minWhiteBalanceTemp();
   int defaultWhiteBalanceTemp();
-  int maxExposureAuto();
+  /*int maxExposureAuto();
   int minExposureAuto();
   int defaultExposureAuto();*/
 
@@ -128,6 +128,7 @@ public:
   
   //! Added by Aaron Parker
   int setAutoWhiteBalance(bool v);
+  int setWhiteBalanceTemp(int v);
 };
 
 
