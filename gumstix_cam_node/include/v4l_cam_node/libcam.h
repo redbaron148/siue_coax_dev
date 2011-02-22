@@ -101,7 +101,8 @@ public:
   int maxSharpness();
   int defaultSharpness();
   
-  bool isWhiteBalanceTempAuto();
+  //!Added by Aaron Parker
+  bool isAutoWhiteBalance();
   /*int maxGamma();
   int minGamma();
   int defaultGamma();
@@ -124,6 +125,9 @@ public:
   int setHue(int v);
   int setHueAuto(bool v);
   int setSharpness(int v);
+  
+  //! Added by Aaron Parker
+  int setAutoWhiteBalance(bool v);
 };
 
 
