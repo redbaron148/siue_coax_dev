@@ -63,4 +63,6 @@
 #define SLOPE   0
 #define OFFSET  1
 
+#define BLOB_ADJACENT_THRESH 3
+
 #endif
