@@ -281,7 +281,7 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
   }
   mea=queryctrl.minimum;
   Mea=queryctrl.maximum;
-  dea=queryctrl.default_value;
+  ea=dea=queryctrl.default_value;
   
   memset(&queryctrl, 0, sizeof(queryctrl));
   queryctrl.id = V4L2_CID_EXPOSURE_ABSOLUTE;
@@ -1076,7 +1076,8 @@ int Camera::setWhiteBalanceTemp(int v) {
 }
 
 int Camera::setExposureAuto(int v){
-  if(v<mea || v>Mea) return -1;
+//!hack for my camera, values cannot be 0 or 2 for targus micro webcam
+  if(v<mea || v>Mea || v==0 || v==2) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_EXPOSURE_AUTO;
@@ -1087,18 +1088,20 @@ int Camera::setExposureAuto(int v){
     return -1;
   }
   
+  ea = v;
   return 1;
 }
 
 int Camera::setExposureAbsolute(int v){
-  if(v<meabs || v>Meabs) return -1;
+//! this is a hack, specific to my camera, v should be checked against all 4 possiblities
+  if(v<meabs || v>Meabs || ea == 3) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_EXPOSURE_ABSOLUTE;
   control.value = v;
 
   if(-1 == ioctl (fd, VIDIOC_S_CTRL, &control)) {
-    perror("error setting exposure auto");
+    perror("error setting exposure absolute");
     return -1;
   }
   

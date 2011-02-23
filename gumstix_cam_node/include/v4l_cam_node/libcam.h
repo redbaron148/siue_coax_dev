@@ -66,7 +66,7 @@ public:
   buffer *buffers;
   int n_buffers;
 
-  int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh, mwbt, Mwbt, dwbt, mea, Mea, dea, meabs, Meabs, deabs;
+  int mb, Mb, db, mc, Mc, dc, ms, Ms, ds, mh, Mh, dh, msh, Msh, dsh, mwbt, Mwbt, dwbt, mea, Mea, dea, meabs, Meabs, deabs, ea;
   bool ha, awb;
 
 
