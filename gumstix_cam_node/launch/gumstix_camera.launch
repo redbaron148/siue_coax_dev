@@ -1,0 +1,34 @@
+<launch>
+    <arg name="fps" default="10"/>
+    <arg name="width" default="160"/>
+    <arg name="height" default="120"/>
+    <arg name="v4l_id" default="0"/>
+    
+    <arg name="auto_white_balance" default="1"/>
+    <arg name="exposure_auto" default="3"/>
+    <arg name="exposure_absolute" default="4"/>
+    <arg name="white_balance_temp" default="2800"/>
+    <arg name="hue" default="0"/>
+    <arg name="saturation" default="3"/>
+    <arg name="brightness" default="2"/>
+    <arg name="contrast" default="16"/>
+    <arg name="sharpness" default="1"/>
+    
+    <node pkg="gumstix_cam_node" type="gumstix_cam_node" name="gumstix_cam_node" output="screen">
+        <param name="fps" value="$(arg fps)" />
+        <param name="width" value="$(arg width)"/>
+        <param name="height" value="$(arg height)"/>
+        <param name="v4l_id" value="$(arg v4l_id)"/>
+        
+        <param name="auto_white_balance" value="$(arg auto_white_balance)"/>
+        <param name="exposure_auto" value="$(arg exposure_auto)"/>
+        <param name="exposure_absolute" value="$(arg exposure_absolute)"/>
+        <param name="white_balance_temp" value="$(arg white_balance_temp)"/>
+        <param name="hue" value="$(arg hue)"/>
+        <param name="saturation" value="$(arg saturation)"/>
+        <param name="brightness" value="$(arg brightness)"/>
+        <param name="contrast" value="$(arg contrast)"/>
+        <param name="sharpness" value="$(arg sharpness)"/>
+        
+    </node>
+</launch>

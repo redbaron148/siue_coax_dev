@@ -49,10 +49,20 @@ int main(int argc, char **argv)
 
 void fBlobsCallback(cmvision::Blobs msg)
 {
-    std::cout << "blob count: " << msg.blob_count << std::endl;
-    std::vector<std::vector<unsigned int> > blob_clusters;
-    int num_adj_blobs = findAllBlobClusters(msg,blob_clusters);
-    std::cout << num_adj_blobs << endl;
+    if(msg.blob_count!=0)
+    {
+        std::cout << "blob count: " << msg.blob_count << std::endl;
+        std::vector<unsigned int> blob_cluster;
+        std::vector<std::vector<unsigned int> > blob_clusters;
+        //int num_adj_blobs = findAllBlobClusters(msg,blob_clusters);
+        int cluster_size = findBlobCluster(0,msg,blob_cluster);
+        std::cout << cluster_size << endl;
+        for(int i = 0;i<cluster_size;i++)
+        {
+            cout << blob_cluster[0] << "  ";
+        }
+        cout << endl;
+    }
 }
 
 void getParams(const ros::NodeHandle &nh)

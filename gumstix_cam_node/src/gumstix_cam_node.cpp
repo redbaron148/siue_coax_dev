@@ -115,7 +115,7 @@ int main(int argc, char **argv)
     ROS_INFO("auto white balance: %d",auto_white_balance);
     ROS_INFO("white balance temp: %d",white_balance_temp);
     ROS_INFO("exposure auto: %d",exposure_auto);
-    ROS_INFO("exposure absolute: %d",exposure_absolute);
+    ROS_INFO("exposure absolute: %d\n",exposure_absolute);
 
     cap_device.setHue(hue);
     cap_device.setBrightness(brightness);
