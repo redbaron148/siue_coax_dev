@@ -470,7 +470,7 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
       break;
     }
     
-    setAutoWhiteBalance(1);
+    setAutoWhiteBalance(true);
 
 }
 

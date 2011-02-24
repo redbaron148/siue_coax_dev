@@ -117,6 +117,8 @@ int main(int argc, char **argv)
     ROS_INFO("exposure auto: %d",exposure_auto);
     ROS_INFO("exposure absolute: %d\n",exposure_absolute);
 
+    ROS_INFO("sleeping to be sure device is initialized\n");
+    sleep(3);
     cap_device.setHue(hue);
     cap_device.setBrightness(brightness);
     cap_device.setContrast(contrast);
