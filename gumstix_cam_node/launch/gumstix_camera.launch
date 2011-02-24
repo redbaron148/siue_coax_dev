@@ -1,14 +1,14 @@
 <launch>
     <arg name="fps" default="10"/>
-    <arg name="width" default="160"/>
-    <arg name="height" default="120"/>
+    <arg name="width" default="320"/>
+    <arg name="height" default="240"/>
     <arg name="v4l_id" default="0"/>
     
-    <arg name="auto_white_balance" default="1"/>
-    <arg name="exposure_auto" default="3"/>
-    <arg name="exposure_absolute" default="4"/>
+    <arg name="auto_white_balance" default="false"/>
+    <arg name="exposure_auto" default="1"/>
+    <arg name="exposure_absolute" default="2"/>
     <arg name="white_balance_temp" default="2800"/>
-    <arg name="hue" default="0"/>
+    <arg name="hue" default="-5"/>
     <arg name="saturation" default="3"/>
     <arg name="brightness" default="2"/>
     <arg name="contrast" default="16"/>

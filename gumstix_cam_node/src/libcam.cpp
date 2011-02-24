@@ -1079,7 +1079,7 @@ int Camera::setWhiteBalanceTemp(int v) {
 
 int Camera::setExposureAuto(int v){
 //!hack for my camera, values cannot be 0 or 2 for targus micro webcam
-  if(v<mea || v>Mea || v==0 || v==2) return -1;
+  if(v<mea || v>Mea) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_EXPOSURE_AUTO;
@@ -1096,7 +1096,7 @@ int Camera::setExposureAuto(int v){
 
 int Camera::setExposureAbsolute(int v){
 //! this is a hack, specific to my camera, v should be checked against all 4 possiblities
-  if(v<meabs || v>Meabs || ea!=1) return -1;
+  if(v<meabs || v>Meabs) return -1;
 
   struct v4l2_control control;
   control.id = V4L2_CID_EXPOSURE_ABSOLUTE;
