@@ -9,7 +9,7 @@
 #include <CoaxClientConst.h>
 #include <BlobUtilityLibrary.h>
 #include <cmvision/Blobs.h>
-#include <coax_client/BlobSequence.h>
+#include <iostream>
 
 //global variables
 int PUBLISH_FREQ;
@@ -22,7 +22,6 @@ using namespace std;
 
 void fBlobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
-bool isInList(const unsigned int &i, std::list<unsigned int> &list);
 
 int main(int argc, char **argv)
 {
@@ -49,20 +48,17 @@ int main(int argc, char **argv)
 
 void fBlobsCallback(cmvision::Blobs msg)
 {
-    if(msg.blob_count!=0)
+    coax_client::BlobSequences sequences;
+    std::vector<std::vector<unsigned int> > blob_clusters;
+    int num_blob_clusters = findAllBlobClusters(msg,blob_clusters);
+    for(int i = 0;i<num_blob_clusters;i++)
     {
-        std::cout << "blob count: " << msg.blob_count << std::endl;
-        std::vector<unsigned int> blob_cluster;
-        std::vector<std::vector<unsigned int> > blob_clusters;
-        //int num_adj_blobs = findAllBlobClusters(msg,blob_clusters);
-        int cluster_size = findBlobCluster(0,msg,blob_cluster);
-        std::cout << cluster_size << endl;
-        for(int i = 0;i<cluster_size;i++)
-        {
-            cout << blob_cluster[0] << "  ";
-        }
-        cout << endl;
+        coax_client::BlobSequence sequence;
+        orderCluster(blob_clusters[i], msg);
+        blobSequenceFromCluster(sequence,blob_clusters[i],msg);
+        sequences.sequences.push_back(sequence);
     }
+    cout << sequences << endl;
 }
 
 void getParams(const ros::NodeHandle &nh)

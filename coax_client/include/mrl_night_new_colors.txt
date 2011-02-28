@@ -4,6 +4,6 @@
 (  255, 165, 0)   1.500000 20 object_orange
 
 [Thresholds]
-( 70:170, 72:100, 168:193 ) #pink object
-( 70:188, 96:122, 34:92 ) #green object
-( 71:225, 41:105, 118:137) #orange object
+( 60:174, 71:98, 166:194 ) #pink object
+( 101:188, 99:122, 34:76 ) #green object
+( 131:228, 42:81, 113:136) #orange object
