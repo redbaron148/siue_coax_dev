@@ -29,45 +29,8 @@ void orderCluster(std::vector<unsigned int>& cluster,cmvision::Blobs blobs);
 cmvision::Blob& getBlob(const unsigned int &blob_num, cmvision::Blobs &blobs);
 void printBinary(char n);
 char getColorID(unsigned int blob_num,cmvision::Blobs& blobs);
-void blobSequenceFromCluster(coax_client::BlobSequence &blob_sequence, const std::vector<unsigned int> &cluster, cmvision::Blobs blobs)
-{ 
-    for(unsigned int i = 0;i<cluster.size();i++)
-    {
-        //cout << "oring ";
-        //printBinary(getColorID(cluster[i],blobs));
-        //cout << " " << (3-i)*2 << endl;
-        blob_sequence.id |= (getColorID(cluster[i],blobs) << (3-i)*2);
-        blob_sequence.x += getBlob(cluster[i],blobs).x;
-        blob_sequence.y += getBlob(cluster[i],blobs).y;
-    }
-    blob_sequence.sequence = cluster;
-    blob_sequence.x /= cluster.size();
-    blob_sequence.y /= cluster.size();
-    //cout << endl;
-}
-
-int findAllBlobClusters(cmvision::Blobs blobs, std::vector<std::vector<unsigned int> > &blob_clusters)
-{
-    std::list<unsigned int> have_no_cluster(blobs.blobs.size(),0);
-    int i = 1;
-    for(std::list<unsigned int>::iterator pos = ++have_no_cluster.begin();pos != have_no_cluster.end();++pos)
-    {
-        *pos = i;
-        i++;
-    }
-    
-    while(have_no_cluster.size())
-    {
-        //cout << "blobs with no cluster, finding cluster." << endl;
-        std::vector<unsigned int> cluster;
-        findBlobCluster(have_no_cluster.front(),blobs,cluster);
-        for(int i = 0;i<(int)cluster.size();i++)
-            have_no_cluster.remove(cluster[i]);
-        blob_clusters.push_back(cluster);
-    }
-    
-    return blob_clusters.size();
-}
+void blobSequenceFromCluster(coax_client::BlobSequence &blob_sequence, std::vector<unsigned int> &cluster, cmvision::Blobs blobs);
+int findAllBlobClusters(cmvision::Blobs blobs, std::vector<std::vector<unsigned int> > &blob_clusters);
 
 bool isInList(const unsigned int &i, std::vector<unsigned int> &list)
 {
@@ -172,7 +135,6 @@ void orderCluster(std::vector<unsigned int>& cluster,cmvision::Blobs blobs)
                 tmp = cluster[j];
                 cluster[j] = cluster[j+1];
                 cluster[j+1] = tmp;
-                //cout << "swap occured! " << j << "<->" << j+1 << endl;
             }
         }
     }
@@ -200,6 +162,43 @@ void printBinary(char n)
 char getColorID(unsigned int blob_num,cmvision::Blobs& blobs)
 {
     return ((getBlob(blob_num,blobs).red!=0) << 1)|((getBlob(blob_num,blobs).green!=0)<<0);
+}
+
+void blobSequenceFromCluster(coax_client::BlobSequence &blob_sequence, std::vector<unsigned int> &cluster, cmvision::Blobs blobs)
+{ 
+    orderCluster(cluster,blobs);
+    for(unsigned int i = 0;i<cluster.size();i++)
+    {
+        blob_sequence.id |= (getColorID(cluster[i],blobs) << (3-i)*2);
+        blob_sequence.x += getBlob(cluster[i],blobs).x;
+        blob_sequence.y += getBlob(cluster[i],blobs).y;
+    }
+    blob_sequence.sequence = cluster;
+    blob_sequence.x /= cluster.size();
+    blob_sequence.y /= cluster.size();
+}
+
+int findAllBlobClusters(cmvision::Blobs blobs, std::vector<std::vector<unsigned int> > &blob_clusters)
+{
+    std::list<unsigned int> have_no_cluster(blobs.blobs.size(),0);
+    int i = 1;
+    for(std::list<unsigned int>::iterator pos = ++have_no_cluster.begin();pos != have_no_cluster.end();++pos)
+    {
+        *pos = i;
+        i++;
+    }
+    
+    while(have_no_cluster.size())
+    {
+        //cout << "blobs with no cluster, finding cluster." << endl;
+        std::vector<unsigned int> cluster;
+        findBlobCluster(have_no_cluster.front(),blobs,cluster);
+        for(int i = 0;i<(int)cluster.size();i++)
+            have_no_cluster.remove(cluster[i]);
+        blob_clusters.push_back(cluster);
+    }
+    
+    return blob_clusters.size();
 }
 
 #endif

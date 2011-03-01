@@ -4,10 +4,17 @@
 //field of view from COAX webcam, in degrees.
 #define DEFAULT_FIELD_OF_VIEW_HORIZ 54.6
 #define DEFAULT_FIELD_OF_VIEW_VERT  41.27
+
+//default values used for the blob pattern finder node
+#define DEFAULT_BLOB_PATT_NODE_PUBLISH_FREQ 10
+#define DEFAULT_BLOB_PATT_NODE_FBLOBS_MSG_BUFFER 10
+#define DEFAULT_BLOB_PATT_NODE_MSG_QUEUE 1
+
+//default values used for the blob position tracking node
 #define DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ 10
 #define DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER 1
-#define DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER 1
-#define DEFAULT_BLOB_POS_NODE_MSG_QUEUE
+#define DEFAULT_BLOB_POS_NODE_BLOB_SEQ_MSG_BUFFER 1
+#define DEFAULT_BLOB_POS_NODE_MSG_QUEUE 1
 
 //conditional compilation defines
 #ifndef FILTER_ACCEL //if 1, filters the accel. readings
@@ -64,5 +71,6 @@
 #define OFFSET  1
 
 #define BLOB_ADJACENT_THRESH 3
+#define BLOB_SEQUENCE_SIZE 4
 
 #endif

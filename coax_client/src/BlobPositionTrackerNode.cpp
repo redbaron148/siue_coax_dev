@@ -10,46 +10,27 @@
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
 #include <coax_msgs/CoaxState.h>
-#include <coax_client/BlobPositions.h>
+#include <coax_client/BlobSequencePositions.h>
+#include <coax_client/BlobSequences.h>
 #include <cmvision/Blobs.h>
-#include <roslib/Header.h>
-#include <vector>
 
 //global variables
 double FIELD_OF_VIEW_HORIZ;
 double FIELD_OF_VIEW_VERT;
 int PUBLISH_FREQ;
-int FBLOBS_MSG_BUFFER;
+int BLOB_SEQ_MSG_BUFFER;
 int STATE_MSG_BUFFER;
 int MSG_QUEUE;
 
 std::vector<boost::shared_ptr<coax_msgs::CoaxState> > STATE_BUFFER(10,boost::shared_ptr<coax_msgs::CoaxState>(new coax_msgs::CoaxState));
-
-ros::Publisher blob_pose_pub;
+ros::Publisher blob_seq_pose_pub;
 
 using namespace std;
 
-void fBlobsCallback(cmvision::Blobs msg);
+void blobSequencesCallback(coax_client::BlobSequences msg);
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
 void getParams(const ros::NodeHandle &nh);
 boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header header);
-bool blobsAreAdjacent(const cmvision::Blob &b1, const cmvision::Blob &b2);
-float blobAngle(const cmvision::Blob &b1, const cmvision::Blob &b2);
-cmvision::Blobs findAdjacentBlobs(const cmvision::Blob &blob, const cmvision::Blobs &blobs);
-coax_client::BlobPose blobPoseFromBlobs(const cmvision::Blobs &blobs)
-{
-    coax_client::BlobPose blob;
-    for(int i = 0;i>blobs.blob_count;i++)
-    {
-        blob.blob.x += blobs.blobs[i].x;
-        blob.blob.y += blobs.blobs[i].y;
-    }
-    blob.blob.x /= blobs.blob_count;
-    blob.blob.y /= blobs.blob_count;
-    if(blobs.blob_count == 2)
-        blob.pose.theta = blobAngle(blobs.blobs[0],blobs.blobs[1]);
-    else blob.pose.theta = 10;
-}
 
 int main(int argc, char **argv)
 {
@@ -58,11 +39,9 @@ int main(int argc, char **argv)
     
     getParams(n);
     
-    ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_filter/blobs", FBLOBS_MSG_BUFFER, &fBlobsCallback);
+    ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_pattern_finder/blob_sequences", BLOB_SEQ_MSG_BUFFER, &blobSequencesCallback);
     ros::Subscriber coax_state_sub = n.subscribe("/coax_server/state",STATE_MSG_BUFFER, &stateCallback);
-    blob_pose_pub = n.advertise<coax_client::BlobPositions>("/blob_position/blobs", MSG_QUEUE);
-    
-    //ros::spin();
+    blob_seq_pose_pub = n.advertise<coax_client::BlobSequencePositions>("/blob_positions/blob_sequence_positions", MSG_QUEUE);
     
     ros::Rate loop_rate(PUBLISH_FREQ);
     
@@ -75,33 +54,32 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void fBlobsCallback(cmvision::Blobs msg)
+void blobSequencesCallback(coax_client::BlobSequences msg)
 {
-    static float center_x = msg.image_width/2.0;
-    static float center_y = msg.image_height/2.0;
-    static float degrees_per_pixel_vert = FIELD_OF_VIEW_VERT/msg.image_height;
-    static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/msg.image_width;
+    static float center_x = 320/2.0;
+    static float center_y = 240/2.0;
+    static float degrees_per_pixel_vert = FIELD_OF_VIEW_VERT/320;
+    static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/240;
     
-    coax_client::BlobPositions blob_poses;
-    std::vector<coax_client::BlobPose> blobs(msg.blob_count,coax_client::BlobPose());
+    coax_client::BlobSequencePositions seq_poses;
     boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);
-    blob_poses.header = msg.header;
+    seq_poses.header = msg.header;
     
     float angle_horiz;
     float angle_vert;
 
-    for(int i = msg.blob_count-1; i >= 0;i--)
+    for(int i = msg.sequences.size(); i >= 0;i--)
     {
-        angle_horiz = degrees_per_pixel_horiz*(msg.blobs[i].x-center_x);
-        angle_vert  = degrees_per_pixel_vert*(msg.blobs[i].y-center_y);
-        blobs[i].blob = msg.blobs[i];
-        blobs[i].pose.y = state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
-        blobs[i].pose.x = state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
-        //blobs[i].pose.z = state->zfiltered;
+        coax_client::BlobSequencePose seq_pose;
+        seq_pose.sequence = msg.sequences[i];
+        angle_horiz = degrees_per_pixel_horiz*(msg.sequences[i].x-center_x);
+        angle_vert  = degrees_per_pixel_vert*(msg.sequences[i].y-center_y);
+        seq_pose.pose.y = state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
+        seq_pose.pose.x = state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
+        seq_pose.pose.theta = state->zfiltered;
     }
-    blob_poses.blobs = blobs;
     
-    blob_pose_pub.publish(blob_poses);
+    blob_seq_pose_pub.publish(seq_poses);
 }
 
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
@@ -155,18 +133,18 @@ void getParams(const ros::NodeHandle &nh)
       PUBLISH_FREQ = DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ;
     }
 
-    //number of filtered blobs from blob_filter this node will buffer before it begins to drop them
-    if (nh.getParam("filtered_blobs_msg_buffer", FBLOBS_MSG_BUFFER))
+    //number of blob sequences from blob_filter this node will buffer before it begins to drop them
+    if (nh.getParam("blob_sequences_msg_buffer", BLOB_SEQ_MSG_BUFFER))
     {
-        ROS_INFO("Set %s/filtered_blobs_msg_buffer to %d",nh.getNamespace().c_str(), FBLOBS_MSG_BUFFER);
+        ROS_INFO("Set %s/blob_sequences_msg_buffer to %d",nh.getNamespace().c_str(), BLOB_SEQ_MSG_BUFFER);
     }
     else
     {
-        if(nh.hasParam("filtered_blobs_msg_buffer"))
-            ROS_WARN("%s/filtered_blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
+        if(nh.hasParam("blob_sequences_msg_buffer"))
+            ROS_WARN("%s/blob_sequences_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_BLOB_SEQ_MSG_BUFFER);
       else
-          ROS_WARN("No value set for %s/filtered_blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
-      FBLOBS_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER;
+          ROS_WARN("No value set for %s/blob_sequences_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_BLOB_SEQ_MSG_BUFFER);
+      BLOB_SEQ_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_BLOB_SEQ_MSG_BUFFER;
     }
     
     //number of states from coax_server this node will buffer before it begins to drop them
