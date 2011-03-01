@@ -72,7 +72,7 @@ void fBlobsCallback(cmvision::Blobs msg)
             blobSequenceFromCluster(sequence,blob_clusters[i],msg);
             sequences.sequences.push_back(sequence);
         }
-        if(sequences.size())
+        if(sequences.sequences.size())
             blob_patt_pub.publish(sequences);
     }
 }
