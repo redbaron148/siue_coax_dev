@@ -62,7 +62,7 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
     static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/240;
     
     coax_client::BlobSequencePositions seq_poses;
-    boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);
+    //boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);
     seq_poses.header = msg.header;
     
     float angle_horiz;
@@ -74,9 +74,9 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
         seq_pose.sequence = msg.sequences[i];
         angle_horiz = degrees_per_pixel_horiz*(msg.sequences[i].x-center_x);
         angle_vert  = degrees_per_pixel_vert*(msg.sequences[i].y-center_y);
-        seq_pose.pose.y = state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
-        seq_pose.pose.x = state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
-        seq_pose.pose.theta = state->zfiltered;
+        seq_pose.pose.y = 10;//state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
+        seq_pose.pose.x = 10;//state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
+        seq_pose.pose.theta = 0;//state->zfiltered;
     }
     
     blob_seq_pose_pub.publish(seq_poses);

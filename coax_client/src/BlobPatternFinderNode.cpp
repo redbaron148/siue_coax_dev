@@ -25,13 +25,13 @@ void getParams(const ros::NodeHandle &nh);
 void filterBlobClusters(std::vector<std::vector<unsigned int> > &clusters)
 {
     for(unsigned int i = 0;i<clusters.size();i++)
-	{
+    {
         if(clusters[i].size()!=BLOB_SEQUENCE_SIZE)
-		{
-			clusters.erase(clusters.begin()+i);
-			//cout << "removed cluster because of size" << endl;
-		}
-	}
+        {
+            clusters.erase(clusters.begin()+i);
+            //cout << "removed cluster because of size" << endl;
+        }
+    }
 }
 
 int main(int argc, char **argv)
@@ -59,18 +59,22 @@ int main(int argc, char **argv)
 
 void fBlobsCallback(cmvision::Blobs msg)
 {
-    coax_client::BlobSequences sequences;
-    sequences.header = msg.header;
-    std::vector<std::vector<unsigned int> > blob_clusters;
-    findAllBlobClusters(msg,blob_clusters);
-    filterBlobClusters(blob_clusters);
-    for(unsigned int i = 0;i<blob_clusters.size();i++)
+    if(msg.blobs.size()>=4)
     {
-        coax_client::BlobSequence sequence;
-        blobSequenceFromCluster(sequence,blob_clusters[i],msg);
-        sequences.sequences.push_back(sequence);
+        coax_client::BlobSequences sequences;
+        sequences.header = msg.header;
+        std::vector<std::vector<unsigned int> > blob_clusters;
+        findAllBlobClusters(msg,blob_clusters);
+        filterBlobClusters(blob_clusters);
+        for(unsigned int i = 0;i<blob_clusters.size();i++)
+        {
+            coax_client::BlobSequence sequence;
+            blobSequenceFromCluster(sequence,blob_clusters[i],msg);
+            sequences.sequences.push_back(sequence);
+        }
+        if(sequences.size())
+            blob_patt_pub.publish(sequences);
     }
-    blob_patt_pub.publish(sequences);
 }
 
 void getParams(const ros::NodeHandle &nh)
