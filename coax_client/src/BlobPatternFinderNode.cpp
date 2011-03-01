@@ -25,7 +25,13 @@ void getParams(const ros::NodeHandle &nh);
 void filterBlobClusters(std::vector<std::vector<unsigned int> > &clusters)
 {
     for(unsigned int i = 0;i<clusters.size();i++)
-        if(clusters[i].size()!=BLOB_SEQUENCE_SIZE) clusters.erase(clusters.begin()+i);
+	{
+        if(clusters[i].size()!=BLOB_SEQUENCE_SIZE)
+		{
+			clusters.erase(clusters.begin()+i);
+			//cout << "removed cluster because of size" << endl;
+		}
+	}
 }
 
 int main(int argc, char **argv)

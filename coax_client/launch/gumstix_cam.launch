@@ -1,7 +1,7 @@
 <launch>
   <arg name="fps" default="10"/>
-  <arg name="width" default="160"/>
-  <arg name="height" default="120"/>
+  <arg name="width" default="320"/>
+  <arg name="height" default="240"/>
 	<node pkg="gumstix_cam_node" type="gumstix_cam_node" name="gumstix_cam_node" output="screen">
 		<param name="fps" value="$(arg fps)" />
 		<param name="width" value="$(arg width)"/>
