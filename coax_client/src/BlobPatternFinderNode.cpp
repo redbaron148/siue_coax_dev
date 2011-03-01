@@ -9,7 +9,7 @@
 #include <CoaxClientConst.h>
 #include <BlobUtilityLibrary.h>
 #include <cmvision/Blobs.h>
-#include <coax_client/BlobSequence.h>
+#include <iostream>
 
 //global variables
 int PUBLISH_FREQ;
@@ -22,7 +22,11 @@ using namespace std;
 
 void fBlobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
-bool isInList(const unsigned int &i, std::list<unsigned int> &list);
+void filterBlobClusters(std::vector<std::vector<unsigned int> > &clusters)
+{
+    for(unsigned int i = 0;i<clusters.size();i++)
+        if(clusters[i].size()!=BLOB_SEQUENCE_SIZE) clusters.erase(clusters.begin()+i);
+}
 
 int main(int argc, char **argv)
 {
@@ -32,7 +36,7 @@ int main(int argc, char **argv)
     getParams(n);
     
     ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_filter/blobs", FBLOBS_MSG_BUFFER, &fBlobsCallback);
-    //blob_patt_pub = n.advertise<coax_client::BlobPositions>("/blob_pattern_finder/blobs", MSG_QUEUE);
+    blob_patt_pub = n.advertise<coax_client::BlobSequences>("/blob_pattern_finder/blob_sequences", MSG_QUEUE);
     
     //ros::spin();
     
@@ -49,20 +53,18 @@ int main(int argc, char **argv)
 
 void fBlobsCallback(cmvision::Blobs msg)
 {
-    if(msg.blob_count!=0)
+    coax_client::BlobSequences sequences;
+    sequences.header = msg.header;
+    std::vector<std::vector<unsigned int> > blob_clusters;
+    findAllBlobClusters(msg,blob_clusters);
+    filterBlobClusters(blob_clusters);
+    for(unsigned int i = 0;i<blob_clusters.size();i++)
     {
-        std::cout << "blob count: " << msg.blob_count << std::endl;
-        std::vector<unsigned int> blob_cluster;
-        std::vector<std::vector<unsigned int> > blob_clusters;
-        //int num_adj_blobs = findAllBlobClusters(msg,blob_clusters);
-        int cluster_size = findBlobCluster(0,msg,blob_cluster);
-        std::cout << cluster_size << endl;
-        for(int i = 0;i<cluster_size;i++)
-        {
-            cout << blob_cluster[0] << "  ";
-        }
-        cout << endl;
+        coax_client::BlobSequence sequence;
+        blobSequenceFromCluster(sequence,blob_clusters[i],msg);
+        sequences.sequences.push_back(sequence);
     }
+    blob_patt_pub.publish(sequences);
 }
 
 void getParams(const ros::NodeHandle &nh)
@@ -75,10 +77,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("publish_freq"))
-            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ);
+            ROS_WARN("%s/publish_freq must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_PATT_NODE_PUBLISH_FREQ);
         else
-            ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ);
-        PUBLISH_FREQ = DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ;
+            ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_PATT_NODE_PUBLISH_FREQ);
+        PUBLISH_FREQ = DEFAULT_BLOB_PATT_NODE_PUBLISH_FREQ;
     }
 
     //number of filtered blobs from blob_filter this node will buffer before it begins to drop them
@@ -89,10 +91,10 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("filtered_blobs_msg_buffer"))
-            ROS_WARN("%s/filtered_blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
+            ROS_WARN("%s/filtered_blobs_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_PATT_NODE_FBLOBS_MSG_BUFFER);
         else
-            ROS_WARN("No value set for %s/filtered_blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER);
-        FBLOBS_MSG_BUFFER = DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER;
+            ROS_WARN("No value set for %s/filtered_blobs_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_PATT_NODE_FBLOBS_MSG_BUFFER);
+        FBLOBS_MSG_BUFFER = DEFAULT_BLOB_PATT_NODE_FBLOBS_MSG_BUFFER;
     }
     
     //number of messages this node will queue for publishing before it drops data
@@ -103,9 +105,9 @@ void getParams(const ros::NodeHandle &nh)
     else
     {
         if(nh.hasParam("msg_queue"))
-          ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
+          ROS_WARN("%s/msg_queue must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_PATT_NODE_MSG_QUEUE);
       else
-        ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_MSG_QUEUE);
-      MSG_QUEUE = DEFAULT_FBLOB_NODE_MSG_QUEUE;
+        ROS_WARN("No value set for %s/msg_queue. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_BLOB_PATT_NODE_MSG_QUEUE);
+      MSG_QUEUE = DEFAULT_BLOB_PATT_NODE_MSG_QUEUE;
     }
 }

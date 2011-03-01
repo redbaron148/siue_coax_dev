@@ -1,0 +1,5 @@
+<launch>
+    <arg name="options" default=""/>
+    <arg name="file" default=""/>
+    <node pkg="rosbag" type="play" name="rosbag" output="screen" args="$(arg options) $(find coax_client)/bag/$(arg file)"/>
+</launch>

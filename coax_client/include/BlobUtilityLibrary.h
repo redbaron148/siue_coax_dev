@@ -7,9 +7,13 @@
 #ifndef BLOB_UTILITY_LIBRARY_H
 #define BLOB_UTILITY_LIBRARY_H
 
+using namespace std;
+
 #include <CoaxClientConst.h>
 #include <cmvision/Blobs.h>
 #include <ros/ros.h>
+#include <coax_client/BlobSequences.h>
+#include <string.h>
 
 bool isInList(const unsigned int &i, std::list<unsigned int> &list);
 int combineBlobs(const unsigned int &b1, const unsigned int &b2, cmvision::Blobs &blobs);
@@ -21,24 +25,12 @@ int findAdjacentBlobs(const unsigned int &b1, const cmvision::Blobs &blobs, std:
 int findBlobCluster(const unsigned int &b1, const cmvision::Blobs &blobs, std::vector<unsigned int> &blob_cluster);
 void deleteBlob(const unsigned int &b1, cmvision::Blobs &blobs);
 void removeDuplicates(std::vector<unsigned int>& vec);
-
-int findAllBlobClusters(cmvision::Blobs blobs, std::vector<std::vector<unsigned int> > &blob_clusters)
-{
-    std::vector<bool> blob_is_clustered(blobs.blobs.size(),false);
-    blob_clusters.empty();
-    
-    unsigned int next = 0;
-    
-    while(blobs.blob_count)
-    {
-        std::vector<unsigned int> blob_cluster;
-        findBlobCluster(next,blobs,blob_cluster);
-        blobs.blob_count -= blob_cluster.size();
-        blob_clusters.push_back(blob_cluster);
-    }
-    
-    return blob_clusters.size();
-}
+void orderCluster(std::vector<unsigned int>& cluster,cmvision::Blobs blobs);
+cmvision::Blob& getBlob(const unsigned int &blob_num, cmvision::Blobs &blobs);
+void printBinary(char n);
+char getColorID(unsigned int blob_num,cmvision::Blobs& blobs);
+void blobSequenceFromCluster(coax_client::BlobSequence &blob_sequence, std::vector<unsigned int> &cluster, cmvision::Blobs blobs);
+int findAllBlobClusters(cmvision::Blobs blobs, std::vector<std::vector<unsigned int> > &blob_clusters);
 
 bool isInList(const unsigned int &i, std::vector<unsigned int> &list)
 {
@@ -129,6 +121,84 @@ int findBlobCluster(const unsigned int &b1, const cmvision::Blobs &blobs, std::v
         findAdjacentBlobs(blob_cluster[i],blobs,blob_cluster);
     }
     return blob_cluster.size();
+}
+
+void orderCluster(std::vector<unsigned int>& cluster,cmvision::Blobs blobs)
+{
+    unsigned int tmp;
+    for(unsigned int i=0;i<cluster.size();i++)
+    {
+        for(unsigned int j=0;j<cluster.size()-1-i;j++)
+        {
+            if(blobs.blobs[cluster[j]].x>blobs.blobs[cluster[j+1]].x)
+            {
+                tmp = cluster[j];
+                cluster[j] = cluster[j+1];
+                cluster[j+1] = tmp;
+            }
+        }
+    }
+}
+
+cmvision::Blob& getBlob(const unsigned int &blob_num, cmvision::Blobs &blobs)
+{
+    return blobs.blobs[blob_num];
+}
+
+void printBinary(char n)
+{
+    unsigned int i;
+    i = 1<<(sizeof(n) * 8 - 1);
+
+    while (i > 0) {
+        if (n & i)
+            printf("1");
+        else
+            printf("0");
+        i >>= 1;
+    }
+}
+
+char getColorID(unsigned int blob_num,cmvision::Blobs& blobs)
+{
+    return ((getBlob(blob_num,blobs).red!=0) << 1)|((getBlob(blob_num,blobs).green!=0)<<0);
+}
+
+void blobSequenceFromCluster(coax_client::BlobSequence &blob_sequence, std::vector<unsigned int> &cluster, cmvision::Blobs blobs)
+{ 
+    orderCluster(cluster,blobs);
+    for(unsigned int i = 0;i<cluster.size();i++)
+    {
+        blob_sequence.id |= (getColorID(cluster[i],blobs) << (3-i)*2);
+        blob_sequence.x += getBlob(cluster[i],blobs).x;
+        blob_sequence.y += getBlob(cluster[i],blobs).y;
+    }
+    blob_sequence.sequence = cluster;
+    blob_sequence.x /= cluster.size();
+    blob_sequence.y /= cluster.size();
+}
+
+int findAllBlobClusters(cmvision::Blobs blobs, std::vector<std::vector<unsigned int> > &blob_clusters)
+{
+    std::list<unsigned int> have_no_cluster(blobs.blobs.size(),0);
+    int i = 1;
+    for(std::list<unsigned int>::iterator pos = ++have_no_cluster.begin();pos != have_no_cluster.end();++pos)
+    {
+        *pos = i;
+        i++;
+    }
+    
+    while(have_no_cluster.size())
+    {
+        //cout << "blobs with no cluster, finding cluster." << endl;
+        std::vector<unsigned int> cluster;
+        findBlobCluster(have_no_cluster.front(),blobs,cluster);
+        for(int i = 0;i<(int)cluster.size();i++)
+            have_no_cluster.remove(cluster[i]);
+        blob_clusters.push_back(cluster);
+    }
+    
+    return blob_clusters.size();
 }
 
 #endif

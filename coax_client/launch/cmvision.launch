@@ -1,5 +1,5 @@
 <launch>
-    <arg name="color_file" default="mrl_day_open_door_new_colors.txt"/>
+    <arg name="color_file" default="mrl_day_new_colors.txt"/>
 
     <group ns="cmvision">
         <param name="color_file" value="$(find coax_client)/include/$(arg color_file)"/>
