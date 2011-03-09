@@ -67,16 +67,17 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
     
     float angle_horiz;
     float angle_vert;
-
-    for(int i = msg.sequences.size(); i >= 0;i--)
+    
+    for(int i = msg.blob_sequences.size()-1; i >= 0;i--)
     {
         coax_client::BlobSequencePose seq_pose;
-        seq_pose.sequence = msg.sequences[i];
-        angle_horiz = degrees_per_pixel_horiz*(msg.sequences[i].x-center_x);
-        angle_vert  = degrees_per_pixel_vert*(msg.sequences[i].y-center_y);
-        seq_pose.pose.y = 10;//state->zrange*sin((angle_horiz*3.14159/180.0)-state->roll);
-        seq_pose.pose.x = 10;//state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
+        seq_pose.blob_sequence = msg.blob_sequences[i];
+        angle_horiz = degrees_per_pixel_horiz*(msg.blob_sequences[i].x-center_x);
+        angle_vert  = degrees_per_pixel_vert*(msg.blob_sequences[i].y-center_y);
+        seq_pose.pose.y = 78.74*sin(angle_horiz*3.14159/180.0)*-1;//-state->roll);
+        seq_pose.pose.x = 78.74*sin(angle_vert*3.14159/180.0)*-1;//-state->pitch)*-1;
         seq_pose.pose.theta = 0;//state->zfiltered;
+        seq_poses.blob_sequence_poses.push_back(seq_pose);
     }
     
     blob_seq_pose_pub.publish(seq_poses);

@@ -24,13 +24,19 @@ void fBlobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
 void filterBlobClusters(std::vector<std::vector<unsigned int> > &clusters)
 {
+   // cout << "number of clusters is " << clusters.size() << endl;
     for(unsigned int i = 0;i<clusters.size();i++)
     {
+        //cout << "    checking " << i << " " << endl;
         if(clusters[i].size()!=BLOB_SEQUENCE_SIZE)
         {
+            /*for(int j = 0;j<clusters[i].size();j++)
+                cout << "            members: " << clusters[i][j] << " ";*/
             clusters.erase(clusters.begin()+i);
-            //cout << "removed cluster because of size" << endl;
+            //cout << "\n        removed cluster because of size: " << i << endl;
+            i--;
         }
+        //else cout << "        no problem found" << endl;
     }
 }
 
@@ -72,10 +78,12 @@ void fBlobsCallback(cmvision::Blobs msg)
         {
             coax_client::BlobSequence sequence;
             blobSequenceFromCluster(sequence,blob_clusters[i],msg);
-            sequences.sequences.push_back(sequence);
+            sequences.blob_sequences.push_back(sequence);
         }
-        if(sequences.sequences.size())
+        if(sequences.blob_sequences.size())
             blob_patt_pub.publish(sequences);
+        //cout << "image_height: " << sequences.image_height << endl;
+        //cout << "image_width: " << sequences.image_width << endl;
     }
 }
 

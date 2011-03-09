@@ -469,9 +469,6 @@ if(-1==xioctl(fd, VIDIOC_S_PARM, &p))
       init_userp(fmt.fmt.pix.sizeimage);
       break;
     }
-    
-    setAutoWhiteBalance(true);
-
 }
 
 
