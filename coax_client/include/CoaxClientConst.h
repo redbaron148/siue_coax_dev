@@ -70,7 +70,9 @@
 #define SLOPE   0
 #define OFFSET  1
 
-#define BLOB_ADJACENT_THRESH 3
+#define BLOB_ADJACENT_THRESH 5
 #define BLOB_SEQUENCE_SIZE 4
+
+#define GROUND_ROBOT_ID 18
 
 #endif

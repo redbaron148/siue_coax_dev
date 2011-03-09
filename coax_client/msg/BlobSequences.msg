@@ -1,5 +1,5 @@
 Header header
 
-uint8 image_height
-uint8 image_width
-coax_client/BlobSequence[]  sequences
+uint32 image_height
+uint32 image_width
+coax_client/BlobSequence[]  blob_sequences

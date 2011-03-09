@@ -54,7 +54,6 @@ int main(int argc, char **argv)
 void blobsCallback(cmvision::Blobs msg)
 {
     filterSmallBlobs(msg);
-    msg.header.frame_id = "camera";
     filtered_blob_pub.publish(msg);
 }
 
