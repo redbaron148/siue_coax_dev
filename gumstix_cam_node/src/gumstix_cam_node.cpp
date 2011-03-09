@@ -122,11 +122,13 @@ int main(int argc, char **argv)
     cap_device.setContrast(contrast);
     cap_device.setSaturation(saturation);
     cap_device.setSharpness(sharpness);
-    cap_device.setAutoWhiteBalance(auto_white_balance);
+    cap_device.setAutoWhiteBalance(true);
     cap_device.setWhiteBalanceTemp(white_balance_temp);
     cap_device.setExposureAuto(exposure_auto);
     cap_device.setExposureAbsolute(exposure_absolute);
-
+    sleep(1);
+    cap_device.setAutoWhiteBalance(auto_white_balance);
+    
     ROS_INFO("Min-Max brightness: %d-%d",cap_device.minBrightness(),cap_device.maxBrightness());
     ROS_INFO("Min-Max contrast: %d-%d",cap_device.minContrast(),cap_device.maxContrast());
     ROS_INFO("Min-Max saturation: %d-%d",cap_device.minSaturation(),cap_device.maxSaturation());
