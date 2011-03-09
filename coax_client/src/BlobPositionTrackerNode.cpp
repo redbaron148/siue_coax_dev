@@ -56,10 +56,10 @@ int main(int argc, char **argv)
 
 void blobSequencesCallback(coax_client::BlobSequences msg)
 {
-    static float center_x = 320/2.0;
-    static float center_y = 240/2.0;
-    static float degrees_per_pixel_vert = FIELD_OF_VIEW_VERT/320;
-    static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/240;
+    static float center_x = msg.image_width/2.0;
+    static float center_y = msg.image_height/2.0;
+    static float degrees_per_pixel_vert = FIELD_OF_VIEW_VERT/msg.image_height;
+    static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/msg.image_width;
     
     coax_client::BlobSequencePositions seq_poses;
     //boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);

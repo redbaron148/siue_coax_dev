@@ -62,6 +62,8 @@ void fBlobsCallback(cmvision::Blobs msg)
     if(msg.blobs.size()>=4)
     {
         coax_client::BlobSequences sequences;
+        sequences.image_height = msg.image_height;
+        sequences.image_width = msg.image_width;
         sequences.header = msg.header;
         std::vector<std::vector<unsigned int> > blob_clusters;
         findAllBlobClusters(msg,blob_clusters);
