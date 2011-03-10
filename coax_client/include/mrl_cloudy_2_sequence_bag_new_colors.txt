@@ -4,6 +4,6 @@
 (  0, 0, 1) 0.000000 10 object_orange
 
 [Thresholds]
-( 106:158,  80:104, 180:204 )    #pink object
-(  96:204, 102:126,  58:89  )      #green object
-(  41:134,  79:116, 150:208 )      #orange object
+(  60:133,  73:115, 166:208 )      #pink object
+(  84:164, 113:131,  71:103 )      #green object
+(  23:185,  59:115, 121:164 )      #orange object
