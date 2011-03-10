@@ -1,0 +1,9 @@
+[Colors]
+(  255, 105, 180) 100.500000 20 object_pink
+(  0,   255, 0)   50.500000 20 object_green
+(  255, 165, 0)   1.500000 20 object_orange
+
+[Thresholds]
+( 60:174, 71:98, 166:194 ) #pink object
+( 101:188, 99:122, 34:76 ) #green object
+( 131:228, 42:81, 113:136) #orange object

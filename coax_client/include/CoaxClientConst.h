@@ -4,14 +4,21 @@
 //field of view from COAX webcam, in degrees.
 #define DEFAULT_FIELD_OF_VIEW_HORIZ 54.6
 #define DEFAULT_FIELD_OF_VIEW_VERT  41.27
+
+//default values used for the blob pattern finder node
+#define DEFAULT_BLOB_PATT_NODE_PUBLISH_FREQ 10
+#define DEFAULT_BLOB_PATT_NODE_FBLOBS_MSG_BUFFER 10
+#define DEFAULT_BLOB_PATT_NODE_MSG_QUEUE 1
+
+//default values used for the blob position tracking node
 #define DEFAULT_BLOB_POS_NODE_PUBLISH_FREQ 10
 #define DEFAULT_BLOB_POS_NODE_STATE_MSG_BUFFER 1
-#define DEFAULT_BLOB_POS_NODE_FBLOBS_MSG_BUFFER 1
-#define DEFAULT_BLOB_POS_NODE_MSG_QUEUE
+#define DEFAULT_BLOB_POS_NODE_BLOB_SEQ_MSG_BUFFER 1
+#define DEFAULT_BLOB_POS_NODE_MSG_QUEUE 1
 
 //conditional compilation defines
 #ifndef FILTER_ACCEL //if 1, filters the accel. readings
-#define FILTER_ACCEL			0
+#define FILTER_ACCEL            0
 #endif
 #ifndef CONVERT_ACCEL_TO_GLOBAL //if 1, converts accel. readings to global frame
 #define CONVERT_ACCEL_TO_GLOBAL 0
@@ -31,10 +38,11 @@
 #define DEFAULT_Z_FILTER_K  0.5
 
 //default values used with filtered blobs node
-#define DEFAULT_FBLOB_NODE_PUBLISH_FREQ		10
-#define DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER	1
-#define DEFAULT_FBLOB_NODE_BLOBS_MSG_BUFFER	1
-#define DEFAULT_FBLOB_NODE_MSG_QUEUE		1
+#define DEFAULT_FBLOB_NODE_PUBLISH_FREQ     10
+#define DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER 1
+#define DEFAULT_FBLOB_NODE_BLOBS_MSG_BUFFER 1
+#define DEFAULT_FBLOB_NODE_MSG_QUEUE        1
+#define DEFAULT_FBLOB_MIN_BLOB_AREA         300
 
 //default values used with filtered state node
 #define DEFAULT_FSTATE_NODE_PUBLISH_FREQ        50
@@ -61,5 +69,10 @@
 //slope 
 #define SLOPE   0
 #define OFFSET  1
+
+#define BLOB_ADJACENT_THRESH 5
+#define BLOB_SEQUENCE_SIZE 4
+
+#define GROUND_ROBOT_ID 18
 
 #endif

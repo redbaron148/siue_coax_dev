@@ -17,9 +17,9 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #uncomment if you have defined messages
-rosbuild_genmsg()
+#rosbuild_genmsg()
 #uncomment if you have defined services
-rosbuild_gensrv()
+#rosbuild_gensrv()
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
@@ -29,15 +29,13 @@ rosbuild_gensrv()
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-#rosbuild_add_executable(test_coax_liftoff src/TestCoaxAutoflight.cpp)
-#rosbuild_add_executable(test_coax_idler src/TestCoaxIdler.cpp)
-#rosbuild_add_executable(test_coax_client src/TestCoaxSubscriber.cpp)
-#rosbuild_add_executable(test_coax_publisher src/CoaxVelocityControl.cpp)
-rosbuild_add_executable(coax_filter_node src/CoaxFilteredStateNode.cpp)
-rosbuild_add_executable(coax_localization_node src/CoaxLocalizationNode.cpp)
-#rosbuild_add_executable(coax_services_node src/CoaxServerNode.cpp)
-#rosbuild_add_executable(coax_services_node_test src/CoaxServer_tester.cpp)
-#rosbuild_add_executable(test_coax_distance src/CoaxDistanceCalc.cpp)
-rosbuild_add_executable(blob_filter_node src/BlobFilterNode.cpp)
-rosbuild_add_executable(blob_position_node src/BlobPositionTrackerNode.cpp)
-rosbuild_add_executable(blob_pattern_node src/BlobPatternFinderNode.cpp)
+#v4l2 camera library. try to find the actual header for this
+find_package( OpenCV REQUIRED )
+rosbuild_add_library( cam src/libcam.cpp )
+#target_link_libraries(cam cv cxcore cvaux)
+target_link_libraries( cam ${OpenCV_LIBS} )
+
+#usb_camera_node executable and linking
+rosbuild_add_executable( gumstix_cam_node src/gumstix_cam_node.cpp src/libcam.cpp)
+#rosbuild_add_link_flags( gumstix_cam_node "-lcv -lcvaux -lcxcore" )
+target_link_libraries( gumstix_cam_node cam ${OpenCV_LIBS} )
