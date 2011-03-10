@@ -13,7 +13,6 @@
 #include <ros/ros.h>
 #include <CoaxClientConst.h>
 #include <cmvision/Blobs.h>
-#include <coax_msgs/CoaxState.h>
 
 //global variables
 int PUBLISH_FREQ;
@@ -72,20 +71,6 @@ void getParams(const ros::NodeHandle &nh)
 		  ROS_WARN("No value set for %s/publish_freq. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_PUBLISH_FREQ);
 	  PUBLISH_FREQ = DEFAULT_FBLOB_NODE_PUBLISH_FREQ;
 	}
-	
-	/*//number of states from coax_server this node will buffer before it begins to drop them
-	if (nh.getParam("state_msg_buffer", STATE_MSG_BUFFER))
-	{
-		ROS_INFO("Set %s/state_msg_buffer to %d",nh.getNamespace().c_str(), STATE_MSG_BUFFER);
-	}
-	else
-	{
-		if(nh.hasParam("state_msg_buffer"))
-			ROS_WARN("%s/state_msg_buffer must be an integer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER);
-		else
-			ROS_WARN("No value set for %s/state_msg_buffer. Setting default value: %d",nh.getNamespace().c_str(), DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER);
-		STATE_MSG_BUFFER = DEFAULT_FBLOB_NODE_STATE_MSG_BUFFER;
-	}*/
 
 	//number of states from coax_server this node will buffer before it begins to drop them
 	if (nh.getParam("blobs_msg_buffer", BLOBS_MSG_BUFFER))

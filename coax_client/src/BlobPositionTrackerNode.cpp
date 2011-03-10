@@ -16,6 +16,8 @@
 #include <roslib/Header.h>
 #include <vector>
 
+using namespace std;
+
 //global variables
 double FIELD_OF_VIEW_HORIZ;
 double FIELD_OF_VIEW_VERT;
@@ -25,12 +27,7 @@ int STATE_MSG_BUFFER;
 int MSG_QUEUE;
 
 std::vector<boost::shared_ptr<coax_msgs::CoaxState> > STATE_BUFFER(10,boost::shared_ptr<coax_msgs::CoaxState>(new coax_msgs::CoaxState));
-
-//std::vector< int > int_vector;
-
 ros::Publisher blob_pose_pub;
-
-using namespace std;
 
 void fBlobsCallback(cmvision::Blobs msg);
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg);
@@ -67,16 +64,12 @@ void fBlobsCallback(cmvision::Blobs msg)
     static float center_y = msg.image_height/2.0;
     static float degrees_per_pixel_vert = FIELD_OF_VIEW_VERT/msg.image_height;
     static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/msg.image_width;
+    static float angle_horiz;
+    static float angle_vert;
     
     coax_client::BlobPositions blob_poses;
     std::vector<coax_client::BlobPose> blobs(msg.blob_count,coax_client::BlobPose());
     boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);
-    blob_poses.header = msg.header;
-    
-    float angle_horiz;
-    float angle_vert;
-    
-    //ROS_INFO("state is %f seconds ahead of the fblob.", fabs((state->header.stamp - msg.header.stamp).toSec()));
 
     for(int i = msg.blob_count-1; i >= 0;i--)
     {
@@ -87,7 +80,9 @@ void fBlobsCallback(cmvision::Blobs msg)
         blobs[i].pose.x = state->zrange*sin((angle_vert*3.14159/180.0)-state->pitch)*-1;
         blobs[i].pose.z = state->zfiltered;
 	}
+	
 	blob_poses.blobs = blobs;
+	blob_poses.header = msg.header;
     
     blob_pose_pub.publish(blob_poses);
 }
