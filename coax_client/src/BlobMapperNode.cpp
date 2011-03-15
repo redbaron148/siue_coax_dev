@@ -1,12 +1,12 @@
-/*
- *  File Name:      BlobMapperNode.cpp
- *  Programmer:     Aaron Parker
- *  Date Made:      03-10-2011
- *  Description:    
+/**
+ *  @file   BlobMapperNode.cpp
+ *  @author Aaron Parker
+ *  @date   03-10-2011
+ *  @brief      
  */
 
 #include <ros/ros.h>
-#include <CoaxClientConst.h>
+#include <coax_client/CoaxClientConst.h>
 #include <coax_client/BlobSequencePoses.h>
 #include <coax_client/IDGridCells.h>
 
@@ -15,7 +15,7 @@ int PUBLISH_FREQ;
 int SEQ_POSES_MSG_BUFFER;
 int MSG_QUEUE;
 
-coax_client::IDGridCells known_cells_global;
+//coax_client::IDGridCells known_cells_global;
 //ros::Publisher local_grid_cell_pub;
 
 using namespace std;
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 void blobSequencePosesCallback(const coax_client::BlobSequencePoses::ConstPtr& msg)
 {
     coax_client::IDGridCells new_msg;
-    new_msg.header.stamp = msg->header.stamp;
+    /*new_msg.header.stamp = msg->header.stamp;
     new_msg.header.frame_id = "camera";
     new_msg.cell_width = .1;
     new_msg.cell_height = .1;
@@ -63,7 +63,7 @@ void blobSequencePosesCallback(const coax_client::BlobSequencePoses::ConstPtr& m
         point.y = msg->sequence_poses[i].pose.y/100.;
         new_msg.cells.push_back(point);
     }
-    //local_grid_cell_pub.publish(new_msg);
+    //local_grid_cell_pub.publish(new_msg);*/
 }
 
 void getParams(const ros::NodeHandle &nh)

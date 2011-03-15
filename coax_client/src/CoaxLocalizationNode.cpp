@@ -1,7 +1,7 @@
 #include <ros/ros.h>
 #include <coax_client/CoaxFilteredState.h>
 #include <coax_client/CoaxLocalization.h>
-#include <CoaxClientConst.h>
+#include <coax_client/CoaxClientConst.h>
 #include <math.h>
 
 //global 
@@ -19,24 +19,24 @@ double runningAvg(const double &prev, const double &next, const unsigned int &n)
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "coax_localization");
-	ros::NodeHandle n("coax_localization");
+    ros::init(argc, argv, "coax_localization");
+    ros::NodeHandle n("coax_localization");
 
     getParams(n);
-	
-	ros::Subscriber state_sub = n.subscribe("/coax_filter/state", FSTATE_MSG_BUFFER, &stateCallback);
-	
-	filtered_state_pub = n.advertise<coax_client::CoaxLocalization>("state", MSG_QUEUE);
-	
-	ros::Rate loop_rate(PUBLISH_FREQ);
-	
-	while(ros::ok())
-	{
-		ros::spinOnce();
+    
+    ros::Subscriber state_sub = n.subscribe("/coax_filter/state", FSTATE_MSG_BUFFER, &stateCallback);
+    
+    filtered_state_pub = n.advertise<coax_client::CoaxLocalization>("state", MSG_QUEUE);
+    
+    ros::Rate loop_rate(PUBLISH_FREQ);
+    
+    while(ros::ok())
+    {
+        ros::spinOnce();
         loop_rate.sleep();
-	}
-	
-	return 0;
+    }
+    
+    return 0;
 }
 
 void stateCallback(boost::shared_ptr<coax_client::CoaxFilteredState> msg)

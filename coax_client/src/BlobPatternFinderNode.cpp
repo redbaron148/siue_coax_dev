@@ -6,7 +6,7 @@
  */
 
 #include <ros/ros.h>
-#include <CoaxClientConst.h>
+#include <coax_client/CoaxClientConst.h>
 #include <BlobUtilityLibrary.h>
 #include <cmvision/Blobs.h>
 #include <iostream>

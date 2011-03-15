@@ -3,18 +3,18 @@
  *  Programmer:     Aaron Parker
  *  Date Made:      01-05-2010
  *  Description:    ROS node, filters data recieved from coax_server topic 
- *				    /coax_server/state
+ *                  /coax_server/state
  *  
  *  Date Modified:  01-11-2010
  *  Description:    Put conditional wrappers in to decide if accel. filtering
- *				    should be done and if the accel. values should be 
- *				    converted to global coordinates. 
+ *                  should be done and if the accel. values should be 
+ *                  converted to global coordinates. 
  */
 
 #include <ros/ros.h>
 #include <coax_msgs/CoaxState.h>
 #include <coax_client/CoaxFilteredState.h>
-#include <CoaxClientConst.h>
+#include <coax_client/CoaxClientConst.h>
 #include <math.h>
 
 //global variables
@@ -37,42 +37,42 @@ double roundTwo(const double &num);
 
 int main(int argc, char **argv)
 {
-		ros::init(argc, argv, "coax_filter");
-		ros::NodeHandle n("coax_filter");
+        ros::init(argc, argv, "coax_filter");
+        ros::NodeHandle n("coax_filter");
 
     getParams(n);
-	
-		ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
-	
-		filtered_state_pub = n.advertise<coax_client::CoaxFilteredState>("state", MSG_QUEUE);
-	
-		ros::Rate loop_rate(PUBLISH_FREQ);
-	
-		while(ros::ok())
-		{
-				ros::spinOnce();
-				loop_rate.sleep();
-		}
-	
-		return 0;
+    
+        ros::Subscriber state_sub = n.subscribe("/coax_server/state", STATE_MSG_BUFFER, &stateCallback);
+    
+        filtered_state_pub = n.advertise<coax_client::CoaxFilteredState>("state", MSG_QUEUE);
+    
+        ros::Rate loop_rate(PUBLISH_FREQ);
+    
+        while(ros::ok())
+        {
+                ros::spinOnce();
+                loop_rate.sleep();
+        }
+    
+        return 0;
 }
 
 void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
 {
-		#if FILTER_ACCEL
+        #if FILTER_ACCEL
     static float prev_accel[3] = {0.0};
-		#endif
+        #endif
 
-		#if CONVERT_ACCEL_TO_GLOBAL
-		//rounding functions. Rounds rpy values to two decimal places. (getting rid of some error)
-		double roll = msg->roll;//roundTwo(msg->roll);
-		double pitch = msg->pitch;//roundTwo(msg->pitch);
-		double yaw = msg->yaw;//roundTwo(msg->yaw);
-		#endif
+        #if CONVERT_ACCEL_TO_GLOBAL
+        //rounding functions. Rounds rpy values to two decimal places. (getting rid of some error)
+        double roll = msg->roll;//roundTwo(msg->roll);
+        double pitch = msg->pitch;//roundTwo(msg->pitch);
+        double yaw = msg->yaw;//roundTwo(msg->yaw);
+        #endif
 
-		coax_client::CoaxFilteredState new_state = coax_client::CoaxFilteredState();
-	
-		new_state.header = msg->header;
+        coax_client::CoaxFilteredState new_state = coax_client::CoaxFilteredState();
+    
+        new_state.header = msg->header;
 
     for(int i = 0;i<3;i++)
     {
@@ -86,24 +86,24 @@ void stateCallback(const coax_msgs::CoaxStateConstPtr& msg)
         #endif
         //cout << "accel[" << i << "]: " << new_state.accel[i] << endl;
     }
-		
+        
     #if CONVERT_ACCEL_TO_GLOBAL
     //transform local acceleration values to global values.  accel z should generally stay -9.8 (gravity)
     new_state.global_accel[X] = cos(pitch)*cos(yaw)*new_state.accel[X]-sin(yaw)*cos(pitch)*new_state.accel[Y]+sin(pitch)*new_state.accel[Z];
     new_state.global_accel[Y] = ((cos(yaw)*sin(roll)*sin(pitch)+cos(roll)*sin(yaw))*new_state.accel[X])-
-		      ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *new_state.accel[Y])-
-		      (sin(roll)*cos(pitch)*new_state.accel[Z]);
+              ( ( ( sin(yaw)*sin(roll)*sin(pitch) ) - ( cos(roll)*cos(yaw) ) ) *new_state.accel[Y])-
+              (sin(roll)*cos(pitch)*new_state.accel[Z]);
     new_state.global_accel[Z] = (((-sin(pitch)*cos(roll)*cos(yaw))+(sin(roll)*sin(yaw)))*new_state.accel[X])+
-		      (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*new_state.accel[Y])+
-		      (cos(roll)*cos(pitch)*new_state.accel[Z]);
-	#endif
+              (((sin(pitch)*sin(yaw)*cos(roll))+(sin(roll)*cos(yaw)))*new_state.accel[Y])+
+              (cos(roll)*cos(pitch)*new_state.accel[Z]);
+    #endif
 
-	filtered_state_pub.publish(new_state);
+    filtered_state_pub.publish(new_state);
 }
 
 double calculateDistance(const double &sensor_value, const double &slope, const double &offset)
 {
-	return (slope*log(sensor_value)+offset);
+    return (slope*log(sensor_value)+offset);
 }
 
 void getParams(const ros::NodeHandle &nh)
@@ -188,7 +188,7 @@ void getParams(const ros::NodeHandle &nh)
         IR_TUNE[RIGHT][OFFSET] = DEFAULT_RIGHT_OFFSET;
     }
 
-	#if FILTER_ACCEL
+    #if FILTER_ACCEL
     //accel k values
     if (nh.getParam("accel/new_x_weight", ACCEL_FILTER_K[X]) && (ACCEL_FILTER_K[X] <= 1 && ACCEL_FILTER_K[X] >= 0))
     {
@@ -228,8 +228,8 @@ void getParams(const ros::NodeHandle &nh)
             ROS_WARN("No value set for %s/accel/new__weight. Setting default value: %f",nh.getNamespace().c_str(), DEFAULT_Z_FILTER_K);
         ACCEL_FILTER_K[Z] = DEFAULT_Z_FILTER_K;
     }
-	#endif
-		
+    #endif
+        
     //frequency this node publishes a new topic
     if (nh.getParam("publish_freq", PUBLISH_FREQ))
     {

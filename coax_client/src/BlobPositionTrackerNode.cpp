@@ -8,7 +8,7 @@
  */
 
 #include <ros/ros.h>
-#include <CoaxClientConst.h>
+#include <coax_client/CoaxClientConst.h>
 #include <coax_msgs/CoaxState.h>
 #include <coax_client/BlobSequencePoses.h>
 #include <coax_client/BlobSequences.h>
