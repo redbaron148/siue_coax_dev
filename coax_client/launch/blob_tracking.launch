@@ -1,6 +1,6 @@
 <launch>
     <include file="$(find coax_client)/launch/cmvision.launch"/>
     <node pkg="coax_client" type="blob_filter_node" name="blob_filter_node" output="screen"/>
-    <node pkg="coax_client" type="blob_pattern_node" name="blob_pattern_node" output="screen"/>
-    <node pkg="coax_client" type="blob_position_node" name="blob_position_node" output="screen"/>
+    <node pkg="coax_client" type="blob_sequence_identifier_node" name="blob_pattern_node" output="screen"/>
+    <node pkg="coax_client" type="blob_sequence_pose_tracker_node" name="blob_position_node" output="screen"/>
 </launch>

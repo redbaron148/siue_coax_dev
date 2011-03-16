@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     
     getParams(n);
     
-    ros::Subscriber filtered_blobs_sub = n.subscribe("/blob_pattern_finder/sequences", SEQ_MSG_BUFFER, &blobSequencesCallback);
+    ros::Subscriber filtered_blobs_sub = n.subscribe("/sequence_identifier/sequences", SEQ_MSG_BUFFER, &blobSequencesCallback);
     ros::Subscriber coax_state_sub = n.subscribe("/coax_server/state",STATE_MSG_BUFFER, &stateCallback);
     seq_pose_pub = n.advertise<coax_client::BlobSequencePoses>("/sequence_poses/sequence_poses", MSG_QUEUE);
     

@@ -39,3 +39,5 @@ rosbuild_add_executable(blob_filter_node src/BlobFilterNode.cpp)
 rosbuild_add_executable(blob_sequence_pose_tracker_node src/BlobSequencePoseTrackerNode.cpp)
 rosbuild_add_executable(blob_sequence_identifier_node src/BlobSequenceIdentifierNode.cpp)
 rosbuild_add_executable(blob_sequence_mapper_node src/BlobMapperNode.cpp)
+
+rosbuild_add_executable(blob_visuals_node src/CoaxVisuals.cpp)
