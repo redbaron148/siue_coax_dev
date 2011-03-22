@@ -21,8 +21,9 @@ int PUBLISH_FREQ;
 int SEQ_MSG_BUFFER;
 int STATE_MSG_BUFFER;
 int MSG_QUEUE;
+int STATE_BUFFER_SIZE = 20;
 
-std::vector<boost::shared_ptr<coax_msgs::CoaxState> > STATE_BUFFER(10,boost::shared_ptr<coax_msgs::CoaxState>(new coax_msgs::CoaxState));
+std::vector<boost::shared_ptr<coax_msgs::CoaxState> > STATE_BUFFER(STATE_BUFFER_SIZE,boost::shared_ptr<coax_msgs::CoaxState>(new coax_msgs::CoaxState));
 ros::Publisher seq_pose_pub;
 
 using namespace std;
@@ -60,9 +61,10 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
     static float center_y = msg.image_height/2.0;
     static float degrees_per_pixel_vert = FIELD_OF_VIEW_VERT/msg.image_height;
     static float degrees_per_pixel_horiz = FIELD_OF_VIEW_HORIZ/msg.image_width;
+    static boost::shared_ptr<coax_msgs::CoaxState> state;
     
     coax_client::BlobSequencePoses seq_poses;
-    //boost::shared_ptr<coax_msgs::CoaxState> state = findClosestStampedState(msg.header);
+    state = findClosestStampedState(msg.header);
     seq_poses.header = msg.header;
     
     float angle_horiz;
@@ -74,9 +76,9 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
         seq_pose.sequence = msg.sequences[i];
         angle_horiz = degrees_per_pixel_horiz*(msg.sequences[i].x-center_x);
         angle_vert  = degrees_per_pixel_vert*(msg.sequences[i].y-center_y);
-        seq_pose.pose.y = 78.74*sin(angle_horiz*3.14159/180.0)*-1;//-state->roll);
-        seq_pose.pose.x = 78.74*sin(angle_vert*3.14159/180.0)*-1;//-state->pitch)*-1;
-        seq_pose.pose.theta = 0;//state->zfiltered;
+        seq_pose.pose.y = (state->zrange*sin((angle_horiz*3.14159/180.0)-state->pitch)*-1);
+        seq_pose.pose.x = (state->zrange*sin((angle_vert*3.14159/180.0)-state->roll)*-1);
+        seq_pose.pose.theta = 0;
         seq_poses.sequence_poses.push_back(seq_pose);
     }
     
@@ -86,7 +88,7 @@ void blobSequencesCallback(coax_client::BlobSequences msg)
 void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg)
 {
     static int count = 0;
-    STATE_BUFFER[count%10] = msg;
+    STATE_BUFFER[count%STATE_BUFFER_SIZE] = msg;
     count ++;
 }
 
@@ -181,7 +183,7 @@ boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header h
 {
     int closest = 0;
     float best_time = fabs((STATE_BUFFER[0]->header.stamp-header.stamp).toSec());
-    for(int i = 1;i < 10;i++)
+    for(int i = 1;i < STATE_BUFFER.size();i++)
     {
         if(fabs((STATE_BUFFER[i]->header.stamp-header.stamp).toSec()) <= best_time)
         {

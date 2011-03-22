@@ -36,16 +36,17 @@ void calculatePositionOfHelicopter(const coax_client::BlobSequencePoses::ConstPt
     //cout << "local referance: " << ref << "  id: " << int(msg->sequence_poses[ref].sequence.id) << endl;
     
     helicopter_pose.header.stamp = msg->header.stamp;
-    float local_x = -msg->sequence_poses[ref].pose.x/100.;
-    float local_y = -msg->sequence_poses[ref].pose.y/100.;
+    float local_x = -msg->sequence_poses[ref].pose.x;
+    float local_y = -msg->sequence_poses[ref].pose.y;
     float global_x = known_global_cells.cells[known_global_cells.referance].x;
     float global_y = known_global_cells.cells[known_global_cells.referance].y;
     
     //cout << " local: (" << local_x << "," << local_y << ")" << endl;
     //cout << "global: (" << global_x << "," << global_y << ")" << endl;
 
-    helicopter_pose.pose.position.x = local_x+global_x;
-    helicopter_pose.pose.position.y = local_y+global_y;
+    helicopter_pose.pose.position.x = local_x+global_x+CAMERA_X_OFFSET;
+    helicopter_pose.pose.position.y = local_y+global_y+CAMERA_Y_OFFSET;
+    helicopter_pose.pose.position.z = 1.0;
     
     //cout << "  heli: (" << helicopter_pose.pose.position.x << "," << helicopter_pose.pose.position.y << ")" << endl << endl;
     
@@ -118,8 +119,8 @@ void blobSequencePosesCallback(const coax_client::BlobSequencePoses::ConstPtr& m
         if(temp==-1)
         {
             geometry_msgs::Point point;
-            point.x = msg->sequence_poses[i].pose.x/100.;
-            point.y = msg->sequence_poses[i].pose.y/100.;
+            point.x = msg->sequence_poses[i].pose.x;
+            point.y = msg->sequence_poses[i].pose.y;
             unknown.cells.push_back(point);
             unknown.ids.push_back(msg->sequence_poses[i].sequence.id);
             //cout << "added a sequence to unkown with id of " << int(msg->sequence_poses[i].sequence.id) << endl;
@@ -217,8 +218,8 @@ void calculatePositionOfUnknown(const coax_client::IDGridCells& unknown,const co
         return;
     }
     
-    float known_local_x = msg->sequence_poses[ref].pose.x/100.;
-    float known_local_y = msg->sequence_poses[ref].pose.y/100.;
+    float known_local_x = msg->sequence_poses[ref].pose.x;
+    float known_local_y = msg->sequence_poses[ref].pose.y;
     float known_global_x = known_global_cells.cells[known_global_cells.referance].x;
     float known_global_y = known_global_cells.cells[known_global_cells.referance].y;
     
@@ -233,10 +234,10 @@ void calculatePositionOfUnknown(const coax_client::IDGridCells& unknown,const co
         point.x = -known_local_x+unknown_local_x+known_global_x;
         point.y = -known_local_y+unknown_local_y+known_global_y;
         
-        cout << "(" << int(msg->sequence_poses[ref].sequence.id) << ")   known: (" << known_local_x << "," << known_local_y << ")L" << endl;
-        cout << "(" << known_global_cells.ids[known_global_cells.referance] << ")   known: (" << known_global_x << "," << known_global_y << ")G" << endl;
-        cout << "(" << unknown.ids[i] << ") unknown: (" << unknown_local_x << "," << unknown_local_y << ")L" << endl;
-        cout << "(" << unknown.ids[i] << ") unknown: (" << point.x << "," << point.y << ")G" << endl;
+        //cout << "(" << int(msg->sequence_poses[ref].sequence.id) << ")   known: (" << known_local_x << "," << known_local_y << ")L" << endl;
+        //cout << "(" << known_global_cells.ids[known_global_cells.referance] << ")   known: (" << known_global_x << "," << known_global_y << ")G" << endl;
+        //cout << "(" << unknown.ids[i] << ") unknown: (" << unknown_local_x << "," << unknown_local_y << ")L" << endl;
+        //cout << "(" << unknown.ids[i] << ") unknown: (" << point.x << "," << point.y << ")G" << endl;
         known_global_cells.cells.push_back(point);
         known_global_cells.ids.push_back(int(unknown.ids[i]));
     }

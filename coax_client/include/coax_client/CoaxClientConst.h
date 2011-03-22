@@ -80,4 +80,7 @@
 
 #define GROUND_ROBOT_ID 156
 
+#define CAMERA_Y_OFFSET 0
+#define CAMERA_X_OFFSET -0.1
+
 #endif
