@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find coax_client)/launch/coax_tf.launch"/>
+    <node pkg="coax_client" type="blob_visuals_node" name="visuals"/>
+    <node pkg="rviz" type="rviz" name="rviz"/>
+</launch>
