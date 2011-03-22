@@ -78,6 +78,6 @@
 #define BLOB_ADJACENT_THRESH 5
 #define SEQUENCE_SIZE 4
 
-#define GROUND_ROBOT_ID 18
+#define GROUND_ROBOT_ID 156
 
 #endif

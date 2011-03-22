@@ -1,0 +1,11 @@
+[Colors]
+(  1, 0, 0) 0.000000 10 red_object
+(  0, 1, 0) 0.000000 10 green_object
+(  0, 0, 1) 0.000000 10 blue_object
+(  1, 1, 0) 0.000000 10 yellow_object
+
+[Thresholds]
+(  61:154,  86:116, 148:189 )      #red object
+(  62:141, 131:146,  89:108 )      #green object
+(  80:173, 139:161, 108:129 )      #blue object
+( 134:227,  77:111, 123:139 )      #yellow object

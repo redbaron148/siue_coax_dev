@@ -1,5 +1,7 @@
 <launch>
-    <arg name="color_file" default="mrl_cloudy_2_sequence_bag_new_colors.txt"/>
+    <!--arg name="color_file" default="ethernet_21_4_2011-03-17-13.txt"/-->
+    <!--arg name="color_file" default="mrl_cloudy_2_sequence_bag_new_colors.txt"/-->
+    <arg name="color_file" default="ethernet_long_line_2011-03-21.txt"/>
 
     <group ns="cmvision">
         <param name="color_file" value="$(find coax_client)/include/$(arg color_file)"/>
