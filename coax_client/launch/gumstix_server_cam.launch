@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find gumstix_cam_node)/launch/gumstix_camera.launch"/>
+	<include file="$(find coax_client)/launch/gumstix_coax_server.launch"/>
+</launch>

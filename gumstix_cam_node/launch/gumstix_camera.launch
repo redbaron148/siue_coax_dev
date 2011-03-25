@@ -1,7 +1,7 @@
 <launch>
     <arg name="fps" default="10"/>
-    <arg name="width" default="320"/>
-    <arg name="height" default="240"/>
+    <arg name="width" default="160"/>
+    <arg name="height" default="120"/>
     <arg name="v4l_id" default="0"/>
     
     <arg name="auto_white_balance" default="true"/>
