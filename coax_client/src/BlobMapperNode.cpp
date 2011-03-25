@@ -46,7 +46,7 @@ void calculatePositionOfHelicopter(const coax_client::BlobSequencePoses::ConstPt
 
     helicopter_pose.pose.position.x = local_x+global_x+CAMERA_X_OFFSET;
     helicopter_pose.pose.position.y = local_y+global_y+CAMERA_Y_OFFSET;
-    helicopter_pose.pose.position.z = 1.0;
+    helicopter_pose.pose.position.z = msg->altitude;
     
     //cout << "  heli: (" << helicopter_pose.pose.position.x << "," << helicopter_pose.pose.position.y << ")" << endl << endl;
     

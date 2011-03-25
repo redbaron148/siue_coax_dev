@@ -1,6 +1,10 @@
 #ifndef COAX_CONSTANTS_H
 #define COAX_CONSTANTS_H
 
+//default values used for the coax controller node
+#define DEFAULT_COAX_CONTROLLER_NODE_COAX_POSE_MSG_BUFFER   1
+#define DEFAULT_COAX_CONTROLLER_NODE_PUBLISH_FREQ           10
+
 //default values used for the blob mapper node
 #define DEFAULT_BLOB_MAPPER_NODE_SEQ_POSES_MSG_BUFFER   1
 #define DEFAULT_BLOB_MAPPER_NODE_PUBLISH_FREQ           10
@@ -82,5 +86,7 @@
 
 #define CAMERA_Y_OFFSET 0
 #define CAMERA_X_OFFSET -0.1
+
+#define MAX_BLOB_SIZE 1000
 
 #endif

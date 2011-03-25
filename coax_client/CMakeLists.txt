@@ -16,6 +16,10 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
+set(COAXHOME $ENV{HOME}/coax-software/deploy)
+set(COAXTARGET linux)
+include_directories(${COAXHOME}/${COAXTARGET}/include)
+
 #uncomment if you have defined messages
 rosbuild_genmsg()
 #uncomment if you have defined services
@@ -39,5 +43,7 @@ rosbuild_add_executable(blob_filter_node src/BlobFilterNode.cpp)
 rosbuild_add_executable(blob_sequence_pose_tracker_node src/BlobSequencePoseTrackerNode.cpp)
 rosbuild_add_executable(blob_sequence_identifier_node src/BlobSequenceIdentifierNode.cpp)
 rosbuild_add_executable(blob_sequence_mapper_node src/BlobMapperNode.cpp)
+rosbuild_add_executable(coax_controller_node src/CoaxControllerNode.cpp)
 
 rosbuild_add_executable(blob_visuals_node src/CoaxVisuals.cpp)
+rosbuild_add_executable(keyboard src/CoaxKeyboardTeleop.cpp)

@@ -13,6 +13,7 @@
 #include <ros/ros.h>
 #include <coax_client/CoaxClientConst.h>
 #include <cmvision/Blobs.h>
+#include <coax_client/BlobUtilityLibrary.h>
 
 //global variables
 int PUBLISH_FREQ;
@@ -26,6 +27,17 @@ ros::Publisher filtered_blob_pub;
 
 void blobsCallback(cmvision::Blobs msg);
 void getParams(const ros::NodeHandle &nh);
+void filterBlobs(cmvision::Blobs &msg)
+{
+    for(int i = msg.blobs.size()-1;i>=0;i--)
+    {
+        if(msg.blobs[i].area >= MAX_BLOB_SIZE)
+        {
+            deleteBlob(i,msg);
+            i--;
+        }
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -52,6 +64,7 @@ void blobsCallback(cmvision::Blobs msg)
 {
     if(msg.blob_count > 0)
     {
+        filterBlobs(msg);
         filtered_blob_pub.publish(msg);
     }
 }
