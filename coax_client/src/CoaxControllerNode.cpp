@@ -182,12 +182,15 @@ class SBController
             double desYaw = 0;
             double desRoll = 0;
             double desPitch = 0;
+            unsigned int pose_count = 0;
 
             while (ros::ok()) {
                 //ROS_INFO("trying a joyctrl");
                 looprate.sleep();
                 ros::spinOnce();
+                
                 if (!gotjoy || state == NULL) continue;
+                //joy_count = 0;
 
                 if (state->errorFlags) {
                     printf("An error has been detected on the PIC: %02X\n",
@@ -203,10 +206,13 @@ class SBController
                         if(gotpose){
                             delta_y = (-current_goal->y+current_pose->pose.position.y);
                             delta_x = (current_goal->x-current_pose->pose.position.x);
+                            pose_count=0;
                             //gotpose = false;
                         }
                         else {
-                            ROS_INFO("have not gotten a new pose recently, may timeout");
+                            if(pose_count >= 5)
+                                ROS_INFO("have not gotten a new pose recently, may timeout");
+                            pose_count++;
                         }
                         //ROS_INFO("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
                         //ROS_INFO("goal: (%f,%f)\n",current_goal->x,current_goal->y);
@@ -224,7 +230,7 @@ class SBController
                         if(current_goal == NULL) ROS_WARN("No Goal");
                         else if(current_pose == NULL) ROS_WARN("No Pose");
                         else ROS_WARN("timed out: %f - %f = %f",ros::Time::now().toSec(),current_pose->header.stamp.toSec(),(ros::Time::now()-current_pose->header.stamp).toSec());
-                        ROS_INFO("turning auto mode off");
+                        if(automode) ROS_INFO("turning auto mode off");
                         //DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
                         //ROS_INFO("Transition to IDLE completed");
                         automode = false;
