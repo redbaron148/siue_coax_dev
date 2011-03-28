@@ -184,7 +184,7 @@ boost::shared_ptr<coax_msgs::CoaxState> findClosestStampedState(roslib::Header h
 {
     int closest = 0;
     float best_time = fabs((STATE_BUFFER[0]->header.stamp-header.stamp).toSec());
-    for(int i = 1;i < STATE_BUFFER.size();i++)
+    for(unsigned int i = 1;i < STATE_BUFFER.size();i++)
     {
         if(fabs((STATE_BUFFER[i]->header.stamp-header.stamp).toSec()) <= best_time)
         {
