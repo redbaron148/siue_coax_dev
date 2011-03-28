@@ -45,5 +45,5 @@ rosbuild_add_executable(blob_sequence_identifier_node src/BlobSequenceIdentifier
 rosbuild_add_executable(blob_sequence_mapper_node src/BlobMapperNode.cpp)
 rosbuild_add_executable(coax_controller_node src/CoaxControllerNode.cpp)
 
-rosbuild_add_executable(blob_visuals_node src/CoaxVisuals.cpp)
-rosbuild_add_executable(keyboard src/CoaxKeyboardTeleop.cpp)
+#rosbuild_add_executable(blob_visuals_node src/CoaxVisuals.cpp)
+#rosbuild_add_executable(keyboard src/CoaxKeyboardTeleop.cpp)
