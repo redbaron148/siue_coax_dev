@@ -36,8 +36,7 @@
 #include <com/sbapi.h>
 
 #include <coax_msgs/CoaxState.h>
-#include <coax_msgs/CoaxConfigureOAMode.h>
-#include <coax_msgs/CoaxConfigureComm.h>
+#include <coax_msgs/CoaxSetLight.h>
 #include <coax_msgs/CoaxConfigureControl.h>
 #include <coax_msgs/CoaxReachNavState.h>
 #include <coax_msgs/CoaxSetTimeout.h>
@@ -72,8 +71,7 @@ class SBController
 		ros::Subscriber joy_sub;
 		ros::Publisher control_pub;
 		ros::ServiceClient cfgControlClt;
-		ros::ServiceClient cfgCommClt;
-		ros::ServiceClient cfgOAClt;
+		ros::ServiceClient setLightClt;
 		ros::ServiceClient reachNavStateClt;
 		ros::ServiceClient setTimeoutClt;
 
@@ -127,6 +125,21 @@ class SBController
             return -1;
         }
 
+		int setLight(unsigned char percent) {
+            coax_msgs::CoaxSetLight srv;
+            srv.request.percent = percent;
+            if (setLightClt.call(srv))
+            {
+                ROS_INFO("Set light: %ld", (long int)srv.response.result);
+                return 0;
+            }
+            else
+            {
+                ROS_ERROR("Failed to call service set light");
+            }
+            return -1;
+        }
+
 		int setControl(float roll, float pitch, float yaw, float altitude) {
 			coax_msgs::CoaxControl control;
 			control.roll = roll;
@@ -155,6 +168,15 @@ class SBController
 				looprate.sleep();
 				ros::spinOnce();
                 if (!gotjoy) continue;
+                if (state.errorFlags & SB_FLAG_MANUAL) {
+                    // If we're not in auto, we can't do anything
+                    if (state.mode.navigation != SB_NAV_STOP) {
+                        // If we were not in stop, then go to stop, to 
+                        // make sure we know in which state we are.
+                        DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
+                    }
+                    continue;
+                }
 
 				if (joystate.buttons[5] && 
                         (state.coaxspeed.state & COAXSPEED_AVAILABLE)) {
@@ -167,50 +189,53 @@ class SBController
                         (state.coaxspeed.state & COAXSPEED_AVAILABLE)) {
                     configureControl(SB_CTRL_POS,SB_CTRL_POS,
                             SB_CTRL_VEL, SB_CTRL_REL);
+                    setLight(0);
                     velmode = false;
                     ROS_INFO("Disabled velocity control");
 				}
 
-				if (state.errorFlags) {
+#if 1
+				if (state.errorFlags & (SB_FLAG_IMUCRASH | SB_FLAG_RCLOST)) {
 					printf("An error has been detected on the PIC: %02X\n",
 							state.errorFlags);
 					DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
 					return;
 				}
+#endif
 
 				switch (state.mode.navigation) {
 					case SB_NAV_STOP:
 						desHeight = 0;
 						firstctrl = true;
 						if (joystate.buttons[0]) {
-							DEBUG(res = reachNavState(SB_NAV_IDLE,30.0));
-                            ROS_INFO("Transition to IDLE completed");
+							DEBUG(res = reachNavState(SB_NAV_CTRLLED,30.0));
+                            ROS_INFO("Transition to CTRLLED completed");
+                            if (state.coaxspeed.state & COAXSPEED_AVAILABLE) {
+                                configureControl(SB_CTRL_VEL,SB_CTRL_VEL,
+                                        SB_CTRL_VEL, SB_CTRL_REL);
+                                velmode = true;
+                                ROS_INFO("Activated velocity control");
+                            }
 						}
 						break;
 					case SB_NAV_IDLE:
+					case SB_NAV_HOVER:
 						desHeight = 0;
 						firstctrl = true;
+                        DEBUG(res = reachNavState(SB_NAV_CTRLLED,30.0));
+                        ROS_INFO("Transition to CTRLLED completed");
 						if (joystate.buttons[0]) {
-                            if (joystate.axes[2] > -0.8) {
-                                ROS_INFO("Refusing transition to controlled while the height axis (%.2f) is above -0.8",joystate.axes[2]);
-                            } else {
-                                DEBUG(res = reachNavState(SB_NAV_CTRLLED,30.0));
-                                ROS_INFO("Transition to CTRLLED completed");
-                            }
-						}
-						if (joystate.buttons[1]) {
 							DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
                             ROS_INFO("Transition to STOP completed");
 						}
 						break;
 					case SB_NAV_TAKEOFF:
 					case SB_NAV_LAND:
-					case SB_NAV_HOVER:
 					case SB_NAV_SINK:
 						firstctrl = true;
 						desHeight = state.zrange;
 						if (joystate.buttons[1]) {
-							DEBUG(res = reachNavState(SB_NAV_IDLE,30.0));
+							DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
                             ROS_INFO("Transition to IDLE completed");
 						}
 						break;
@@ -225,8 +250,9 @@ class SBController
 								firstctrl = false;
 							}
 							if (joystate.buttons[0]) {
-								DEBUG(res = reachNavState(SB_NAV_IDLE,30.0));
-                                ROS_INFO("Transition to IDLE completed");
+								DEBUG(res = reachNavState(SB_NAV_STOP,30.0));
+                                ROS_INFO("Transition to STOP completed");
+                                setLight(0);
 								break;
 							}
 #if 0
@@ -247,8 +273,8 @@ class SBController
 							if (joystate.buttons[4]) { desYaw = +80*M_PI/180.; }
 							// desYaw /= 17.; // IMU BUG
                             if (velmode) {
-                                desPitch = -(1.00*joystate.axes[1]);
-                                desRoll = -(1.00*joystate.axes[0]);
+                                desPitch = -(0.50*joystate.axes[1]);
+                                desRoll = -(0.50*joystate.axes[0]);
                             } else {
                                 desPitch = -(0.25*joystate.axes[1]);
                                 desRoll = -(0.25*joystate.axes[0]);
@@ -269,12 +295,11 @@ class SBController
 		int initialise(ros::NodeHandle & n) {
             std::string coax_server = "coax_server";
             std::string joytopic = "/joy";
-            // n.param<std::string>("coax_server",coax_server,coax_server);
-            // n.param<std::string>("joy_topic",joytopic,joytopic);
+            n.param<std::string>("coax_server",coax_server,coax_server);
+            n.param<std::string>("joy_topic",joytopic,joytopic);
 
 			cfgControlClt = n.serviceClient<coax_msgs::CoaxConfigureControl>(coax_server+"/configure_control");
-			cfgCommClt = n.serviceClient<coax_msgs::CoaxConfigureComm>(coax_server+"/configure_comm");
-			cfgOAClt = n.serviceClient<coax_msgs::CoaxConfigureOAMode>(coax_server+"/configure_oamode");
+			setLightClt = n.serviceClient<coax_msgs::CoaxSetLight>(coax_server+"/set_light");
 			reachNavStateClt = n.serviceClient<coax_msgs::CoaxReachNavState>(coax_server+"/reach_nav_state");
 			setTimeoutClt = n.serviceClient<coax_msgs::CoaxSetTimeout>(coax_server+"/set_timeout");
 

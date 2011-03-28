@@ -20,6 +20,7 @@
 #include "coax_msgs/CoaxReset.h"
 #include "coax_msgs/CoaxControl.h"
 #include "coax_msgs/CoaxRawControl.h"
+#include "coax_msgs/CoaxSetLight.h"
 
 #include <com/sbapi.h>
 #include <com/sbsimple.h>
@@ -118,7 +119,7 @@ class SBController
 			sbSimpleParseChannel(simple,devname.c_str(),NULL);
 			simple->initNavState = SB_NAV_STOP;
 			simple->cmdTimeout = 5000;
-			simple->ctrlTimeout = 1000;
+			simple->ctrlTimeout = 2000;
 			simple->rollCtrlMode = SB_CTRL_POS;
 			simple->pitchCtrlMode = SB_CTRL_POS;
 			simple->altCtrlMode = SB_CTRL_REL;
@@ -162,12 +163,9 @@ class SBController
 		bool configure_comm(coax_msgs::CoaxConfigureComm::Request  &req,
 				coax_msgs::CoaxConfigureComm::Response &out )
 		{
-			sbLockCommunication(&simple->control);
-			DEBUG(res = sbConfigureComm(&simple->control,
-						req.commMode,req.frequency,req.numMessages,req.contents & sensorList));
-			sbUnlockCommunication(&simple->control);
-			out.result = res;
-			ROS_INFO("Configure comm mode [%d]", res);
+			DEBUG(res = sbSimpleConfigureComm(simple,
+						req.frequency,req.contents & sensorList));
+			ROS_INFO("Communication mode configured [%d] ", res);
 			return true;
 		}
 
@@ -195,6 +193,17 @@ class SBController
 			sbUnlockCommunication(&simple->control);
 			out.result = res;
 			ROS_INFO("Configure obst. avoid mode [%d]", res);
+			return true;
+		}
+
+		bool set_light(coax_msgs::CoaxSetLight::Request  &req,
+				coax_msgs::CoaxSetLight::Response &out )
+		{
+			sbLockCommunication(&simple->control);
+			DEBUG(res = sbSetCoaxSpeedLight(&simple->control,req.percent));
+			sbUnlockCommunication(&simple->control);
+			out.result = res;
+			ROS_INFO("Coax set light %d [%d]", req.percent, res);
 			return true;
 		}
 
@@ -459,6 +468,7 @@ int main(int argc, char **argv)
 	services.push_back(n.advertiseService("set_control", &SBController::set_control, &api));
 	services.push_back(n.advertiseService("set_raw_control", &SBController::set_raw_control, &api));
 	services.push_back(n.advertiseService("reset", &SBController::reset, &api));
+	services.push_back(n.advertiseService("set_light", &SBController::set_light, &api));
 
 	// Publishing the state
 	ros::Publisher coax_pub = n.advertise<coax_msgs::CoaxState>("state",50);
