@@ -60,8 +60,8 @@
 
 #define NAV_STATE_TIMEOUT   5
 #define AUTO_POSE_TIMEOUT   3
-#define MAX_AUTO_ROLL       0.1
-#define MAX_AUTO_PITCH      0.1
+#define MAX_AUTO_ROLL       0.05
+#define MAX_AUTO_PITCH      0.05
 #define PITCH_P_VALUE       0.05
 #define ROLL_P_VALUE        0.05
 
@@ -201,7 +201,7 @@ class SBController
                 }
                 
                 //if autoflight is enabled
-                if(true){
+                if(automode){
                     if(current_goal != NULL && current_pose != NULL &&
                     (ros::Time::now()-current_pose->header.stamp).toSec()<=AUTO_POSE_TIMEOUT){
                         if(gotpose){
