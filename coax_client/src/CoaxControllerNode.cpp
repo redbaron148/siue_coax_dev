@@ -58,12 +58,12 @@
 #define DEBUG(c) res=0;c;if (res) printf("Result of "#c": %d\n",res)
 #define CRITICAL(c) res=0;c;if (res) {printf("Result of "#c": %d\n",res); return res;}
 
-#define NAV_STATE_TIMEOUT   5
-#define AUTO_POSE_TIMEOUT   3
-#define MAX_AUTO_ROLL       0.08
-#define MAX_AUTO_PITCH      0.08
-#define PITCH_P_VALUE       0.08
-#define ROLL_P_VALUE        0.08
+#define DEFAULT_NAV_STATE_TIMEOUT   5.0
+#define DEFAULT_AUTO_POSE_TIMEOUT   3.0
+#define DEFAULT_MAX_AUTO_ROLL       0.08
+#define DEFAULT_MAX_AUTO_PITCH      0.08
+#define DEFAULT_PITCH_P_VALUE       0.08
+#define DEFAULT_ROLL_P_VALUE        0.08
 
 static int end = 0;
 
@@ -93,6 +93,8 @@ class SBController
 
         bool firstctrl,gotjoy,automode,gotpose;
         float delta_x,delta_y;
+        double roll_p, pitch_p, max_pitch, max_roll;
+        double auto_pose_timeout, nav_state_timeout;
     public:
         SBController() {
             firstctrl = true;
@@ -102,7 +104,6 @@ class SBController
             current_goal = boost::shared_ptr<geometry_msgs::Pose2D>(new geometry_msgs::Pose2D());
             current_goal->x = .5;
             current_goal->y = .5;
-            //current_pose = boost::shared_ptr<geometry_msgs::PoseStamped>(new geometry_msgs::PoseStamped());
         }
         ~SBController() {
         }
@@ -196,14 +197,14 @@ class SBController
                 if (state->errorFlags) {
                     printf("An error has been detected on the PIC: %02X\n",
                             state->errorFlags);
-                    DEBUG(res = reachNavState(SB_NAV_STOP,NAV_STATE_TIMEOUT));
+                    DEBUG(res = reachNavState(SB_NAV_STOP,nav_state_timeout));
                     return;
                 }
                 
                 //if autoflight is enabled
                 if(automode){
                     if(current_goal != NULL && current_pose != NULL &&
-                    (ros::Time::now()-current_pose->header.stamp).toSec()<=AUTO_POSE_TIMEOUT){
+                    (ros::Time::now()-current_pose->header.stamp).toSec()<=auto_pose_timeout){
                         if(gotpose){
                             delta_y = (-current_goal->y+current_pose->pose.position.y);
                             delta_x = (current_goal->x-current_pose->pose.position.x);
@@ -218,12 +219,12 @@ class SBController
                         //ROS_INFO("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
                         //ROS_INFO("goal: (%f,%f)\n",current_goal->x,current_goal->y);
                         //ROS_INFO("delta_x: %f  delta_y: %f",delta_x,delta_y);
-                        desPitch = delta_x*-PITCH_P_VALUE;
-                        desRoll = delta_y*ROLL_P_VALUE;
-                        if(desRoll >= 0) desRoll = MIN(MAX_AUTO_ROLL,desRoll);
-                        else desRoll = MAX(-MAX_AUTO_ROLL,desRoll);
-                        if(desPitch >= 0) desPitch = MIN(MAX_AUTO_PITCH,desPitch);
-                        else desPitch = MAX(-MAX_AUTO_PITCH,desPitch);
+                        desPitch = delta_x*-pitch_p;
+                        desRoll = delta_y*roll_p;
+                        if(desRoll >= 0) desRoll = MIN(max_roll,desRoll);
+                        else desRoll = MAX(-max_roll,desRoll);
+                        if(desPitch >= 0) desPitch = MIN(max_pitch,desPitch);
+                        else desPitch = MAX(-max_pitch,desPitch);
                         ROS_INFO("desPitch: %f  desRoll: %f",desPitch,desRoll);
                     }
                     else{
@@ -232,7 +233,7 @@ class SBController
                         else if(current_pose == NULL) ROS_WARN("No Pose");
                         else ROS_WARN("timed out: %f - %f = %f",ros::Time::now().toSec(),current_pose->header.stamp.toSec(),(ros::Time::now()-current_pose->header.stamp).toSec());
                         if(automode) ROS_INFO("turning auto mode off");
-                        //DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
+                        //DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
                         //ROS_INFO("Transition to IDLE completed");
                         automode = false;
                         //break;
@@ -244,7 +245,7 @@ class SBController
                         desHeight = 0;
                         firstctrl = true;
                         if (joystate->buttons[0]) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
+                            DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
                             ROS_INFO("Transition to IDLE completed");
                         }
                         break;
@@ -255,12 +256,12 @@ class SBController
                             if (joystate->axes[2] > -0.8) {
                                 ROS_INFO("Refusing transition to controlled while the height axis (%.2f) is above -0.8",joystate->axes[2]);
                             } else {
-                                DEBUG(res = reachNavState(SB_NAV_CTRLLED,NAV_STATE_TIMEOUT));
+                                DEBUG(res = reachNavState(SB_NAV_CTRLLED,nav_state_timeout));
                                 ROS_INFO("Transition to CTRLLED completed");
                             }
                         }
                         if (joystate->buttons[1]) {
-                            DEBUG(res = reachNavState(SB_NAV_STOP,NAV_STATE_TIMEOUT));
+                            DEBUG(res = reachNavState(SB_NAV_STOP,nav_state_timeout));
                             ROS_INFO("Transition to STOP completed");
                         }
                         break;
@@ -271,7 +272,7 @@ class SBController
                         firstctrl = true;
                         desHeight = state->zrange;
                         if (joystate->buttons[1]) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
+                            DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
                             ROS_INFO("Transition to IDLE completed");
                         }
                         break;
@@ -283,7 +284,7 @@ class SBController
                             firstctrl = false;
                         }
                         if (joystate->buttons[0]) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,NAV_STATE_TIMEOUT));
+                            DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
                             ROS_INFO("Transition to IDLE completed");
                             automode = false;
                             break;
@@ -325,6 +326,13 @@ class SBController
             std::string pose_node_prefix = "/blob_mapper";
             // n.param<std::string>("coax_server",coax_server,coax_server);
             // n.param<std::string>("joy_topic",joytopic,joytopic);
+            
+            n.param("pitch_p_value", pitch_p, DEFAULT_PITCH_P_VALUE);
+            n.param("roll_p_value", roll_p, DEFAULT_ROLL_P_VALUE);
+            n.param("max_pitch", pitch_p, DEFAULT_MAX_AUTO_PITCH);
+            n.param("max_roll", max_pitch, DEFAULT_MAX_AUTO_ROLL);
+            n.param("nav_state_timeout", nav_state_timeout, DEFAULT_NAV_STATE_TIMEOUT);
+            n.param("auto_pose_timeout", auto_pose_timeout, DEFAULT_AUTO_POSE_TIMEOUT);
 
             cfgControlClt = n.serviceClient<coax_msgs::CoaxConfigureControl>(coax_server+"/configure_control");
             cfgCommClt = n.serviceClient<coax_msgs::CoaxConfigureComm>(coax_server+"/configure_comm");
