@@ -289,15 +289,19 @@ class SBController
                             automode = false;
                             break;
                         }
+                        if(joystate->buttons[1]){
+                            automode = false;
+                            ROS_INFO("turning auto mode off");
+                        }
                         
                         if(joystate->buttons[2]){
                             automode = true;
                             ROS_INFO("turning auto mode on");
                         }
                         
+                        desHeight = ((1 + joystate->axes[2])/2) * 1.0;
                         if(!automode)
                         {
-                            desHeight = ((1 + joystate->axes[2])/2) * 1.0;
                             if (joystate->buttons[3]) { desYaw = -80*M_PI/180; }
                             if (joystate->buttons[4]) { desYaw = +80*M_PI/180.; }
                             desPitch = -(0.25*joystate->axes[1]);
