@@ -216,9 +216,9 @@ class SBController
                                 ROS_INFO("have not gotten a new pose recently, may timeout");
                             pose_count++;
                         }
-                        //ROS_INFO("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
-                        //ROS_INFO("goal: (%f,%f)\n",current_goal->x,current_goal->y);
-                        //ROS_INFO("delta_x: %f  delta_y: %f",delta_x,delta_y);
+                        ROS_DEBUG("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
+                        ROS_DEBUG("goal: (%f,%f)\n",current_goal->x,current_goal->y);
+                        ROS_DEBUG("delta_x: %f  delta_y: %f",delta_x,delta_y);
                         desPitch = delta_x*-pitch_p;
                         desRoll = delta_y*roll_p;
                         if(desRoll >= 0) desRoll = MIN(max_roll,desRoll);
