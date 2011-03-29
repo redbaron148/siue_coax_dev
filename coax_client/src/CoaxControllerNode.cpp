@@ -59,11 +59,11 @@
 #define CRITICAL(c) res=0;c;if (res) {printf("Result of "#c": %d\n",res); return res;}
 
 #define NAV_STATE_TIMEOUT   5
-#define AUTO_POSE_TIMEOUT   1
+#define AUTO_POSE_TIMEOUT   3
 #define MAX_AUTO_ROLL       0.1
 #define MAX_AUTO_PITCH      0.1
-#define PITCH_P_VALUE       0.1
-#define ROLL_P_VALUE        0.1
+#define PITCH_P_VALUE       0.05
+#define ROLL_P_VALUE        0.05
 
 static int end = 0;
 
@@ -188,6 +188,7 @@ class SBController
                 //ROS_INFO("trying a joyctrl");
                 looprate.sleep();
                 ros::spinOnce();
+                desYaw = 0;
                 
                 if (!gotjoy || state == NULL) continue;
                 //joy_count = 0;
