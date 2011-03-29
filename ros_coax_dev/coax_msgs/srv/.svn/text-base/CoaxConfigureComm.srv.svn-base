@@ -1,4 +1,6 @@
+uint8 commMode
 uint16 frequency
+uint16 numMessages
 uint32 contents
 ---
 int8 result

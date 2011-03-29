@@ -1,5 +1,7 @@
 *.swp
-build/*
-bin/*
-*~
-
+*/.swp
+*/~*
+*/build
+*/bin
+*/*_gen
+*/*/lisp

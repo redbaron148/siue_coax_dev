@@ -39,7 +39,4 @@ add_definitions(-DSBC_HAS_IO -DDEFENSIVE -DSBC_HAS_COMM -DSBC_HAS_PTHREAD -DLINU
 rosbuild_add_executable(coax_server src/coax_server.cpp)
 target_link_libraries(coax_server sbcom pthread rt)
 
-rosbuild_add_executable(coax_server_sim src/coax_server_sim.cpp)
-target_link_libraries(coax_server_sim sbcom pthread rt)
-
 

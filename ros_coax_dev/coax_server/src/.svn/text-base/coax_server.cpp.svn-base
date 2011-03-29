@@ -20,7 +20,6 @@
 #include "coax_msgs/CoaxReset.h"
 #include "coax_msgs/CoaxControl.h"
 #include "coax_msgs/CoaxRawControl.h"
-#include "coax_msgs/CoaxSetLight.h"
 
 #include <com/sbapi.h>
 #include <com/sbsimple.h>
@@ -85,10 +84,6 @@ class SBController
 			for (unsigned int i=0;i<8;i++) {
 				COPY(rcChannel[i]);
 			}
-			COPY(coaxspeed.state);
-			COPY(coaxspeed.light);
-			COPY(coaxspeed.vel_x);
-			COPY(coaxspeed.vel_y);
 			COPY(o_altitude);
 			COPY(o_tol);
 			for (unsigned int i=0;i<2;i++) {
@@ -116,19 +111,26 @@ class SBController
 
 		int initialise(const std::string & devname) {
 			res = 0;
-			sbSimpleParseChannel(simple,devname.c_str(),NULL);
+
+			simple->device[0] = 0;
+			strncpy(simple->device,devname.c_str(),255);
+			simple->device[255] = 0;
+			simple->commPort = 5123; // 8123 to test the repeater
+			if (simple->device[0] == '/') {
+				simple->commType = SB_COMMTYPE_SERIAL;
+			} else {
+				simple->commType = SB_COMMTYPE_UDP;
+				sscanf(devname.c_str(),"%[^:]:%d",simple->device,&simple->commPort);
+			}
 			simple->initNavState = SB_NAV_STOP;
-			simple->cmdTimeout = 5000;
-			simple->ctrlTimeout = 2000;
+			simple->cmdTimeout = 2000;
+			simple->ctrlTimeout = 1000;
 			simple->rollCtrlMode = SB_CTRL_POS;
 			simple->pitchCtrlMode = SB_CTRL_POS;
 			simple->altCtrlMode = SB_CTRL_REL;
 			simple->yawCtrlMode = SB_CTRL_VEL;
 			simple->sensorList = &sensorList;
 
-			simple->commFreq = 30;
-			// simple->commContent = SBS_TIMESTAMP | SBS_RPY | SBS_IMU_ALL | SBS_RANGES_ALL | 
-            //     SBS_PRESSURE | SBS_BATTERY | SBS_O_XY | SBS_XY_REL | SBS_COAXSPEED;
 			simple->stateFunc = rosStateExportCB;
 			simple->userData = this;
 			simple->oaMode = SB_OA_NONE;
@@ -163,9 +165,12 @@ class SBController
 		bool configure_comm(coax_msgs::CoaxConfigureComm::Request  &req,
 				coax_msgs::CoaxConfigureComm::Response &out )
 		{
-			DEBUG(res = sbSimpleConfigureComm(simple,
-						req.frequency,req.contents & sensorList));
-			ROS_INFO("Communication mode configured [%d] ", res);
+			sbLockCommunication(&simple->control);
+			DEBUG(res = sbConfigureComm(&simple->control,
+						req.commMode,req.frequency,req.numMessages,req.contents & sensorList));
+			sbUnlockCommunication(&simple->control);
+			out.result = res;
+			ROS_INFO("Configure comm mode [%d]", res);
 			return true;
 		}
 
@@ -193,17 +198,6 @@ class SBController
 			sbUnlockCommunication(&simple->control);
 			out.result = res;
 			ROS_INFO("Configure obst. avoid mode [%d]", res);
-			return true;
-		}
-
-		bool set_light(coax_msgs::CoaxSetLight::Request  &req,
-				coax_msgs::CoaxSetLight::Response &out )
-		{
-			sbLockCommunication(&simple->control);
-			DEBUG(res = sbSetCoaxSpeedLight(&simple->control,req.percent));
-			sbUnlockCommunication(&simple->control);
-			out.result = res;
-			ROS_INFO("Coax set light %d [%d]", req.percent, res);
 			return true;
 		}
 
@@ -436,8 +430,6 @@ int main(int argc, char **argv)
 	int res;
 	const SBVersionStatus * compiled = sbGetCompiledVersion(); 
 	unsigned int objSizeStatus = sbValidateObjectSize(compiled);
-
-	ros::init(argc, argv, "coax_server");
 	ROS_INFO("Object size status: %04x",objSizeStatus);
 	assert(objSizeStatus == 0);
 
@@ -447,6 +439,7 @@ int main(int argc, char **argv)
 
 	CRITICAL(res = api.initialise((argc<2)?("localhost"):(argv[1])));
 
+	ros::init(argc, argv, "coax_server");
 	ros::NodeHandle n("/coax_server");
 
 	std::vector<ros::ServiceServer> services;
@@ -468,7 +461,6 @@ int main(int argc, char **argv)
 	services.push_back(n.advertiseService("set_control", &SBController::set_control, &api));
 	services.push_back(n.advertiseService("set_raw_control", &SBController::set_raw_control, &api));
 	services.push_back(n.advertiseService("reset", &SBController::reset, &api));
-	services.push_back(n.advertiseService("set_light", &SBController::set_light, &api));
 
 	// Publishing the state
 	ros::Publisher coax_pub = n.advertise<coax_msgs::CoaxState>("state",50);

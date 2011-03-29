@@ -1,9 +1,2 @@
-*.swp
-build
-bin
-*~
-*_gen
-*_gen
-src/
-msg/lisp
-srv/lisp
+*/lisp
+src/coax_msgs
