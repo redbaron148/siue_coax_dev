@@ -60,10 +60,10 @@
 
 #define DEFAULT_NAV_STATE_TIMEOUT   5.0
 #define DEFAULT_AUTO_POSE_TIMEOUT   2.0
-#define DEFAULT_MAX_AUTO_ROLL       0.08
-#define DEFAULT_MAX_AUTO_PITCH      0.08
-#define DEFAULT_PITCH_P_VALUE       0.08
-#define DEFAULT_ROLL_P_VALUE        0.08
+#define DEFAULT_MAX_AUTO_ROLL       0.065
+#define DEFAULT_MAX_AUTO_PITCH      0.065
+#define DEFAULT_PITCH_P_VALUE       0.06
+#define DEFAULT_ROLL_P_VALUE        0.06
 
 static int end = 0;
 
