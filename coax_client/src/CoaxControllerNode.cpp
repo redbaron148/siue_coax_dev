@@ -228,15 +228,15 @@ class SBController
                         ROS_INFO("desPitch: %f  desRoll: %f",desPitch,desRoll);
                     }
                     else{
-                        //ROS_WARN("Cannot auto fly, transitioning to IDLE.");
+                        ROS_WARN("Cannot auto fly, transitioning to IDLE.");
                         if(current_goal == NULL) ROS_WARN("No Goal");
                         else if(current_pose == NULL) ROS_WARN("No Pose");
                         else ROS_WARN("timed out: %f - %f = %f",ros::Time::now().toSec(),current_pose->header.stamp.toSec(),(ros::Time::now()-current_pose->header.stamp).toSec());
                         if(automode) ROS_INFO("turning auto mode off");
-                        //DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
-                        //ROS_INFO("Transition to IDLE completed");
+                        DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
+                        ROS_INFO("Transition to IDLE completed");
                         automode = false;
-                        //break;
+                        break;
                     }
                 }
 
