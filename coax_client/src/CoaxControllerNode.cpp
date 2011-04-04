@@ -216,7 +216,7 @@ class SBController
                     (ros::Time::now()-current_pose->header.stamp).toSec()<=auto_pose_timeout){
                         if(gotpose && previous_pose != NULL){
                             //Calculate variables needed for PD control
-                            dt = (previous_pose.header.stamp-current_pose.header.stamp).toSec();
+                            dt = (previous_pose->header.stamp-current_pose->header.stamp).toSec();
                             previous_x_error = delta_x;
                             previous_y_error = delta_y;
                             delta_y = (-current_goal->y+current_pose->pose.position.y);

@@ -4,5 +4,5 @@
     <node pkg="joy" type="joy_node" name="joy">
         <param name="dev" value="/dev/input/js1"/>
     </node>
-    <node pkg="coax_client" type="coax_controller_node" name="controller" output="screen"/>
+    <node unless="$(arg onboard)" pkg="coax_client" type="coax_controller_node" name="controller" output="screen"/>
 </launch>
