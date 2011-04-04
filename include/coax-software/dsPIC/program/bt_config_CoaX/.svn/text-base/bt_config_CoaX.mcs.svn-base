@@ -1,0 +1,605 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\main.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File001]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_led.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File002]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_config.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File003]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\uart.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File004]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\utils.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File005]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\init_port.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File006]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart2_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File007]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_bluetooth.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_bluetooth.c|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File008]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart1_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File009]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart1_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File010]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart2_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File011]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\analog.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File012]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\e_bluetooth.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File013]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\e_agenda.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File014]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\main.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File015]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_led.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File016]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_config.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File017]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\uart.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File018]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\utils.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File019]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\init_port.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File020]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart2_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File021]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart1_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File022]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart1_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File023]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\coax_uart2_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File024]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\analog.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File025]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\e_bluetooth.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File026]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\obj\e_agenda.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File027]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\main.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File028]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\coax_led.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File029]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\coax_config.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File030]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\uart.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File031]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\utils.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File032]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\init_port.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File033]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\coax_uart2_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File034]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\coax_uart1_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File035]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\coax_uart1_tx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File036]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\coax_uart2_rx_char.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -ahl="$(BINDIR_)$(INFILEBASE).lst"
+TraceCmdString=
+DebugOptions=
+[File037]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\analog.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File038]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\e_bluetooth.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File039]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\obj\e_agenda.o
+Folder=Intermediary
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=-g -Wall -mlarge-data
+TraceCmdString=
+DebugOptions=
+[File040]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\bt_config_CoaX.cof
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=--heap=256 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem --cref -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[File041]
+Location=S:\coax\SOFTWARE\dsPIC\coax3-trunk\program\bt_config_CoaX\bt_config_CoaX.hex
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=--heap=256 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem --cref -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[File042]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\bt_config_CoaX.cof
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=--heap=256 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem --cref -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[File043]
+Location=S:\coax\SOFTWARE-svnrep\dsPIC\coax3-trunk\program\bt_config_CoaX\bt_config_CoaX.hex
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=--heap=256 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem --cref -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[File044]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\bt_config_CoaX.cof
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=--heap=256 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem --cref -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[File045]
+Location=S:\coax\coax-software\dsPIC\program\bt_config_CoaX\bt_config_CoaX.hex
+Folder=Output
+DeviceName=dsPIC33FJ256GP506
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)|.\obj||$(AINDIR)||$(INCDIR)|..\..\library||$(LIBDIR)|..\..\library;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|main.c|..\..\library\led\coax_led.c|..\..\library\configs\coax_config.c|..\..\library\uart\uart.c|..\..\library\utils\utils.c|..\..\library\configs\init_port.c|..\..\library\uart\coax_uart2_tx_char.s|..\..\library\uart\coax_uart1_rx_char.s|..\..\library\uart\coax_uart1_tx_char.s|..\..\library\uart\coax_uart2_rx_char.s|..\..\library\analog\analog.c|e_bluetooth.c|..\..\library\agenda\e_agenda.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=--heap=256 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem --cref -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=
+[TOOL_LOC_STAMPS]
+tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+tool_loc{433C3D55-811D-409D-A6BF-159CF9355B42}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe

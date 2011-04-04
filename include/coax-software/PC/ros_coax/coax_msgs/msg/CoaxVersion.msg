@@ -1,0 +1,4 @@
+uint16 apiVersion
+uint16 controllerVersion
+string imuVersion
+string compileTime

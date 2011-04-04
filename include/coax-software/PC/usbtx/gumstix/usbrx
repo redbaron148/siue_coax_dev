@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if test "$1" == ""
+then
+	cat | b64 -d | bunzip2 - -c 
+else
+	cat | b64 -d | bunzip2 - -c  > "$1"
+fi
+

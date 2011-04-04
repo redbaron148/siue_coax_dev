@@ -1,0 +1,722 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>798</width>
+    <height>457</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QGroupBox" name="groupBox" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>251</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>Navigation State</string>
+    </property>
+    <layout class="QHBoxLayout" >
+     <item>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QLabel" name="label" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>Current State</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_8" >
+         <property name="text" >
+          <string>Stopped</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_7" >
+         <property name="text" >
+          <string>Idle</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_6" >
+         <property name="text" >
+          <string>Take Off</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_5" >
+         <property name="text" >
+          <string>Hover</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_4" >
+         <property name="text" >
+          <string>Controlled</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_3" >
+         <property name="text" >
+          <string>Landing</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_2" >
+         <property name="text" >
+          <string>Sinking</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton" >
+         <property name="text" >
+          <string>Raw</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QLabel" name="label_3" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>Desired State</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_17" >
+         <property name="text" >
+          <string>Stopped</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_18" >
+         <property name="text" >
+          <string>Idle</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_19" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="text" >
+          <string>Take Off</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_20" >
+         <property name="text" >
+          <string>Hover</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_21" >
+         <property name="text" >
+          <string>Controlled</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_22" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="text" >
+          <string>Landing</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_23" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="text" >
+          <string>Sinking</string>
+         </property>
+         <property name="checkable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioButton_24" >
+         <property name="text" >
+          <string>Raw</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2" >
+    <property name="geometry" >
+     <rect>
+      <x>470</x>
+      <y>10</y>
+      <width>311</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>Sensors</string>
+    </property>
+    <layout class="QVBoxLayout" >
+     <item>
+      <widget class="QListView" name="listView" />
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>290</y>
+      <width>361</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>Control</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton_25" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="layoutDirection" >
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="text" >
+      <string>T Left</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_26" >
+     <property name="geometry" >
+      <rect>
+       <x>80</x>
+       <y>70</y>
+       <width>92</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Down</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_27" >
+     <property name="geometry" >
+      <rect>
+       <x>110</x>
+       <y>40</y>
+       <width>92</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>T Right</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_28" >
+     <property name="geometry" >
+      <rect>
+       <x>80</x>
+       <y>10</y>
+       <width>92</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Up</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_29" >
+     <property name="geometry" >
+      <rect>
+       <x>80</x>
+       <y>40</y>
+       <width>16</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_30" >
+     <property name="geometry" >
+      <rect>
+       <x>190</x>
+       <y>40</y>
+       <width>51</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="layoutDirection" >
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="text" >
+      <string>R Left</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_31" >
+     <property name="geometry" >
+      <rect>
+       <x>290</x>
+       <y>40</y>
+       <width>92</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>R Right</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_32" >
+     <property name="geometry" >
+      <rect>
+       <x>260</x>
+       <y>10</y>
+       <width>92</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Forward</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_33" >
+     <property name="geometry" >
+      <rect>
+       <x>260</x>
+       <y>70</y>
+       <width>92</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Reverse</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_34" >
+     <property name="geometry" >
+      <rect>
+       <x>260</x>
+       <y>40</y>
+       <width>16</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+    </widget>
+    <widget class="Line" name="line" >
+     <property name="geometry" >
+      <rect>
+       <x>170</x>
+       <y>10</y>
+       <width>16</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5" >
+    <property name="geometry" >
+     <rect>
+      <x>280</x>
+      <y>140</y>
+      <width>181</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>Set Points</string>
+    </property>
+    <widget class="QLabel" name="label_9" >
+     <property name="geometry" >
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>71</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Altitude</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10" >
+     <property name="geometry" >
+      <rect>
+       <x>50</x>
+       <y>60</y>
+       <width>54</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Heading</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11" >
+     <property name="geometry" >
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>84</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Lateral Velocity</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>91</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Forward Velocity</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLCDNumber" name="lcdNumber" >
+     <property name="geometry" >
+      <rect>
+       <x>110</x>
+       <y>30</y>
+       <width>64</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value" stdset="0" >
+      <double>32.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QLCDNumber" name="lcdNumber_2" >
+     <property name="geometry" >
+      <rect>
+       <x>110</x>
+       <y>60</y>
+       <width>64</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLCDNumber" name="lcdNumber_3" >
+     <property name="geometry" >
+      <rect>
+       <x>110</x>
+       <y>90</y>
+       <width>64</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLCDNumber" name="lcdNumber_4" >
+     <property name="geometry" >
+      <rect>
+       <x>110</x>
+       <y>120</y>
+       <width>64</width>
+       <height>23</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_6" >
+    <property name="geometry" >
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>181</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>Configuration</string>
+    </property>
+    <widget class="QCheckBox" name="checkBox" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>79</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Vertical</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_2" >
+     <property name="geometry" >
+      <rect>
+       <x>100</x>
+       <y>40</y>
+       <width>79</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Horizontal</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>109</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Obstacle Avoidance</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>81</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Reset dsPIC</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4" >
+    <property name="geometry" >
+     <rect>
+      <x>400</x>
+      <y>290</y>
+      <width>381</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>Raw Control</string>
+    </property>
+    <widget class="QSlider" name="horizontalSlider" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="tickPosition" >
+      <enum>QSlider::NoTicks</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider_2" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider_3" >
+     <property name="geometry" >
+      <rect>
+       <x>200</x>
+       <y>40</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider_4" >
+     <property name="geometry" >
+      <rect>
+       <x>200</x>
+       <y>80</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>54</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Motor 1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5" >
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>54</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Motor 2</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6" >
+     <property name="geometry" >
+      <rect>
+       <x>200</x>
+       <y>20</y>
+       <width>54</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Servo 1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7" >
+     <property name="geometry" >
+      <rect>
+       <x>200</x>
+       <y>60</y>
+       <width>54</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text" >
+      <string>Servo 2</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>798</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMain" >
+    <property name="title" >
+     <string>Main</string>
+    </property>
+   </widget>
+   <addaction name="menuMain" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

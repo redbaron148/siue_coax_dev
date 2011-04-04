@@ -1,0 +1,15 @@
+export GUMSTIXTOP=$HOME/coax/overo-oe/
+export OVEROROOT=$HOME/coax/overobuntu/overo-dev
+export PKG_CONFIG_PATH=$OVEROROOT/usr/local/lib/pkgconfig:$OVEROROOT/usr/lib/pkgconfig
+
+#export CFLAGS="--sysroot=$OVEROROOT -ggdb -g -I$OVEROROOT/usr/include"
+#export CXXFLAGS=$CFLAGS
+#export CPPFLAGS=$CFLAGS
+
+export ARM_SYSROOT=$OVEROROOT
+export CROSSBIN=$GUMSTIXTOP/tmp/cross/armv7a/arm-angstrom-linux-gnueabi/bin
+export PATH=$CROSSBIN:$PATH
+export AR=$CROSSBIN/ar
+export CPP=$CROSSBIN/cpp-sysroot
+export CXX=$CROSSBIN/g++-sysroot
+export CC=$CROSSBIN/gcc-sysroot

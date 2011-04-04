@@ -1,0 +1,19 @@
+<package>
+  <description brief="coax_3d_controller">
+
+     coax_3d_controller
+
+  </description>
+  <author>Cedric Pradalier</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/coax_3d_controller</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="coax_msgs"/>
+  <depend package="geometry_msgs"/>
+
+</package>
+
+

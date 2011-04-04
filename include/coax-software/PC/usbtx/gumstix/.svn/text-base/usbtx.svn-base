@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if test "$2" == ""
+then
+	PORT=/dev/ttyUSB0
+else
+	PORT="$2"
+fi
+
+bzip2 -9 -c $1 | b64 -d > $port
+

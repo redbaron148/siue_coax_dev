@@ -1,0 +1,47 @@
+MODULE_NAME=sbsimple
+
+DEFINES=-D_GNU_SOURCE -DSBC_HAS_IO -DDEFENSIVE -DSBC_HAS_COMM \
+	-DSBC_HAS_PTHREAD -DLINUX 
+
+SWIG_FILE=$(MODULE_NAME).i
+WRAP=$(MODULE_NAME)_wrap.c
+SRC=sbsimple_util.c
+OBJ=$(SRC:%.c=%.gumoe.o) $(WRAP:%.c=%.gumoe.o)
+PYTHON_MODULE=_$(MODULE_NAME).so
+
+GUMSTIX_DIR=$(HOME)/coax/overo-oe/tmp/
+GUMSTIX_CROSS=$(GUMSTIX_DIR)/cross/armv7a
+GUMSTIX_STAGING=$(GUMSTIX_DIR)/staging/armv7a-angstrom-linux-gnueabi/usr
+GUMPY_LIB=$(GUMSTIX_STAGING)/lib/python2.6/config
+GUMPY_INC=$(GUMSTIX_STAGING)/include/python2.6
+GUMSTIX_PREFIX=arm-angstrom-linux-gnueabi-
+GCC=$(GUMSTIX_CROSS)/bin/$(GUMSTIX_PREFIX)gcc
+
+
+PYTHON_INSTALL=$(HOME)/lib/python/skybotix
+
+
+all: $(PYTHON_MODULE)
+
+$(PYTHON_MODULE): $(OBJ)
+	$(GCC) -shared -o $@ $+\
+		-L../../build-gumstix/src -lsbcom \
+		-L$(GUMPY_LIB) -lpthread -ldl -lutil -lm -lpython2.6
+
+$(OBJ): %.gumoe.o : %.c
+	 $(GCC) -c $(DEFINES) -o $@ $< \
+		 -I../../include -I$(GUMPY_INC) \
+	 	-fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes
+
+$(WRAP): $(SWIG_FILE)
+	swig $(DEFINES) -python $<
+
+install: $(PYTHON_MODULE)
+	mkdir -p $(PYTHON_INSTALL)
+	cp -f $(PYTHON_MODULE) $(MODULE_NAME).py __init__.py $(PYTHON_INSTALL)
+
+clean:
+	-rm -f $(PYTHON_MODULE)
+	-rm -f $(OBJ)
+	-rm -f $(WRAP)
+

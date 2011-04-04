@@ -1,0 +1,20 @@
+These programs are used to send data to the gumstix over the serial port.
+It is assumed that the files gumstix/usbrx and gumstix/base64-decode are in the path, 
+possibly in /usr/bin
+
+Usage:
+
+On the gumstix, start the listener:
+#> usbrx > destination
+or
+#> usbrx destination
+
+On the PC, send the file:
+#> usbtx source /dev/ttyUSB0
+or 
+#> usbtx source
+/dev/ttyUSB0 is the default
+
+On the gumstix, press Ctrl-D when the transmission is finished (usbtx returns)
+
+

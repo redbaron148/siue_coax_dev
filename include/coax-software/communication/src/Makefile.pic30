@@ -1,0 +1,59 @@
+COAXLIB=../../dsPIC/library
+ELIB=/usr/pic30-elf
+INSTALLDIR=../../deploy/dsPIC
+PREFIX=pic30-elf-
+AR=ar
+CC=$(PREFIX)$(PREFIX)gcc
+CPU=33FJ256GP506
+#CPU=30F6014A
+CCOPTS=-Wall -c -DCOAX -DPIC30 -DSBC_HAS_COMM -mcpu=$(CPU)  -g \
+	    -O2 -mresource=/usr/share/pic30-support/c30_device.info \
+	-I$(ELIB)/include/ \
+	-I$(COAXLIB)/include \
+	-I../include/
+#	-I$(ELIB)/include \
+
+LIB_C_SRC= \
+	sbmessage.c \
+	sbstate.c \
+	sbchannel.c \
+	sbchannel_coax_uart.c \
+	sbcommloop.c \
+	sbversion.c
+
+LIB_OBJS=  $(LIB_C_SRC:%.c=%_pic30.o)
+
+LIB_HDRS= sbapi.h \
+	sbchannel.h \
+	sbchannel_coax_uart.h \
+	sbchannel_fun.h \
+	sbcommloop.h \
+	sbconst.h \
+	sbmessage.h \
+	sbversion.h \
+	sbstate.h
+
+TARGET=libsbcom_pic30.a
+
+all: $(TARGET)
+
+$(TARGET): $(LIB_OBJS)
+	rm -f $@
+	$(AR) rsu $@ $+
+
+
+$(LIB_OBJS): %_pic30.o : %.c
+	$(CC) $(CCOPTS) -o $@ $<
+
+install: $(TARGET)
+	mkdir -p $(INSTALLDIR)/lib
+	mkdir -p $(INSTALLDIR)/include/com
+	cp $(TARGET) $(INSTALLDIR)/lib
+	cp $(LIB_HDRS:%=../include/com/%) $(INSTALLDIR)/include/com
+
+echo:
+	@echo $(LIB_AS_SRC_ALL)
+
+clean:
+	-rm -f $(LIB_OBJS)
+	-rm -f $(TARGET)

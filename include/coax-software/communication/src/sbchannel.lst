@@ -1,0 +1,505 @@
+GAS LISTING sbchannel.s 			page 1
+
+
+   1              		.file "/home/cedricp/src/Skybotics/com/sbchannel.c"
+   2              		.section	.debug_abbrev,info
+   3              	.Ldebug_abbrev0:
+   4              		.section	.debug_info,info
+   5              	.Ldebug_info0:
+   6              		.section	.debug_line,info
+   7              	.Ldebug_line0:
+   8              		.text
+   9              	.Ltext0:
+  10              	.Letext0:
+  11              		.section	.debug_line,info
+  12 ???? 00000000 		.4byte	.LELT0-.LSLT0
+  13              	.LSLT0:
+  14 ???? 0200     		.2byte	0x2
+  15 ???? 00000000 		.4byte	.LELTP0-.LASLTP0
+  16              	.LASLTP0:
+  17 ???? 01       		.byte	0x1
+  18 ???? 01       		.byte	0x1
+  19 ???? F6       		.byte	0xf6
+  20 ???? F5       		.byte	0xf5
+  21 ???? 0A       		.byte	0xa
+  22 ???? 00       		.byte	0x0
+  23 ???? 01       		.byte	0x1
+  24 ???? 01       		.byte	0x1
+  25 ???? 01       		.byte	0x1
+  26 ???? 01       		.byte	0x1
+  27 ???? 00       		.byte	0x0
+  28 ???? 00       		.byte	0x0
+  29 ???? 00       		.byte	0x0
+  30 ???? 01       		.byte	0x1
+  31 ???? 00       		.byte	0x0
+  32 ???? 73626368 		.asciz	"sbchannel.c"
+  32      616E6E65 
+  32      6C2E6300 
+  33 ???? 00       		.uleb128 0x0
+  34 ???? 00       		.uleb128 0x0
+  35 ???? 00       		.uleb128 0x0
+  36 ???? 73626368 		.asciz	"sbchannel.h"
+  36      616E6E65 
+  36      6C2E6800 
+  37 ???? 00       		.uleb128 0x0
+  38 ???? 00       		.uleb128 0x0
+  39 ???? 00       		.uleb128 0x0
+  40 ???? 73626368 		.asciz	"sbchannel_fun.h"
+  40      616E6E65 
+  40      6C5F6675 
+  40      6E2E6800 
+  41 ???? 00       		.uleb128 0x0
+  42 ???? 00       		.uleb128 0x0
+  43 ???? 00       		.uleb128 0x0
+  44 ???? 00       		.byte	0x0
+  45              	.LELTP0:
+  46 ???? 00       		.byte	0x0
+  47 ???? 05       		.uleb128 0x5
+  48 ???? 02       		.byte	0x2
+  49 ???? 00000000 		.4byte	.Letext0
+  50 ???? 00       		.byte	0x0
+GAS LISTING sbchannel.s 			page 2
+
+
+  51 ???? 01       		.uleb128 0x1
+  52 ???? 01       		.byte	0x1
+  53              	.LELT0:
+  54              		.section	.debug_info,info
+  55 ???? 74020000 		.4byte	0x274
+  56 ???? 0200     		.2byte	0x2
+  57 ???? 00000000 		.4byte	.Ldebug_abbrev0
+  58 ???? 04       		.byte	0x4
+  59 ???? 01       		.uleb128 0x1
+  60 ???? 00000000 		.4byte	.Ldebug_line0
+  61 ???? 00000000 		.4byte	.Letext0
+  62 ???? 00000000 		.4byte	.Ltext0
+  63 ???? 73626368 		.asciz	"sbchannel.c"
+  63      616E6E65 
+  63      6C2E6300 
+  64 ???? 2F686F6D 		.asciz	"/home/cedricp/src/Skybotics/com"
+  64      652F6365 
+  64      64726963 
+  64      702F7372 
+  64      632F536B 
+  65 ???? 474E5520 		.ascii	"GNU C 3.3 (dsPIC30, Microchip v2.05, (5) modified for Debian GNU/Lin"
+  65      4320332E 
+  65      33202864 
+  65      73504943 
+  65      33302C20 
+  66 ???? 75782920 		.asciz	"ux) Build date: Jun 27 2008"
+  66      4275696C 
+  66      64206461 
+  66      74653A20 
+  66      4A756E20 
+  67 ???? 01       		.byte	0x1
+  68 ???? 02       		.uleb128 0x2
+  69 ???? FE000000 		.4byte	0xfe
+  70 ???? 02       		.byte	0x2
+  71 ???? 02       		.byte	0x2
+  72 ???? 09       		.byte	0x9
+  73 ???? 03       		.uleb128 0x3
+  74 ???? 53425F43 		.asciz	"SB_CHANNEL_TCP"
+  74      48414E4E 
+  74      454C5F54 
+  74      435000
+  75 ???? 00       		.byte	0x0
+  76 ???? 03       		.uleb128 0x3
+  77 ???? 53425F43 		.asciz	"SB_CHANNEL_TCPFD"
+  77      48414E4E 
+  77      454C5F54 
+  77      43504644 
+  77      00
+  78 ???? 01       		.byte	0x1
+  79 ???? 03       		.uleb128 0x3
+  80 ???? 53425F43 		.asciz	"SB_CHANNEL_SERIAL"
+  80      48414E4E 
+  80      454C5F53 
+  80      45524941 
+  80      4C00
+  81 ???? 02       		.byte	0x2
+  82 ???? 03       		.uleb128 0x3
+GAS LISTING sbchannel.s 			page 3
+
+
+  83 ???? 53425F43 		.asciz	"SB_CHANNEL_UART_PIC30"
+  83      48414E4E 
+  83      454C5F55 
+  83      4152545F 
+  83      50494333 
+  84 ???? 03       		.byte	0x3
+  85 ???? 00       		.byte	0x0
+  86 ???? 04       		.uleb128 0x4
+  87 ???? 53424368 		.asciz	"SBChannelType"
+  87      616E6E65 
+  87      6C547970 
+  87      6500
+  88 ???? 02       		.byte	0x2
+  89 ???? 0E       		.byte	0xe
+  90 ???? A5000000 		.4byte	0xa5
+  91 ???? 05       		.uleb128 0x5
+  92 ???? 4E010000 		.4byte	0x14e
+  93 ???? 06       		.byte	0x6
+  94 ???? 02       		.byte	0x2
+  95 ???? 1A       		.byte	0x1a
+  96 ???? 06       		.uleb128 0x6
+  97 ???? 74797065 		.asciz	"type"
+  97      00
+  98 ???? 02       		.byte	0x2
+  99 ???? 13       		.byte	0x13
+ 100 ???? FE000000 		.4byte	0xfe
+ 101 ???? 02       		.byte	0x2
+ 102 ???? 23       		.byte	0x23
+ 103 ???? 00       		.uleb128 0x0
+ 104 ???? 06       		.uleb128 0x6
+ 105 ???? 64617461 		.asciz	"data"
+ 105      00
+ 106 ???? 02       		.byte	0x2
+ 107 ???? 17       		.byte	0x17
+ 108 ???? 4E010000 		.4byte	0x14e
+ 109 ???? 02       		.byte	0x2
+ 110 ???? 23       		.byte	0x23
+ 111 ???? 02       		.uleb128 0x2
+ 112 ???? 06       		.uleb128 0x6
+ 113 ???? 66756E63 		.asciz	"functions"
+ 113      74696F6E 
+ 113      7300
+ 114 ???? 02       		.byte	0x2
+ 115 ???? 19       		.byte	0x19
+ 116 ???? 07020000 		.4byte	0x207
+ 117 ???? 02       		.byte	0x2
+ 118 ???? 23       		.byte	0x23
+ 119 ???? 04       		.uleb128 0x4
+ 120 ???? 00       		.byte	0x0
+ 121 ???? 07       		.uleb128 0x7
+ 122 ???? 02       		.byte	0x2
+ 123 ???? 08       		.uleb128 0x8
+ 124 ???? 07020000 		.4byte	0x207
+ 125 ???? 53424368 		.asciz	"SBChannelFunction"
+ 125      616E6E65 
+ 125      6C46756E 
+ 125      6374696F 
+GAS LISTING sbchannel.s 			page 4
+
+
+ 125      6E00
+ 126 ???? 12       		.byte	0x12
+ 127 ???? 02       		.byte	0x2
+ 128 ???? 10       		.byte	0x10
+ 129 ???? 06       		.uleb128 0x6
+ 130 ???? 64657374 		.asciz	"destroy"
+ 130      726F7900 
+ 131 ???? 03       		.byte	0x3
+ 132 ???? 05       		.byte	0x5
+ 133 ???? 35020000 		.4byte	0x235
+ 134 ???? 02       		.byte	0x2
+ 135 ???? 23       		.byte	0x23
+ 136 ???? 00       		.uleb128 0x0
+ 137 ???? 06       		.uleb128 0x6
+ 138 ???? 6F70656E 		.asciz	"open"
+ 138      00
+ 139 ???? 03       		.byte	0x3
+ 140 ???? 07       		.byte	0x7
+ 141 ???? 35020000 		.4byte	0x235
+ 142 ???? 02       		.byte	0x2
+ 143 ???? 23       		.byte	0x23
+ 144 ???? 02       		.uleb128 0x2
+ 145 ???? 06       		.uleb128 0x6
+ 146 ???? 636C6F73 		.asciz	"close"
+ 146      6500
+ 147 ???? 03       		.byte	0x3
+ 148 ???? 08       		.byte	0x8
+ 149 ???? 35020000 		.4byte	0x235
+ 150 ???? 02       		.byte	0x2
+ 151 ???? 23       		.byte	0x23
+ 152 ???? 04       		.uleb128 0x4
+ 153 ???? 06       		.uleb128 0x6
+ 154 ???? 73656E64 		.asciz	"send"
+ 154      00
+ 155 ???? 03       		.byte	0x3
+ 156 ???? 0A       		.byte	0xa
+ 157 ???? 46020000 		.4byte	0x246
+ 158 ???? 02       		.byte	0x2
+ 159 ???? 23       		.byte	0x23
+ 160 ???? 06       		.uleb128 0x6
+ 161 ???? 06       		.uleb128 0x6
+ 162 ???? 72656365 		.asciz	"receive"
+ 162      69766500 
+ 163 ???? 03       		.byte	0x3
+ 164 ???? 0B       		.byte	0xb
+ 165 ???? 46020000 		.4byte	0x246
+ 166 ???? 02       		.byte	0x2
+ 167 ???? 23       		.byte	0x23
+ 168 ???? 08       		.uleb128 0x8
+ 169 ???? 06       		.uleb128 0x6
+ 170 ???? 73656E64 		.asciz	"sendall"
+ 170      616C6C00 
+ 171 ???? 03       		.byte	0x3
+ 172 ???? 0D       		.byte	0xd
+ 173 ???? 46020000 		.4byte	0x246
+ 174 ???? 02       		.byte	0x2
+ 175 ???? 23       		.byte	0x23
+GAS LISTING sbchannel.s 			page 5
+
+
+ 176 ???? 0A       		.uleb128 0xa
+ 177 ???? 06       		.uleb128 0x6
+ 178 ???? 77616974 		.asciz	"waitbuffer"
+ 178      62756666 
+ 178      657200
+ 179 ???? 03       		.byte	0x3
+ 180 ???? 0E       		.byte	0xe
+ 181 ???? 46020000 		.4byte	0x246
+ 182 ???? 02       		.byte	0x2
+ 183 ???? 23       		.byte	0x23
+ 184 ???? 0C       		.uleb128 0xc
+ 185 ???? 06       		.uleb128 0x6
+ 186 ???? 77616974 		.asciz	"waitdata"
+ 186      64617461 
+ 186      00
+ 187 ???? 03       		.byte	0x3
+ 188 ???? 0F       		.byte	0xf
+ 189 ???? 71020000 		.4byte	0x271
+ 190 ???? 02       		.byte	0x2
+ 191 ???? 23       		.byte	0x23
+ 192 ???? 0E       		.uleb128 0xe
+ 193 ???? 06       		.uleb128 0x6
+ 194 ???? 666C7573 		.asciz	"flush"
+ 194      6800
+ 195 ???? 03       		.byte	0x3
+ 196 ???? 11       		.byte	0x11
+ 197 ???? 35020000 		.4byte	0x235
+ 198 ???? 02       		.byte	0x2
+ 199 ???? 23       		.byte	0x23
+ 200 ???? 10       		.uleb128 0x10
+ 201 ???? 00       		.byte	0x0
+ 202 ???? 09       		.uleb128 0x9
+ 203 ???? 02       		.byte	0x2
+ 204 ???? 50010000 		.4byte	0x150
+ 205 ???? 04       		.uleb128 0x4
+ 206 ???? 53424368 		.asciz	"SBChannel"
+ 206      616E6E65 
+ 206      6C00
+ 207 ???? 02       		.byte	0x2
+ 208 ???? 1A       		.byte	0x1a
+ 209 ???? 13010000 		.4byte	0x113
+ 210 ???? 0A       		.uleb128 0xa
+ 211 ???? 2E020000 		.4byte	0x22e
+ 212 ???? 01       		.byte	0x1
+ 213 ???? 2E020000 		.4byte	0x22e
+ 214 ???? 0B       		.uleb128 0xb
+ 215 ???? 4E010000 		.4byte	0x14e
+ 216 ???? 00       		.byte	0x0
+ 217 ???? 0C       		.uleb128 0xc
+ 218 ???? 696E7400 		.asciz	"int"
+ 219 ???? 02       		.byte	0x2
+ 220 ???? 05       		.byte	0x5
+ 221 ???? 09       		.uleb128 0x9
+ 222 ???? 02       		.byte	0x2
+ 223 ???? 1E020000 		.4byte	0x21e
+ 224 ???? 0D       		.uleb128 0xd
+ 225 ???? 46020000 		.4byte	0x246
+GAS LISTING sbchannel.s 			page 6
+
+
+ 226 ???? 2E020000 		.4byte	0x22e
+ 227 ???? 0E       		.uleb128 0xe
+ 228 ???? 00       		.byte	0x0
+ 229 ???? 09       		.uleb128 0x9
+ 230 ???? 02       		.byte	0x2
+ 231 ???? 3B020000 		.4byte	0x23b
+ 232 ???? 0A       		.uleb128 0xa
+ 233 ???? 61020000 		.4byte	0x261
+ 234 ???? 01       		.byte	0x1
+ 235 ???? 2E020000 		.4byte	0x22e
+ 236 ???? 0B       		.uleb128 0xb
+ 237 ???? 4E010000 		.4byte	0x14e
+ 238 ???? 0B       		.uleb128 0xb
+ 239 ???? 61020000 		.4byte	0x261
+ 240 ???? 00       		.byte	0x0
+ 241 ???? 0C       		.uleb128 0xc
+ 242 ???? 756E7369 		.asciz	"unsigned int"
+ 242      676E6564 
+ 242      20696E74 
+ 242      00
+ 243 ???? 02       		.byte	0x2
+ 244 ???? 07       		.byte	0x7
+ 245 ???? 09       		.uleb128 0x9
+ 246 ???? 02       		.byte	0x2
+ 247 ???? 4C020000 		.4byte	0x24c
+ 248 ???? 00       		.byte	0x0
+ 249              		.section	.debug_abbrev,info
+ 250 ???? 01       		.uleb128 0x1
+ 251 ???? 11       		.uleb128 0x11
+ 252 ???? 01       		.byte	0x1
+ 253 ???? 10       		.uleb128 0x10
+ 254 ???? 06       		.uleb128 0x6
+ 255 ???? 12       		.uleb128 0x12
+ 256 ???? 01       		.uleb128 0x1
+ 257 ???? 11       		.uleb128 0x11
+ 258 ???? 01       		.uleb128 0x1
+ 259 ???? 03       		.uleb128 0x3
+ 260 ???? 08       		.uleb128 0x8
+ 261 ???? 1B       		.uleb128 0x1b
+ 262 ???? 08       		.uleb128 0x8
+ 263 ???? 25       		.uleb128 0x25
+ 264 ???? 08       		.uleb128 0x8
+ 265 ???? 13       		.uleb128 0x13
+ 266 ???? 0B       		.uleb128 0xb
+ 267 ???? 00       		.byte	0x0
+ 268 ???? 00       		.byte	0x0
+ 269 ???? 02       		.uleb128 0x2
+ 270 ???? 04       		.uleb128 0x4
+ 271 ???? 01       		.byte	0x1
+ 272 ???? 01       		.uleb128 0x1
+ 273 ???? 13       		.uleb128 0x13
+ 274 ???? 0B       		.uleb128 0xb
+ 275 ???? 0B       		.uleb128 0xb
+ 276 ???? 3A       		.uleb128 0x3a
+ 277 ???? 0B       		.uleb128 0xb
+ 278 ???? 3B       		.uleb128 0x3b
+ 279 ???? 0B       		.uleb128 0xb
+GAS LISTING sbchannel.s 			page 7
+
+
+ 280 ???? 00       		.byte	0x0
+ 281 ???? 00       		.byte	0x0
+ 282 ???? 03       		.uleb128 0x3
+ 283 ???? 28       		.uleb128 0x28
+ 284 ???? 00       		.byte	0x0
+ 285 ???? 03       		.uleb128 0x3
+ 286 ???? 08       		.uleb128 0x8
+ 287 ???? 1C       		.uleb128 0x1c
+ 288 ???? 0B       		.uleb128 0xb
+ 289 ???? 00       		.byte	0x0
+ 290 ???? 00       		.byte	0x0
+ 291 ???? 04       		.uleb128 0x4
+ 292 ???? 16       		.uleb128 0x16
+ 293 ???? 00       		.byte	0x0
+ 294 ???? 03       		.uleb128 0x3
+ 295 ???? 08       		.uleb128 0x8
+ 296 ???? 3A       		.uleb128 0x3a
+ 297 ???? 0B       		.uleb128 0xb
+ 298 ???? 3B       		.uleb128 0x3b
+ 299 ???? 0B       		.uleb128 0xb
+ 300 ???? 49       		.uleb128 0x49
+ 301 ???? 13       		.uleb128 0x13
+ 302 ???? 00       		.byte	0x0
+ 303 ???? 00       		.byte	0x0
+ 304 ???? 05       		.uleb128 0x5
+ 305 ???? 13       		.uleb128 0x13
+ 306 ???? 01       		.byte	0x1
+ 307 ???? 01       		.uleb128 0x1
+ 308 ???? 13       		.uleb128 0x13
+ 309 ???? 0B       		.uleb128 0xb
+ 310 ???? 0B       		.uleb128 0xb
+ 311 ???? 3A       		.uleb128 0x3a
+ 312 ???? 0B       		.uleb128 0xb
+ 313 ???? 3B       		.uleb128 0x3b
+ 314 ???? 0B       		.uleb128 0xb
+ 315 ???? 00       		.byte	0x0
+ 316 ???? 00       		.byte	0x0
+ 317 ???? 06       		.uleb128 0x6
+ 318 ???? 0D       		.uleb128 0xd
+ 319 ???? 00       		.byte	0x0
+ 320 ???? 03       		.uleb128 0x3
+ 321 ???? 08       		.uleb128 0x8
+ 322 ???? 3A       		.uleb128 0x3a
+ 323 ???? 0B       		.uleb128 0xb
+ 324 ???? 3B       		.uleb128 0x3b
+ 325 ???? 0B       		.uleb128 0xb
+ 326 ???? 49       		.uleb128 0x49
+ 327 ???? 13       		.uleb128 0x13
+ 328 ???? 38       		.uleb128 0x38
+ 329 ???? 0A       		.uleb128 0xa
+ 330 ???? 00       		.byte	0x0
+ 331 ???? 00       		.byte	0x0
+ 332 ???? 07       		.uleb128 0x7
+ 333 ???? 0F       		.uleb128 0xf
+ 334 ???? 00       		.byte	0x0
+ 335 ???? 0B       		.uleb128 0xb
+ 336 ???? 0B       		.uleb128 0xb
+GAS LISTING sbchannel.s 			page 8
+
+
+ 337 ???? 00       		.byte	0x0
+ 338 ???? 00       		.byte	0x0
+ 339 ???? 08       		.uleb128 0x8
+ 340 ???? 13       		.uleb128 0x13
+ 341 ???? 01       		.byte	0x1
+ 342 ???? 01       		.uleb128 0x1
+ 343 ???? 13       		.uleb128 0x13
+ 344 ???? 03       		.uleb128 0x3
+ 345 ???? 08       		.uleb128 0x8
+ 346 ???? 0B       		.uleb128 0xb
+ 347 ???? 0B       		.uleb128 0xb
+ 348 ???? 3A       		.uleb128 0x3a
+ 349 ???? 0B       		.uleb128 0xb
+ 350 ???? 3B       		.uleb128 0x3b
+ 351 ???? 0B       		.uleb128 0xb
+ 352 ???? 00       		.byte	0x0
+ 353 ???? 00       		.byte	0x0
+ 354 ???? 09       		.uleb128 0x9
+ 355 ???? 0F       		.uleb128 0xf
+ 356 ???? 00       		.byte	0x0
+ 357 ???? 0B       		.uleb128 0xb
+ 358 ???? 0B       		.uleb128 0xb
+ 359 ???? 49       		.uleb128 0x49
+ 360 ???? 13       		.uleb128 0x13
+ 361 ???? 00       		.byte	0x0
+ 362 ???? 00       		.byte	0x0
+ 363 ???? 0A       		.uleb128 0xa
+ 364 ???? 15       		.uleb128 0x15
+ 365 ???? 01       		.byte	0x1
+ 366 ???? 01       		.uleb128 0x1
+ 367 ???? 13       		.uleb128 0x13
+ 368 ???? 27       		.uleb128 0x27
+ 369 ???? 0C       		.uleb128 0xc
+ 370 ???? 49       		.uleb128 0x49
+ 371 ???? 13       		.uleb128 0x13
+ 372 ???? 00       		.byte	0x0
+ 373 ???? 00       		.byte	0x0
+ 374 ???? 0B       		.uleb128 0xb
+ 375 ???? 05       		.uleb128 0x5
+ 376 ???? 00       		.byte	0x0
+ 377 ???? 49       		.uleb128 0x49
+ 378 ???? 13       		.uleb128 0x13
+ 379 ???? 00       		.byte	0x0
+ 380 ???? 00       		.byte	0x0
+ 381 ???? 0C       		.uleb128 0xc
+ 382 ???? 24       		.uleb128 0x24
+ 383 ???? 00       		.byte	0x0
+ 384 ???? 03       		.uleb128 0x3
+ 385 ???? 08       		.uleb128 0x8
+ 386 ???? 0B       		.uleb128 0xb
+ 387 ???? 0B       		.uleb128 0xb
+ 388 ???? 3E       		.uleb128 0x3e
+ 389 ???? 0B       		.uleb128 0xb
+ 390 ???? 00       		.byte	0x0
+ 391 ???? 00       		.byte	0x0
+ 392 ???? 0D       		.uleb128 0xd
+ 393 ???? 15       		.uleb128 0x15
+GAS LISTING sbchannel.s 			page 9
+
+
+ 394 ???? 01       		.byte	0x1
+ 395 ???? 01       		.uleb128 0x1
+ 396 ???? 13       		.uleb128 0x13
+ 397 ???? 49       		.uleb128 0x49
+ 398 ???? 13       		.uleb128 0x13
+ 399 ???? 00       		.byte	0x0
+ 400 ???? 00       		.byte	0x0
+ 401 ???? 0E       		.uleb128 0xe
+ 402 ???? 18       		.uleb128 0x18
+ 403 ???? 00       		.byte	0x0
+ 404 ???? 00       		.byte	0x0
+ 405 ???? 00       		.byte	0x0
+ 406 ???? 00       		.byte	0x0
+ 407              	
+ 408              		.end
+GAS LISTING sbchannel.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 /home/cedricp/src/Skybotics/com/sbchannel.c
+
+NO UNDEFINED SYMBOLS

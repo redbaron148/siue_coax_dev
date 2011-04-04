@@ -1,0 +1,12 @@
+<stack name="ros_coax" version="0.1.0">
+  <description brief="ros_coax">
+
+     ros_coax
+
+  </description>
+  <author>Maintained by Cedric Pradalier</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ros_coax</url>
+
+</stack>
