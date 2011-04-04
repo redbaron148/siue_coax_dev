@@ -90,7 +90,7 @@ class SBController
 			simple->commFreq = 15;
 			// Modify here to observe a specific data set
 			simple->commContent = SBS_TIMESTAMP | SBS_RPY | SBS_IMU_ALL | SBS_RANGES_ALL | 
-                SBS_PRESSURE | SBS_BATTERY | SBS_O_TOL | SBS_XY_REL | SBS_COAXSPEED;
+                SBS_PRESSURE | SBS_BATTERY | SBS_O_TOL | SBS_CHANNELS;
 
 			DEBUG(res = sbSimpleInitialise(simple));
 			printf("Channel connected, continuing\n");
