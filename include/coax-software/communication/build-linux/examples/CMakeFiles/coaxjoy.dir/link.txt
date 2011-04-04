@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/coaxjoy.dir/coaxjoy.o  -o coaxjoy -rdynamic -L/home/aaron/ros_pkgs/siue_coax_dev/include/coax-software/communication/build-linux/src -L../lib ../src/libsbcom.a -lpthread -lrt -lm -Wl,-rpath,/home/aaron/ros_pkgs/siue_coax_dev/include/coax-software/communication/build-linux/src:../lib: 

@@ -1,2 +1,0 @@
-/usr/bin/ar cr libsbcom.a  CMakeFiles/sbcom.dir/sbapi.o CMakeFiles/sbcom.dir/sbsimple.o CMakeFiles/sbcom.dir/sbmessage.o CMakeFiles/sbcom.dir/sbstate.o CMakeFiles/sbcom.dir/sbchannel.o CMakeFiles/sbcom.dir/sbchannel_serial.o CMakeFiles/sbcom.dir/sbchannel_socket.o CMakeFiles/sbcom.dir/sbcommloop.o CMakeFiles/sbcom.dir/sbversion.o
-/usr/bin/ranlib libsbcom.a
