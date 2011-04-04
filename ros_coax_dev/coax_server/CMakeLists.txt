@@ -29,7 +29,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-set(COAXHOME $ENV{HOME}/coax-software/deploy)
+set(COAXHOME $ENV{HOME}/ros_pkgs/siue_coax_dev/include/coax-software/deploy)
 set(COAXTARGET linux)
 link_directories(${COAXHOME}/${COAXTARGET}/lib)
 include_directories(${COAXHOME}/${COAXTARGET}/include)

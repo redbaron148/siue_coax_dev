@@ -21,7 +21,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
-set(COAXHOME $ENV{HOME}/coax-software/deploy)
+set(COAXHOME $ENV{HOME}/ros_pkgs/siue_coax_dev/include/coax-software/deploy)
 set(COAXTARGET linux)
 include_directories(${COAXHOME}/${COAXTARGET}/include)
 
