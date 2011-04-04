@@ -195,7 +195,7 @@ class SBController
             unsigned int pose_count = 0;
 
             while (ros::ok()) {
-                //ROS_INFO("trying a joyctrl");
+                ROS_INFO("trying a joyctrl");
                 looprate.sleep();
                 ros::spinOnce();
                 desYaw = 0;
