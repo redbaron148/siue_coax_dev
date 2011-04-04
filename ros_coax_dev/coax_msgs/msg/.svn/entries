@@ -1,14 +1,14 @@
 10
 
 dir
-25
+104
 svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software/PC/ros_coax/coax_msgs/msg
 svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software
 
 
 
-2010-03-16T12:53:08.671447Z
-1
+2010-11-16T18:59:17.317746Z
+63
 cedricp
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2011-03-29T03:00:34.734308Z
-a757e10d3c7f62c2971d24b7df8c47d7
-2010-03-16T12:53:08.671447Z
-1
+2011-04-04T17:35:05.578757Z
+1d39d72b2ebdc88bde39636aa6005d0b
+2010-11-16T17:07:07.135668Z
+61
 cedricp
 
 
@@ -92,7 +92,7 @@ cedricp
 
 
 
-1988
+2009
 
 CoaxTrimMode.msg
 file
@@ -127,6 +127,40 @@ cedricp
 
 
 186
+
+CoaxSpeed.msg
+file
+
+
+
+
+2011-04-04T17:35:05.578757Z
+72a62ae8e12c601b88c3a17b2f2132ed
+2010-11-16T18:59:17.317746Z
+63
+cedricp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+54
 
 CoaxControlParameters.msg
 file

@@ -1,14 +1,14 @@
 10
 
 dir
-25
+104
 svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software/PC/ros_coax/coax_msgs/srv
 svn+ssh://redbaron148@svn.aslforge.ethz.ch/svnroot/coax-software
 
 
 
-2010-03-16T12:53:08.671447Z
-1
+2011-01-13T10:34:59.427969Z
+85
 cedricp
 
 
@@ -25,40 +25,6 @@ cedricp
 
 
 acd97046-e316-4fc5-875c-59745847672f
-
-CoaxSetTrimMode.srv
-file
-
-
-
-
-2011-03-29T01:02:06.470308Z
-d54fc855ccd0e8480be18d758611a31f
-2010-03-16T12:53:08.671447Z
-1
-cedricp
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-35
 
 CoaxSetControl.srv
 file
@@ -94,14 +60,14 @@ cedricp
 
 73
 
-CoaxConfigureComm.srv
+CoaxSetTrimMode.srv
 file
 
 
 
 
-2011-03-29T03:00:34.738322Z
-a5e2664ac09941440dd79bd6eaad1340
+2011-03-29T01:02:06.470308Z
+d54fc855ccd0e8480be18d758611a31f
 2010-03-16T12:53:08.671447Z
 1
 cedricp
@@ -126,7 +92,41 @@ cedricp
 
 
 
-84
+35
+
+CoaxConfigureComm.srv
+file
+
+
+
+
+2011-04-04T17:35:05.585740Z
+38fa7a61576a5b7a94ba5cef5790aac3
+2011-01-13T10:34:59.427969Z
+85
+cedricp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+50
 
 CoaxSetTimeout.srv
 file
@@ -230,40 +230,6 @@ cedricp
 
 16
 
-CoaxSetRawControl.srv
-file
-
-
-
-
-2011-03-29T01:02:06.474308Z
-6bd8f542d175ae9cf5ea563666c1f01a
-2010-03-16T12:53:08.671447Z
-1
-cedricp
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-77
-
 CoaxConfigureOAMode.srv
 file
 
@@ -297,6 +263,40 @@ cedricp
 
 
 35
+
+CoaxSetRawControl.srv
+file
+
+
+
+
+2011-03-29T01:02:06.474308Z
+6bd8f542d175ae9cf5ea563666c1f01a
+2010-03-16T12:53:08.671447Z
+1
+cedricp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+77
 
 CoaxSetAckMode.srv
 file
@@ -332,14 +332,14 @@ cedricp
 
 27
 
-CoaxGetTrimMode.srv
+CoaxSetControlParameters.srv
 file
 
 
 
 
 2011-03-29T01:02:06.474308Z
-0b63015596913e2167f7cf5a175f3953
+cc2021d7a46eb58e5461d790d2214f3b
 2010-03-16T12:53:08.671447Z
 1
 cedricp
@@ -364,7 +364,7 @@ cedricp
 
 
 
-22
+46
 
 CoaxSendString.srv
 file
@@ -400,14 +400,14 @@ cedricp
 
 29
 
-CoaxSetControlParameters.srv
+CoaxGetTrimMode.srv
 file
 
 
 
 
 2011-03-29T01:02:06.474308Z
-cc2021d7a46eb58e5461d790d2214f3b
+0b63015596913e2167f7cf5a175f3953
 2010-03-16T12:53:08.671447Z
 1
 cedricp
@@ -432,7 +432,7 @@ cedricp
 
 
 
-46
+22
 
 CoaxSetVerbose.srv
 file
@@ -468,6 +468,40 @@ cedricp
 
 44
 
+CoaxReset.srv
+file
+
+
+
+
+2011-03-29T01:02:06.474308Z
+9efd8e8c25b70db4703a44a3ec8c0fa7
+2010-03-16T12:53:08.671447Z
+1
+cedricp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16
+
 CoaxConfigureControl.srv
 file
 
@@ -502,16 +536,16 @@ cedricp
 
 85
 
-CoaxReset.srv
+CoaxSetLight.srv
 file
 
 
 
 
-2011-03-29T01:02:06.474308Z
-9efd8e8c25b70db4703a44a3ec8c0fa7
-2010-03-16T12:53:08.671447Z
-1
+2011-04-04T17:35:05.585740Z
+68bcdd6e05f5418d4c17d19a651e4af2
+2010-11-17T09:47:04.639448Z
+66
 cedricp
 
 
@@ -534,7 +568,7 @@ cedricp
 
 
 
-16
+30
 
 CoaxGetVersion.srv
 file
