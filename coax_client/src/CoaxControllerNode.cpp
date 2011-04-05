@@ -119,7 +119,7 @@ class SBController
         }
         
         void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg) {
-            // printf("Got State\n");
+			//printf("Got State\n");
             state = msg;
         }
 
@@ -195,12 +195,15 @@ class SBController
             unsigned int pose_count = 0;
 
             while (ros::ok()) {
-                ROS_INFO("trying a joyctrl");
+                //ROS_INFO("trying a joyctrl");
                 looprate.sleep();
                 ros::spinOnce();
                 desYaw = 0;
                 
-                if (!gotjoy || state == NULL) continue;
+                if (!gotjoy || state == NULL){
+				  //ROS_INFO("no joy and/or state.");
+				  continue;
+				}
                 //joy_count = 0;
 
                 if (state->errorFlags) {
