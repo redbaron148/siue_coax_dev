@@ -58,7 +58,7 @@
 #define DEBUG(c) res=0;c;if (res) printf("Result of "#c": %d\n",res)
 #define CRITICAL(c) res=0;c;if (res) {printf("Result of "#c": %d\n",res); return res;}
 
-#define DEFAULT_NAV_STATE_TIMEOUT   5.0
+#define DEFAULT_NAV_STATE_TIMEOUT   3.0
 #define DEFAULT_AUTO_POSE_TIMEOUT   2.0
 #define DEFAULT_MAX_AUTO_ROLL       0.065
 #define DEFAULT_MAX_AUTO_PITCH      0.065
@@ -177,6 +177,33 @@ class SBController
             control_pub.publish(control);
             return 0;
         }
+        
+        int land()
+        {
+            ros::Rate looprate(10);
+            float desHeight = state->zrange;
+            int res = 0;
+            ROS_INFO("landing!");
+            while(ros::ok())
+            {
+                looprate.sleep();
+                ros::spinOnce();
+                if(state->zrange > .2)
+                {
+                    //ROS_INFO("");
+                    desHeight = desHeight-0.03;
+                
+                    DEBUG(res = setControl(0,0,0,desHeight));
+                    //sleep(1);
+                }
+                else
+                {
+                    DEBUG(res = reachNavState(SB_NAV_STOP,nav_state_timeout));
+                    return res;
+                }
+            }
+            return res;
+        }
 
         void joyctrl() {
             ros::Rate looprate(10);
@@ -256,8 +283,9 @@ class SBController
                         else if(current_pose == NULL) ROS_WARN("No Pose");
                         else ROS_WARN("timed out: %f - %f = %f",ros::Time::now().toSec(),current_pose->header.stamp.toSec(),(ros::Time::now()-current_pose->header.stamp).toSec());
                         if(automode) ROS_INFO("turning auto mode off");
-                        DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
-                        ROS_INFO("Transition to IDLE completed");
+                        land();
+                        //DEBUG(res = reachNavState(SB_NAV_STOP,nav_state_timeout));
+                        //ROS_INFO("Transition to STOP completed");
                         automode = false;
                         break;
                     }
@@ -295,8 +323,9 @@ class SBController
                         firstctrl = true;
                         desHeight = state->zrange;
                         if (joystate->buttons[1]) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
-                            ROS_INFO("Transition to IDLE completed");
+                            land();
+                            //DEBUG(res = reachNavState(SB_NAV_SINK,nav_state_timeout));
+                            //ROS_INFO("Transition to SINK completed");
                         }
                         break;
                     case SB_NAV_CTRLLED:
@@ -307,14 +336,17 @@ class SBController
                             firstctrl = false;
                         }
                         if (joystate->buttons[0]) {
-                            DEBUG(res = reachNavState(SB_NAV_IDLE,nav_state_timeout));
-                            ROS_INFO("Transition to IDLE completed");
+                            land();
+                            //DEBUG(res = reachNavState(SB_NAV_STOP,nav_state_timeout));
+                            //ROS_INFO("Transition to STOP completed");
                             automode = false;
                             break;
                         }
                         if(joystate->buttons[1]){
                             automode = false;
                             ROS_INFO("turning auto mode off");
+                            //DEBUG(res = reachNavState(SB_NAV_STOP,nav_state_timeout));
+                            land();
                         }
                         
                         if(joystate->buttons[2]){
@@ -385,7 +417,6 @@ class SBController
             ROS_INFO("Coax Teleop initialised and ready to roll!");
             return 0;
         }
-
 
 };
 
