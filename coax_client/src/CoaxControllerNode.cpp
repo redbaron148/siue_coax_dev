@@ -260,8 +260,8 @@ class SBController
                             pose_count++;
                         }
                         ROS_WARN("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
-                        ROS_WARN("goal: (%f,%f)\n",current_goal->x,current_goal->y);
-                        ROS_WARN("delta_x: %f  delta_y: %f",delta_x,delta_y);
+                        ROS_WARN("goal: (%f,%f)",current_goal->x,current_goal->y);
+                        ROS_WARN("delta_x: %f  delta_y: %f\n",delta_x,delta_y);
                         
                         // PD NAV CONTROL
                         {
