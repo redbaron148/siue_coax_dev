@@ -225,11 +225,11 @@ class SBController
                             delta_y = (-current_goal->y+current_pose->pose.position.y);
                             delta_x = (current_goal->x-current_pose->pose.position.x);
                             pose_count=0;
-                            gotpose = false;
+                            //gotpose = false;
                         }
                         else {
                             if(pose_count >= 5)
-                                ROS_INFO("have not gotten a new pose recently, may timeout");
+                                ROS_INFO("have not gotten a new pose recently, may timeout: %f",(ros::Time::now()-current_pose->header.stamp).toSec());
                             pose_count++;
                         }
                         ROS_WARN("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
