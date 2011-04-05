@@ -126,7 +126,7 @@ class SBController
 			simple->yawCtrlMode = SB_CTRL_VEL;
 			simple->sensorList = &sensorList;
 
-			simple->commFreq = 30;
+			simple->commFreq = 10;
 			// simple->commContent = SBS_TIMESTAMP | SBS_RPY | SBS_IMU_ALL | SBS_RANGES_ALL | 
             //     SBS_PRESSURE | SBS_BATTERY | SBS_O_XY | SBS_XY_REL | SBS_COAXSPEED;
 			simple->stateFunc = rosStateExportCB;
