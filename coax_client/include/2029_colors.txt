@@ -5,7 +5,7 @@
 (  1, 1, 0) 0.000000 10 yellow_object
 
 [Thresholds]
-(  98:128,  95:116, 160:227 )      #red object
-(  97:113, 113:130,  81:104 )      #green object
-( 112:138, 127:160,  97:131 )      #blue object
-( 118:157,  65:115, 122:169 )      #yellow object
+(  93:122,  95:120, 156:227 )      #red object
+(  89:119, 107:128,  84:121 )      #green object
+(  92:129, 130:150,  95:137 )      #blue object
+( 102:146,  67:111, 128:171 )      #yellow object
