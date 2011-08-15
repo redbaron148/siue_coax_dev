@@ -119,7 +119,7 @@ class SBController
         }
         
         void stateCallback(boost::shared_ptr<coax_msgs::CoaxState> msg) {
-            // printf("Got State\n");
+			//printf("Got State\n");
             state = msg;
         }
 
@@ -227,7 +227,10 @@ class SBController
                 ros::spinOnce();
                 desYaw = 0;
                 
-                if (!gotjoy || state == NULL) continue;
+                if (!gotjoy || state == NULL){
+				  //ROS_INFO("no joy and/or state.");
+				  continue;
+				}
                 //joy_count = 0;
 
                 if (state->errorFlags) {
@@ -257,8 +260,8 @@ class SBController
                             pose_count++;
                         }
                         ROS_WARN("pose: (%f,%f)",current_pose->pose.position.x,current_pose->pose.position.y);
-                        ROS_WARN("goal: (%f,%f)\n",current_goal->x,current_goal->y);
-                        ROS_WARN("delta_x: %f  delta_y: %f",delta_x,delta_y);
+                        ROS_WARN("goal: (%f,%f)",current_goal->x,current_goal->y);
+                        ROS_WARN("delta_x: %f  delta_y: %f\n",delta_x,delta_y);
                         
                         // PD NAV CONTROL
                         {
